@@ -1,167 +1,54 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Wirkungsmonitoring 2023 | Wirkungsmonitoring</title>
+<meta name="generator" content="Observable Framework v1.12.0">
+<title>Innovation Ecosystem Monitor</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="_import/custom-style.0ff854ed.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="_import/custom-style.0ff854ed.css">
-<link rel="modulepreload" href="_observablehq/client.js">
-<link rel="modulepreload" href="_observablehq/runtime.js">
-<link rel="modulepreload" href="_observablehq/stdlib.js">
-<link rel="modulepreload" href="_npm/d3-dsv@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/@observablehq/plot@0.6.14/_esm.js">
-<link rel="modulepreload" href="_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="_npm/isoformat@0.2.1/_esm.js">
-<link rel="modulepreload" href="_npm/interval-tree-1d@1.0.4/_esm.js">
-<link rel="modulepreload" href="_npm/d3-array@3.2.4/_esm.js">
-<link rel="modulepreload" href="_npm/d3-axis@3.0.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-brush@3.0.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-chord@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-color@3.1.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-contour@4.0.2/_esm.js">
-<link rel="modulepreload" href="_npm/d3-delaunay@6.0.4/_esm.js">
-<link rel="modulepreload" href="_npm/d3-dispatch@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-drag@3.0.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-ease@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-fetch@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-format@3.1.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-geo@3.1.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-hierarchy@3.1.2/_esm.js">
-<link rel="modulepreload" href="_npm/d3-interpolate@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-path@3.1.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-polygon@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-quadtree@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-random@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-scale@4.0.2/_esm.js">
-<link rel="modulepreload" href="_npm/d3-scale-chromatic@3.1.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-selection@3.0.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-shape@3.2.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-time@3.1.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-time-format@4.1.0/_esm.js">
-<link rel="modulepreload" href="_npm/d3-timer@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-transition@3.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/d3-zoom@3.0.0/_esm.js">
-<link rel="modulepreload" href="_npm/binary-search-bounds@2.0.5/_esm.js">
-<link rel="modulepreload" href="_npm/internmap@2.0.3/_esm.js">
-<link rel="modulepreload" href="_npm/delaunator@5.0.1/_esm.js">
-<link rel="modulepreload" href="_npm/robust-predicates@3.0.2/_esm.js">
-<link rel="icon" href="_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_import/styles.a2c58267.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_import/styles.a2c58267.css">
+<link rel="modulepreload" href="./_observablehq/client.34eb3252.js">
+<link rel="modulepreload" href="./_observablehq/runtime.03a75458.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.d2397845.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
 <script type="module">
 
-import {define} from "_observablehq/client.js";
-import {registerFile} from "_observablehq/stdlib.js";
-
-registerFile("data/20240919_innosuisse_fin.csv", {"name":"data/20240919_innosuisse_fin.csv","mimeType":"text/csv","path":"_file/data/20240919_innosuisse_fin.0c2c488f.csv","lastModified":1726755490393});
-
-define({id: "c2468cef", inputs: ["FileAttachment"], outputs: ["inno_fin"], body: (FileAttachment) => {
-const inno_fin = FileAttachment("data/20240919_innosuisse_fin.csv").csv({typed: true});;
-return {inno_fin};
-}});
-
-define({id: "b95a7760", inputs: ["Plot","inno_fin","display"], body: async (Plot,inno_fin,display) => {
-display(await(
-Plot.plot({
-  width: 450,
-  height: 600,
-  marginRight: 380,
-  x: {
-    axis: null
-  },
-  y: {domain: [0,500],
-  tickSpacing: 50,
-     label: "Mio. CHF"},
-  color:  {
-    type: "categorical",
-    domain: ["Projektförderung", "Internationale Projekte", "Start-up und Unternehmertum", "Wissens- und Technologietransfer"],
-    range: ["#06F7DA", "#A2AFE9", "#FF8674", "#FCE300"]
-  },
-  marks: [
-    Plot.barY(inno_fin, Plot.stackY(
-              {x: "",
-               y: "value",
-               stroke: "white",
-               sort: {x: "y", reverse: true},
-               opacity: d => d.instrument.includes("Swiss Accelerator Projekte") ||
-                    d.instrument.includes("Start-up Innovationsprojekte") ||
-                    d.instrument.includes("Projektförderung im Rahmen des Impulsprogramms") ||
-                    d.instrument.includes("Bridge") ||
-                    d.instrument.includes("Overheadbeiträge") ? 0.5 : 1,
-               fill: "type"})),
-    Plot.textX(inno_fin.sort((a, b) => a.value - b.value), Plot.stackY(
-              {x: "",
-               y: "value",
-               text: d => d.value > 20 ? `${d.instrument} \n` : `${d.instrument}`,
-               dx: 15,
-               fill: d => d.instrument.includes("Swiss Accelerator Projekte") ||
-                    d.instrument.includes("Start-up Innovationsprojekte") ||
-                    d.instrument.includes("Projektförderung im Rahmen des Impulsprogramms") ||
-                    d.instrument.includes("Bridge") ||
-                    d.instrument.includes("Overheadbeiträge") ? "grey" : "black",
-               textAnchor: "start",
-              fontWeight: 400
-              })),
-      Plot.textX(inno_fin.sort((a, b) => a.value - b.value), Plot.stackY(
-              {x: "0",
-               y: "value",
-               text: d => d.value > 20 ? `\n${d.value} Mio. CHF` : ``,
-               dx: 15,
-               fill: d => d.instrument.includes("Swiss Accelerator Projekte") ||
-                    d.instrument.includes("Start-up Innovationsprojekte") ||
-                    d.instrument.includes("Projektförderung im Rahmen des Impulsprogramms") ||
-                    d.instrument.includes("Bridge") ||
-                    d.instrument.includes("Overheadbeiträge") ? "grey" : "black",
-               textAnchor: "start",
-              fontWeight: 700
-              }))
-  ]
-})
-))
-}});
+import "./_observablehq/client.34eb3252.js";
 
 </script>
-<aside id="observablehq-toc" data-selector="h1:not(:first-of-type), h2:first-child, :not(h1) + h2">
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Innovation Ecosystem Monitor</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./a_ranking">A. Ranking overview</a></li>
+    <li class="observablehq-link"><a href="./b_rnd">B. Research &amp; Development</a></li>
+    <li class="observablehq-link"><a href="./c_ens">C. Entrepreneurship &amp; Start-ups</a></li>
+    <li class="observablehq-link"><a href="./d_inno">D. Innovation Activities</a></li>
+    <li class="observablehq-link"><a href="./e_ktt">E. Knowledge and Technology Transfer</a></li>
+    <li class="observablehq-link"><a href="./f_snd">F. Sustainability and Digitalisation</a></li>
+  </ol>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
-<div>Contents</div>
-<ol>
-<li class="observablehq-secondary-link"><a href="#methodische-grundlagen">Methodische Grundlagen</a></li>
-<li class="observablehq-secondary-link"><a href="#innosuisse-f%C3%B6rderung">Innosuisse-Förderung</a></li>
-<li class="observablehq-secondary-link"><a href="#f%C3%B6rderung-f%C3%BCr-schweizer-innovationprojekte">Förderung für Schweizer Innovationprojekte</a></li>
-<li class="observablehq-secondary-link"><a href="#f%C3%B6rderung-f%C3%BCr-internationale-innovationsprojekte">Förderung für internationale Innovationsprojekte</a></li>
-<li class="observablehq-secondary-link"><a href="#begleitugn-von-start-ups">Begleitugn von Start-ups</a></li>
-<li class="observablehq-secondary-link"><a href="#starthilfe-f%C3%BCr-projekte-und-vernetzung">Starthilfe für Projekte und Vernetzung</a></li>
-<li class="observablehq-secondary-link"><a href="#synthese">Synthese</a></li>
-</ol>
 </nav>
 </aside>
-<div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<h1 id="wirkungsmonitoring-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#wirkungsmonitoring-2023">Wirkungsmonitoring 2023</a></h1>
-<p>Die langfristigen Wirkungsziele lassen sich fünf Stossrichtungen zurodnen.</p>
-<div class="card" style="max-width: 640px;">
-  <img alt="3 Instrumente, 5 Stossrichtungen" aria-hidden="true" tabindex="-1" src="https://prod-innosuisse-hcms-sdweb.imgix.net/2024/06/27/f0499597-08da-4594-83ae-0e917af38edf.jpg" usemap="" style="width: 100%; height: auto; object-fit: cover;">
-</div>
-<h1 id="methodische-grundlagen" tabindex="-1"><a class="observablehq-header-anchor" href="#methodische-grundlagen">Methodische Grundlagen</a></h1>
-<p>This led to the launch of the first artificial satellite, Sputnik 1, and the crewed moon landing by Apollo 11. As technology advanced, rocket launches became synonymous with space exploration and satellite deployment.</p>
-<h1 id="innosuisse-f%C3%B6rderung" tabindex="-1"><a class="observablehq-header-anchor" href="#innosuisse-f%C3%B6rderung">Innosuisse-Förderung</a></h1>
-<div id="cell-c2468cef" class="observablehq observablehq--block"></div>
-<div id="cell-b95a7760" class="observablehq observablehq--block observablehq--loading"></div>
-<h2 id="f%C3%B6rderung-f%C3%BCr-schweizer-innovationprojekte" tabindex="-1"><a class="observablehq-header-anchor" href="#f%C3%B6rderung-f%C3%BCr-schweizer-innovationprojekte">Förderung für Schweizer Innovationprojekte</a></h2>
-<p>Lore Ipsum</p>
-<div class="tip">
-  <p>This is a <i>styled</i> tip using <small>HTML</small>.</p>
-</div>
-<h2 id="f%C3%B6rderung-f%C3%BCr-internationale-innovationsprojekte" tabindex="-1"><a class="observablehq-header-anchor" href="#f%C3%B6rderung-f%C3%BCr-internationale-innovationsprojekte">Förderung für internationale Innovationsprojekte</a></h2>
-<p>Lore Ipsum</p>
-<h2 id="begleitugn-von-start-ups" tabindex="-1"><a class="observablehq-header-anchor" href="#begleitugn-von-start-ups">Begleitugn von Start-ups</a></h2>
-<p>Lore Ipsum</p>
-<h2 id="starthilfe-f%C3%BCr-projekte-und-vernetzung" tabindex="-1"><a class="observablehq-header-anchor" href="#starthilfe-f%C3%BCr-projekte-und-vernetzung">Starthilfe für Projekte und Vernetzung</a></h2>
-<p>Lore Ipsum</p>
-<h1 id="synthese" tabindex="-1"><a class="observablehq-header-anchor" href="#synthese">Synthese</a></h1>
+<h1 id="innovation-ecosystem-monitor" tabindex="-1"><a class="observablehq-header-anchor" href="#innovation-ecosystem-monitor">Innovation Ecosystem Monitor</a></h1>
+<h2 id="mapping-switzerlands-strengths-weaknesses-and-their-evolution-over-time" tabindex="-1"><a class="observablehq-header-anchor" href="#mapping-switzerlands-strengths-weaknesses-and-their-evolution-over-time">Mapping Switzerland's Strengths, Weaknesses and Their Evolution Over Time</a></h2>
+<h3 id="what-is-its-purpose" tabindex="-1"><a class="observablehq-header-anchor" href="#what-is-its-purpose">What is its purpose?</a></h3>
+<p>The goal of this monitoring is to provide you with an overview of the competitiveness of Switzerland's innovation ecosystem in an international context and go into more detail where it is relevant to Innosuisse. You will better understand the strengths and weaknesses of the Swiss innovation ecosystem and its development over time. Wherever possible we will link to reports that describe the findings in more detail.</p>
+<h3 id="from-the-abstract-to-the-concrete" tabindex="-1"><a class="observablehq-header-anchor" href="#from-the-abstract-to-the-concrete">From the abstract to the concrete</a></h3>
+<p>Switzerland regularly appears on top of international innovation rankings. These indices are constructed out of a multitude of selected indicators (and their selection influences the final ranking). The different indicators present different perspectives on the innovation ecosystem. In the following we will <strong>first</strong> take a bird's eye view and look at different innovation indices, <strong>then</strong> we will dive into detail and shed light on selected environment and framework conditions.</p>
 </main>
 <footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-10T17:39:12">Oct 10, 2024</a>.</div>
+<nav><a rel="next" href="./a_ranking"><span>A. Ranking overview</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-30T15:23:27">Oct 30, 2024</a>.</div>
 </footer>
 </div>
