@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Wirkungsmonitoring 2023 | Wirkungsmonitoring</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="_import\custom-style.0ff854ed.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="_import\custom-style.0ff854ed.css">
+<link rel="modulepreload" href="_observablehq\client.js">
+<link rel="modulepreload" href="_observablehq\runtime.js">
+<link rel="modulepreload" href="_observablehq\stdlib.js">
+<link rel="modulepreload" href="_npm\d3-dsv@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\@observablehq\plot@0.6.14\_esm.js">
+<link rel="modulepreload" href="_npm\d3@7.9.0\_esm.js">
+<link rel="modulepreload" href="_npm\isoformat@0.2.1\_esm.js">
+<link rel="modulepreload" href="_npm\interval-tree-1d@1.0.4\_esm.js">
+<link rel="modulepreload" href="_npm\d3-array@3.2.4\_esm.js">
+<link rel="modulepreload" href="_npm\d3-axis@3.0.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-brush@3.0.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-chord@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-color@3.1.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-contour@4.0.2\_esm.js">
+<link rel="modulepreload" href="_npm\d3-delaunay@6.0.4\_esm.js">
+<link rel="modulepreload" href="_npm\d3-dispatch@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-drag@3.0.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-ease@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-fetch@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-force@3.0.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-format@3.1.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-geo@3.1.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-hierarchy@3.1.2\_esm.js">
+<link rel="modulepreload" href="_npm\d3-interpolate@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-path@3.1.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-polygon@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-quadtree@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-random@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-scale@4.0.2\_esm.js">
+<link rel="modulepreload" href="_npm\d3-scale-chromatic@3.1.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-selection@3.0.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-shape@3.2.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-time@3.1.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-time-format@4.1.0\_esm.js">
+<link rel="modulepreload" href="_npm\d3-timer@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-transition@3.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\d3-zoom@3.0.0\_esm.js">
+<link rel="modulepreload" href="_npm\binary-search-bounds@2.0.5\_esm.js">
+<link rel="modulepreload" href="_npm\internmap@2.0.3\_esm.js">
+<link rel="modulepreload" href="_npm\delaunator@5.0.1\_esm.js">
+<link rel="modulepreload" href="_npm\robust-predicates@3.0.2\_esm.js">
+<link rel="icon" href="_file\observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "_observablehq\client.js";
+import {registerFile} from "_observablehq\stdlib.js";
+
+registerFile("data\20240919_innosuisse_fin.csv", {"name":"data\20240919_innosuisse_fin.csv","mimeType":"text/csv","path":"_file\data\20240919_innosuisse_fin.0c2c488f.csv","lastModified":1726755490393});
+
+define({id: "c2468cef", inputs: ["FileAttachment"], outputs: ["inno_fin"], body: (FileAttachment) => {
+const inno_fin = FileAttachment("data\20240919_innosuisse_fin.csv").csv({typed: true});;
+return {inno_fin};
+}});
+
+define({id: "b95a7760", inputs: ["Plot","inno_fin","display"], body: async (Plot,inno_fin,display) => {
+display(await(
+Plot.plot({
+  width: 450,
+  height: 600,
+  marginRight: 380,
+  x: {
+    axis: null
+  },
+  y: {domain: [0,500],
+  tickSpacing: 50,
+     label: "Mio. CHF"},
+  color:  {
+    type: "categorical",
+    domain: ["Projektförderung", "Internationale Projekte", "Start-up und Unternehmertum", "Wissens- und Technologietransfer"],
+    range: ["#06F7DA", "#A2AFE9", "#FF8674", "#FCE300"]
+  },
+  marks: [
+    Plot.barY(inno_fin, Plot.stackY(
+              {x: "",
+               y: "value",
+               stroke: "white",
+               sort: {x: "y", reverse: true},
+               opacity: d => d.instrument.includes("Swiss Accelerator Projekte") ||
+                    d.instrument.includes("Start-up Innovationsprojekte") ||
+                    d.instrument.includes("Projektförderung im Rahmen des Impulsprogramms") ||
+                    d.instrument.includes("Bridge") ||
+                    d.instrument.includes("Overheadbeiträge") ? 0.5 : 1,
+               fill: "type"})),
+    Plot.textX(inno_fin.sort((a, b) => a.value - b.value), Plot.stackY(
+              {x: "",
+               y: "value",
+               text: d => d.value > 20 ? `${d.instrument} \n` : `${d.instrument}`,
+               dx: 15,
+               fill: d => d.instrument.includes("Swiss Accelerator Projekte") ||
+                    d.instrument.includes("Start-up Innovationsprojekte") ||
+                    d.instrument.includes("Projektförderung im Rahmen des Impulsprogramms") ||
+                    d.instrument.includes("Bridge") ||
+                    d.instrument.includes("Overheadbeiträge") ? "grey" : "black",
+               textAnchor: "start",
+              fontWeight: 400
+              })),
+      Plot.textX(inno_fin.sort((a, b) => a.value - b.value), Plot.stackY(
+              {x: "0",
+               y: "value",
+               text: d => d.value > 20 ? `\n${d.value} Mio. CHF` : ``,
+               dx: 15,
+               fill: d => d.instrument.includes("Swiss Accelerator Projekte") ||
+                    d.instrument.includes("Start-up Innovationsprojekte") ||
+                    d.instrument.includes("Projektförderung im Rahmen des Impulsprogramms") ||
+                    d.instrument.includes("Bridge") ||
+                    d.instrument.includes("Overheadbeiträge") ? "grey" : "black",
+               textAnchor: "start",
+              fontWeight: 700
+              }))
+  ]
+})
+))
+}});
+
+</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type), h2:first-child, :not(h1) + h2">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#methodische-grundlagen">Methodische Grundlagen</a></li>
+<li class="observablehq-secondary-link"><a href="#innosuisse-f%C3%B6rderung">Innosuisse-Förderung</a></li>
+<li class="observablehq-secondary-link"><a href="#f%C3%B6rderung-f%C3%BCr-schweizer-innovationprojekte">Förderung für Schweizer Innovationprojekte</a></li>
+<li class="observablehq-secondary-link"><a href="#f%C3%B6rderung-f%C3%BCr-internationale-innovationsprojekte">Förderung für internationale Innovationsprojekte</a></li>
+<li class="observablehq-secondary-link"><a href="#begleitugn-von-start-ups">Begleitugn von Start-ups</a></li>
+<li class="observablehq-secondary-link"><a href="#starthilfe-f%C3%BCr-projekte-und-vernetzung">Starthilfe für Projekte und Vernetzung</a></li>
+<li class="observablehq-secondary-link"><a href="#synthese">Synthese</a></li>
+</ol>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<h1 id="wirkungsmonitoring-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#wirkungsmonitoring-2023">Wirkungsmonitoring 2023</a></h1>
+<p>Die langfristigen Wirkungsziele lassen sich fünf Stossrichtungen zurodnen.</p>
+<div class="card" style="max-width: 640px;">
+  <img alt="3 Instrumente, 5 Stossrichtungen" aria-hidden="true" tabindex="-1" src="https://prod-innosuisse-hcms-sdweb.imgix.net/2024/06/27/f0499597-08da-4594-83ae-0e917af38edf.jpg" usemap="" style="width: 100%; height: auto; object-fit: cover;">
+</div>
+<h1 id="methodische-grundlagen" tabindex="-1"><a class="observablehq-header-anchor" href="#methodische-grundlagen">Methodische Grundlagen</a></h1>
+<p>This led to the launch of the first artificial satellite, Sputnik 1, and the crewed moon landing by Apollo 11. As technology advanced, rocket launches became synonymous with space exploration and satellite deployment.</p>
+<h1 id="innosuisse-f%C3%B6rderung" tabindex="-1"><a class="observablehq-header-anchor" href="#innosuisse-f%C3%B6rderung">Innosuisse-Förderung</a></h1>
+<div id="cell-c2468cef" class="observablehq observablehq--block"></div>
+<div id="cell-b95a7760" class="observablehq observablehq--block observablehq--loading"></div>
+<h2 id="f%C3%B6rderung-f%C3%BCr-schweizer-innovationprojekte" tabindex="-1"><a class="observablehq-header-anchor" href="#f%C3%B6rderung-f%C3%BCr-schweizer-innovationprojekte">Förderung für Schweizer Innovationprojekte</a></h2>
+<p>Lore Ipsum</p>
+<div class="tip">
+  <p>This is a <i>styled</i> tip using <small>HTML</small>.</p>
+</div>
+<h2 id="f%C3%B6rderung-f%C3%BCr-internationale-innovationsprojekte" tabindex="-1"><a class="observablehq-header-anchor" href="#f%C3%B6rderung-f%C3%BCr-internationale-innovationsprojekte">Förderung für internationale Innovationsprojekte</a></h2>
+<p>Lore Ipsum</p>
+<h2 id="begleitugn-von-start-ups" tabindex="-1"><a class="observablehq-header-anchor" href="#begleitugn-von-start-ups">Begleitugn von Start-ups</a></h2>
+<p>Lore Ipsum</p>
+<h2 id="starthilfe-f%C3%BCr-projekte-und-vernetzung" tabindex="-1"><a class="observablehq-header-anchor" href="#starthilfe-f%C3%BCr-projekte-und-vernetzung">Starthilfe für Projekte und Vernetzung</a></h2>
+<p>Lore Ipsum</p>
+<h1 id="synthese" tabindex="-1"><a class="observablehq-header-anchor" href="#synthese">Synthese</a></h1>
+</main>
+<footer id="observablehq-footer">
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-10T17:39:12">Oct 10, 2024</a>.</div>
+</footer>
+</div>
