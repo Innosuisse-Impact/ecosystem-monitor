@@ -107,7 +107,13 @@ const colorLegend = (y) => html`<span style="border-bottom: solid 2px ${color_sc
 return {color_scale,colorLegend};
 }});
 
-define({id: "3213cca7", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_patents","df_patents_sorted","df_patents_text","plot_pct"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
+define({id: "4e058e15", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
+define({id: "2ea134f8", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_patents","df_patents_sorted","df_patents_text","plot_pct"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
 // Extract data from df
   const df_patents = df_eis.filter(d => countries.includes(d.iso3) 
                                 & d.var_code === "pct_patents"
@@ -153,7 +159,19 @@ define({id: "3213cca7", inputs: ["df_eis","countries","display","Plot","color_sc
           }),
       Plot.text(df_patents_text, {
         x: d => subtractYears(d.year_date, 4), // Years in data from EIS need to recalibrated
-        y: 'obs_value',
+        y: d => {
+            if (d.country === "Sweden") {
+              return d.obs_value * 1.01; 
+            }
+            else if (d.country === "South Korea") {
+              return d.obs_value * 0.98; // Move up
+            } 
+            else if (d.country === "Finland") {
+              return d.obs_value * 1.01; // Move up
+            } else {
+              return d.obs_value; // No change
+            }
+          },
         text: d => `${d.country} (${d.obs_value.toFixed(1)})`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
@@ -164,6 +182,18 @@ define({id: "3213cca7", inputs: ["df_eis","countries","display","Plot","color_sc
   })
   )
 return {df_patents,df_patents_sorted,df_patents_text,plot_pct};
+}});
+
+define({id: "4e058e15-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
+define({id: "1a7588f8", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("DNK")
+))
 }});
 
 define({id: "4e9adfca", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_ppcp","df_ppcp_sorted","df_ppcp_text","plot_pct"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
@@ -226,24 +256,34 @@ define({id: "4e9adfca", inputs: ["df_eis","countries","display","Plot","color_sc
 return {df_ppcp,df_ppcp_sorted,df_ppcp_text,plot_pct};
 }});
 
-define({id: "2f0bf3cd", inputs: ["display","Plot","df_switt","black_innosuisse"], body: (display,Plot,df_switt,black_innosuisse) => {
+define({id: "f4cdbc8c", inputs: ["display","Plot","df_switt"], body: (display,Plot,df_switt) => {
 display(
   Plot.plot({
   color: {legend: true},
   caption: "swiTT (2023)",
-  x: {label: null, tickFormat: d => d.toString()},
-  y: {label: "number of new start-ups", axis: "right"},
+  x: {
+    label: null, 
+    tickFormat: d => d.toString(),
+    domain: [2017,2018, 2019, 2020, 2022, 2023]},
+  y: {label: "number of new start-ups"},
   marks: [
-    Plot.barY(df_switt.filter(d=> d.year > 2016), {x: "year", y2: "obs_value", fill: "type"}),
+    Plot.barY(df_switt.filter(d=> d.year > 2016), 
+    {x: "year", 
+    y2: "obs_value", 
+    fill: d => d.type === "new start-ups" ? "#F28177" : "#C96D5F"}),
     //Plot.text(df_switt, {x: "year_date", y: "obs_value", text: "obs_value", dy: -15, dx: 10}),
-    Plot.text(df_switt.filter(d=> d.year > 2016), {x: "year", y: "obs_value", text: "obs_value", fill: d => d.type === "new start-ups" ? black_innosuisse : "white", dy: -10}),
+    Plot.text(df_switt.filter(d=> d.year > 2016), 
+    {x: "year", 
+    y: "obs_value", 
+    text: "obs_value", 
+    dy: -10}),
     Plot.ruleY([0])
   ]
 })
 )
 }});
 
-define({id: "679895f7", inputs: ["display","Plot","black_innosuisse"], outputs: ["df_innosuisse"], body: (display,Plot,black_innosuisse) => {
+define({id: "47246a9f", inputs: ["display","Plot"], outputs: ["df_innosuisse"], body: (display,Plot) => {
 const df_innosuisse = [
   {
     "year_date": new Date ("2019-01-01"),
@@ -277,10 +317,13 @@ display(
   color: {legend: true},
   marginTop: 50,
   caption: "Innosuisse (2024)",
-  x: {label: null, tickFormat: d => d.toString()},
+  x: {
+    label: null, 
+    tickFormat: d => d.toString(), 
+    domain: [2017,2018, 2019, 2020, 2022, 2023]},
   y: {label: "Number of innovation projects funded by Innosuisse with implementation partners"},
   marks: [
-    Plot.barY(df_innosuisse, {x: "year", y: "obs_value", fill: black_innosuisse}),
+    Plot.barY(df_innosuisse, {x: "year", y: "obs_value", fill: d => d.year < 2023 ? "#05F2C7" : "#04B090"}),
     //Plot.text(df_switt, {x: "year_date", y: "obs_value", text: "obs_value", dy: -15, dx: 10}),
     Plot.text(df_innosuisse, {x: "year", y: "obs_value", text: "obs_value", dy: -10}),
     Plot.ruleY([0])
@@ -349,13 +392,18 @@ return {countries_list,countries};
 <div class="observablehq observablehq--block"><!--:1d7e54fd:--></div>
 <div class="observablehq observablehq--block"><!--:8c3be053:--></div>
 <h2 id="pct-patent-applications-per-billion-gdp-in-pps" tabindex="-1"><a class="observablehq-header-anchor" href="#pct-patent-applications-per-billion-gdp-in-pps">PCT patent applications per billion GDP (in PPS)</a></h2>
-<div class="observablehq observablehq--block"><!--:3213cca7:--></div>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is well-positioned and it's PCT patent applications have grown steadliy with the exceptions of 2019.</p>
+<p>PCT patents are international patents filed through the WIPO-administered Patent Cooperation Treaty. It makes it possible to seek patent protection for an invention simultaneously in a number of countries by filing a single application.</p>
+<div class="observablehq observablehq--block"><!--:2ea134f8:--></div>
 <h2 id="public-private-co-publications" tabindex="-1"><a class="observablehq-header-anchor" href="#public-private-co-publications">Public-private co-publications</a></h2>
+<p>One of the strengths in the international comparison are <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s public-private co-publications. Only <observablehq-loading></observablehq-loading><!--:1a7588f8:--> can keep pace. The Innosuisse monitoring data shows that Innovation Projects with Implementation Partner make their contribution to this knowldege transfer between research and business (xx % report a co-publicaton as result of their Innovation Project).</p>
 <div class="observablehq observablehq--block"><!--:4e9adfca:--></div>
 <h2 id="start-ups-from-swiss-public-research-organisations" tabindex="-1"><a class="observablehq-header-anchor" href="#start-ups-from-swiss-public-research-organisations">Start-ups from Swiss public research organisations</a></h2>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:2f0bf3cd:--></div>
+<p>Universities and other public research organisations have become an important driver of start-up growth in Switzerland. However, recent years have seen a decline both in total start-ups and more pronounced in start-ups with a formal licence of IP.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f4cdbc8c:--></div>
 <h2 id="innovation-projects-funded-by-innosuisse-with-implementation-partners" tabindex="-1"><a class="observablehq-header-anchor" href="#innovation-projects-funded-by-innosuisse-with-implementation-partners">Innovation projects funded by Innosuisse with implementation partners</a></h2>
-<div class="observablehq observablehq--block"><!--:679895f7:--></div>
+<p><em>Ich würde diese Darstellung evtl. weglassen und auf <a href="https://www.innosuisse.admin.ch/de/zahlen-und-fakten" target="_blank" rel="noopener noreferrer">Zahlen und Fakten</a> verweisen.</em></p>
+<div class="observablehq observablehq--block"><!--:47246a9f:--></div>
 <details> 
 <summary>Sources with further details</summary> 
 <ul> 
@@ -369,6 +417,6 @@ return {countries_list,countries};
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./c_inno"><span>C. Innovation Activities</span></a><a rel="next" href="./e_snd"><span>E. Sustainability and Digitalisation</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-31T12:36:05">Oct 31, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-31T23:14:23">Oct 31, 2024</a>.</div>
 </footer>
 </div>

@@ -239,7 +239,13 @@ define({id: "3e84ad91", inputs: ["eurostat_pct_rd","countries","display","Plot",
 return {df_plot,highestPerCountry,df_pct_rd_text,plot_pct_rd};
 }});
 
-define({id: "fda8ce11", inputs: ["df_eis","countries","display","Plot","color_scale"], outputs: ["df_new_sales","df_new_sales_sorted","df_new_sales_text","plot_new_sales"], body: (df_eis,countries,display,Plot,color_scale) => {
+define({id: "4e058e15-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
+define({id: "09106212", inputs: ["df_eis","countries","display","Plot","color_scale"], outputs: ["df_new_sales","df_new_sales_sorted","df_new_sales_text","plot_new_sales"], body: (df_eis,countries,display,Plot,color_scale) => {
 // Extract data from df
   const df_new_sales = df_eis.filter(d => countries.includes(d.iso3) 
                                 & d.var_code === "new_innov_sales"
@@ -262,6 +268,7 @@ define({id: "fda8ce11", inputs: ["df_eis","countries","display","Plot","color_sc
       iso3: item.iso3,
       country: item.country,
       year: item.year,
+      years: item.years,
       year_date: item.year_date,
       obs_value: item.obs_value
     }));
@@ -270,7 +277,7 @@ define({id: "fda8ce11", inputs: ["df_eis","countries","display","Plot","color_sc
   const plot_new_sales = display(
     Plot.plot({
     caption: 'Source: Eurostat - Community Innovation Survey (CIS)',
-    marginRight: 50,
+    marginRight: 75,
     x: {label: null,
        domain: ["2008–2010", "2010–2012", "2012–2014", "2014–2016", "2016–2018", "2018–2020"]},
     y: {label: "% of sales of new-to-market and new-to-enterprise innovations of turnover",
@@ -357,10 +364,12 @@ return {countries_list,countries};
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> lost over the last 20 years its dominant position in share of firms with R&amp;D activities. In 2018–2020, the number of firms with R&amp;D activities has started to increase again for the first time since 2000–2002. At the same time, the average share of R&amp;D expenditure has remained constant compared to the previous period, meaning that the concentration of R&amp;D expenditure in the economy as a whole has decreased.</p>
 <div class="observablehq observablehq--block"><!--:bb3af2c1:--></div>
 <h2 id="share-of-firms-with-product-or-business-process-innovations" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-product-or-business-process-innovations">Share of firms with product or business process innovations</a></h2>
-<p>The share of firms with product or business process innovations has increased significantly as well in the last survey. At the same time, however, the average share of sales of innovative products and services has decreased.</p>
+<p>The share of firms with product or business process innovations has increased significantly as well in the last survey.</p>
 <div class="observablehq observablehq--block"><!--:3e84ad91:--></div>
 <h2 id="sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover" tabindex="-1"><a class="observablehq-header-anchor" href="#sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover">Sales of new-to-market and new-to-enterprise innovations as a percentage of turnover</a></h2>
-<div class="observablehq observablehq--block"><!--:fda8ce11:--></div>
+<p>The recent uptick in innovative acitivity in <observablehq-loading></observablehq-loading><!--:4e058e15-1:--> is also mirrored in the sales of new innovations in percent of total turnover.</p>
+<p><em>Label aufräumen</em></p>
+<div class="observablehq observablehq--block"><!--:09106212:--></div>
 <h2 id="obstacles-to-innovation" tabindex="-1"><a class="observablehq-header-anchor" href="#obstacles-to-innovation">Obstacles to innovation</a></h2>
 <p>The most cited obstacles to innovation are mostly concerning its economic viability: The cost of innovation projects, lack of equity and debt capital and long amortisation periods. The shortage of skilled labour / R&amp;D-personnel comes in 4th and 5th.</p>
 <details>
@@ -375,6 +384,6 @@ return {countries_list,countries};
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./b_ens"><span>B. Entrepreneurship &amp; Start-ups</span></a><a rel="next" href="./d_ktt"><span>D. Knowledge and Technology Transfer</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-31T12:36:05">Oct 31, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-31T23:14:23">Oct 31, 2024</a>.</div>
 </footer>
 </div>
