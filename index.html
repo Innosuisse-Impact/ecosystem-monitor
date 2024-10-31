@@ -6,15 +6,370 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_import/styles.a2c58267.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="stylesheet" type="text/css" href="./_import/styles.a2c58267.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="modulepreload" href="./_observablehq/client.34eb3252.js">
 <link rel="modulepreload" href="./_observablehq/runtime.03a75458.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.d2397845.js">
+<link rel="modulepreload" href="./_npm/arquero@7.1.0/6f3128cb.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.8a28c26d.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/acorn@8.12.1/9e2c2538.js">
+<link rel="modulepreload" href="./_npm/@uwdata/flechette@1.1.0/c53be130.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
 <script type="module">
 
-import "./_observablehq/client.34eb3252.js";
+import {define} from "./_observablehq/client.34eb3252.js";
+import {registerFile} from "./_observablehq/stdlib.d2397845.js";
+
+registerFile("./data/20241024_vc.txt", {"name":"./data/20241024_vc.txt","mimeType":"text/plain","path":"./_file/data/20241024_vc.be1c10c6.txt","lastModified":1730371672473,"size":73453});
+registerFile("./data/bfs_udemo_2020.csv", {"name":"./data/bfs_udemo_2020.csv","mimeType":"text/csv","path":"./_file/data/bfs_udemo_2020.31a1264c.csv","lastModified":1725538902630,"size":1939});
+registerFile("./data/df.csv", {"name":"./data/df.csv","mimeType":"text/csv","path":"./_file/data/df.0cd158b8.csv","lastModified":1729023039404,"size":3217707});
+registerFile("./data/df_rank2.csv", {"name":"./data/df_rank2.csv","mimeType":"text/csv","path":"./_file/data/df_rank2.41d6691d.csv","lastModified":1730368760149,"size":127974});
+registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
+registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt","mimeType":"text/plain","path":"./_file/data/eurostat_pct_rd.c11032a1.txt","lastModified":1724938110038,"size":6807});
+registerFile("./data/gem_tea_2018-2023.csv", {"name":"./data/gem_tea_2018-2023.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2023.8a8724b7.csv","lastModified":1729598636680,"size":1656});
+registerFile("./data/switt_startup_2023.csv", {"name":"./data/switt_startup_2023.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2023.4ecfbba9.csv","lastModified":1730374270709,"size":1071});
+
+define({id: "3a0062f4", inputs: ["df"], outputs: ["all_countries","all_countries_b","black_innosuisse","grey_innosuisse","aq"], body: async (df) => {
+const aq = await import("./_npm/arquero@7.1.0/6f3128cb.js");
+const all_countries = new Map(df.map(d => [d.country, d.iso3]))
+const all_countries_b = new Map(df.map(d => [d.iso3, d.country]))
+const black_innosuisse = "#53565A"
+const grey_innosuisse = "#D9D9D6"
+
+return {all_countries,all_countries_b,black_innosuisse,grey_innosuisse,aq};
+}});
+
+define({id: "ad76519a", inputs: ["df_rank2","view","Inputs"], outputs: ["countries_list","countries"], body: (df_rank2,view,Inputs) => {
+// Evtl. muss hier wieder die Abhängigkeit von der Israel-Checkbox eingefügt werden.
+const countries_list = new Map(
+  df_rank2.filter(d => d.index === "GII" && d.year === 2024)
+          .sort((a, b) => a.rank - b.rank)
+          .map(d => [d.country, d.iso3]))
+
+const countries = view(Inputs.select(countries_list, { 
+  value: ["CHE", "SWE", "USA", "SGP", "GBR", "KOR", "FIN", "NLD", "DEU", "DNK", "ISR"], 
+  multiple: 3, 
+  label: "Selected countries (add or deselect countries with Ctrl + Left-click)"}));
+return {countries_list,countries};
+}});
+
+define({id: "8893e024", inputs: ["FileAttachment"], outputs: ["df","df_eis","df_rank2","df_gem_tea","df_vc_gdp","df_udemo","eurostat_pct_rd","df_switt"], body: async (FileAttachment) => {
+// OECD MSTI Daten laden
+const df = await FileAttachment("./data/df.csv").csv({typed: true});
+// EU European Innovation Scoreboard Daten laden
+const df_eis = await FileAttachment("./data/eurostat_eis_values.csv").csv({typed: true});
+// Rankingdaten laden.
+const df_rank2 = await FileAttachment("./data/df_rank2.csv").csv({typed: true})
+// GEM-Daten laden
+const df_gem_tea = await FileAttachment("./data/gem_tea_2018-2023.csv").csv({typed: true});
+//Display ${view(Inputs.table(df_rank.filter(d => ["EIS", "GII"].includes(d.index) & d.year != "Change")))}
+const df_vc_gdp = await FileAttachment("./data/20241024_vc.txt").tsv({typed: true})
+// UDEMO Daten laden
+const df_udemo = await FileAttachment("./data/bfs_udemo_2020.csv").csv({typed: true});
+
+const eurostat_pct_rd = await FileAttachment("./data/eurostat_pct_rd.txt").tsv({typed: true})
+
+const df_switt = await FileAttachment("./data/switt_startup_2023.csv").csv({typed: true});
+return {df,df_eis,df_rank2,df_gem_tea,df_vc_gdp,df_udemo,eurostat_pct_rd,df_switt};
+}});
+
+define({id: "8c3be053", inputs: ["Plot","countries","html","all_countries_b"], outputs: ["color_scale","colorLegend"], body: (Plot,countries,html,all_countries_b) => {
+const color_scale = Plot.scale(
+  {color: {scheme: "Tableau10", 
+           domain: countries}
+           });
+const colorLegend = (y) => html`<span style="border-bottom: solid 2px ${color_scale.apply(`${y}`)};">${all_countries_b.get(y)}</span>`;
+return {color_scale,colorLegend};
+}});
+
+define({id: "ed74b42d", inputs: ["df_rank2","countries","all_countries_b","display","Plot"], outputs: ["df_rank","ordered_gii","ordered_c_gii","chart1"], body: (df_rank2,countries,all_countries_b,display,Plot) => {
+const df_rank = df_rank2.filter(d => countries.includes(d.iso3) & d.date > new Date('2021-12-31'))
+
+const ordered_gii = 
+    df_rank.filter(d => ["GII"].includes(d.index) & d.year === 2024)
+    .sort((a, b) => a.rank - b.rank)
+    .map(item => item.iso3);
+  
+const ordered_c_gii = ordered_gii.map(iso3 => all_countries_b.get(iso3));
+
+const chart1 = display(
+  Plot.plot({
+  //title: "Switzerland's position in innovation rankings",
+  caption: "Sources: WIPO (2024), European Commission (2024) & Economist Impact (2023)",
+  marginTop: 40,
+  marginLeft: 100,
+  x: {label: null,
+      domain: [2022,2023,2024,"Change"],
+      tickSize: 0,
+      tickFormat: "~f",
+      tickPadding: 0,
+      axis:"top"},
+  color: {legend: null,
+         scheme: "Blues",
+         reverse: true},
+  y: {
+    domain: ordered_c_gii,
+    tickSize: 0,
+      tickPadding: 0},
+  fx: {label: null,
+       domain: ["Global Innovation Index","European Innovation Scoreborad", "Economist Impact's Innovation Quotient"],
+       tickPadding: 20,
+       axis:"top"},
+  marks: [
+    Plot.cell(df_rank2.filter(d => ["EIS", "GII","EIQ"].includes(d.index) & d.year != "Change"), {
+      x: "year",
+      y: d => all_countries_b.get(d.iso3),
+      fill: "rank",
+      fx: "index_name",
+      sort: {y: "fill"}
+    }),
+    Plot.cell(df_rank2.filter(d => ["EIS", "GII", "EIQ"].includes(d.index) & d.year === "Change"), {
+      x: "year",
+      y: d => all_countries_b.get(d.iso3),
+      fill: d => {
+          if (d.rank > 2) return "#006837";
+          if (d.rank > 0) return "#85CB67";
+          if (d.rank < -2) return "#A50026";
+          if (d.rank < 0) return "#F88D52";
+          return "white";
+      },
+      fx: "index_name",
+      sort: {y: "fill"}
+    }),
+    Plot.text(df_rank2.filter(d => ["EIS", "GII", "EIQ"].includes(d.index)), {
+      x: "year",
+      y: d => all_countries_b.get(d.iso3),
+      fx: "index_name",
+      fill: d => (d.year === "Change" || d.rank > 10) ? "black" : "white",
+      fontSize: d => d.year === "Change" ? 14 : 10, 
+      text: d => {
+        if (d.year === "Change") {
+          if (d.rank > 2) return `↑`;
+          if (d.rank > 0) return `↗`;
+          if (d.rank < -2) return `↓`;
+          if (d.rank < 0) return `↘`;
+          return "–";
+        }
+        else return d.rank;
+      }
+    })
+  ]
+})
+)
+return {df_rank,ordered_gii,ordered_c_gii,chart1};
+}});
+
+define({id: "1a7588f8", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("DNK")
+))
+}});
+
+define({id: "e662b923", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("SWE")
+))
+}});
+
+define({id: "fc642e84", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("FIN")
+))
+}});
+
+define({id: "4e058e15", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
+define({id: "4ebebd57", inputs: ["df_eis","countries","aq","display","Plot","color_scale"], outputs: ["df_eis_filtered","df_eis_pivoted","df_eis_sorted","text_x"], body: (df_eis,countries,aq,display,Plot,color_scale) => {
+  // First, sort the eis_score data by SII_2024 in descending order
+const df_eis_filtered = df_eis.filter(d => countries.includes(d.iso3) & d.var_code === "SII")
+  
+const df_eis_pivoted = aq.from(df_eis_filtered)
+  .groupby('country', 'iso3')
+  .pivot('year', 'obs_value')
+  .orderby(aq.desc("2024"))
+  .objects();
+  
+// Extract the sorted country names
+const df_eis_sorted = df_eis_pivoted.map(d => d.country);
+const text_x = "2017"
+
+display( Plot.plot({
+  marginLeft: 100,
+  marginRight: 50,
+  caption: "European Commission (2024)",
+  color: color_scale,
+  x: {
+    label: `${df_eis_filtered[0].var_axis} 2017–2024`,
+    grid: true,
+    axis: "top",
+    labelOffset: 30,
+    tickPadding: 5,
+    tickSize: 0
+  },
+  y: {
+    label: null,
+    tickSize: 0,
+    domain: df_eis_sorted
+  },
+  marks: [
+    Plot.arrow(df_eis_pivoted, {
+      x1: "2017",
+      y1: "country",
+      x2: "2024",
+      y2: "country",
+      headLength: 5,
+      stroke: "iso3",
+      //strokeWidth: d => ["CHE","SWE","DNK", "FIN"].includes(d.iso3) ? 1.5 : 1,
+      strokeOpacity: d => ["CHE","SWE","DNK", "FIN"].includes(d.iso3) ? 1 : 0.4,
+    }),
+    Plot.dot(df_eis_pivoted, {
+      x: "2017",
+      y: "country", 
+      fill:"iso3",
+      r: 2,
+      strokeWidth: 0,
+      fillOpacity: d => ["CHE","SWE","DNK", "FIN"].includes(d.iso3) ? 1 : 0.4
+    }),
+    Plot.text(df_eis_pivoted.filter(d => d.country === "Switzerland"), {
+      x: "2017",
+      y: "country",
+      text: ["2017"],
+      textAnchor: "end",
+      dx: -5,
+    }),
+    Plot.text(df_eis_pivoted.filter(d => d.country === "Switzerland"), {
+      x: "2024",
+      y: "country",
+      text: ["2024"],
+      textAnchor: "start",
+      dx: 5
+    })
+  ]
+})
+)
+return {df_eis_filtered,df_eis_pivoted,df_eis_sorted,text_x};
+}});
+
+define({id: "99ce5b85", inputs: ["df_rank","all_countries_b","display","Plot","df_rank2"], outputs: ["ordered_wcr","ordered","chart"], body: (df_rank,all_countries_b,display,Plot,df_rank2) => {
+const ordered_wcr  = 
+    df_rank.filter(d => ["WCR"].includes(d.index) & d.year === 2024)
+    .sort((a, b) => a.rank - b.rank)
+    .map(item => item.iso3);
+  
+const ordered = ordered_wcr.map(iso3 => all_countries_b.get(iso3));
+
+const chart = display(
+  Plot.plot({
+  //title: "Switzerland's position in innovation rankings",
+  caption: "Source: IMD World Competitiveness Center",
+  marginTop: 40,
+  marginLeft: 100,
+  x: {label: null,
+      domain: [2022,2023,2024,"Change"],
+      tickSize: 0,
+      tickFormat: "~f",
+      tickPadding: 0,
+      axis:"top"},
+  color: {legend: null,
+         scheme: "Blues",
+         reverse: true},
+  y: {
+    domain: ordered,
+    tickSize: 0,
+      tickPadding: 0},
+  fx: {label: null,
+       //domain: ["Global Innovation Index (GII)","European Innovation Scoreborad (EIS)"],
+       tickPadding: 20,
+       axis:"top"},
+  marks: [
+    Plot.cell(df_rank2.filter(d => ["WCR", "WDCR"].includes(d.index) & d.year != "Change"), {
+      x: "year",
+      y: d => all_countries_b.get(d.iso3),
+      fill: "rank",
+      fx: "index_name",
+      sort: {y: "fill"}
+    }),
+    Plot.cell(df_rank2.filter(d => ["WCR", "WDCR"].includes(d.index) & d.year === "Change"), {
+      x: "year",
+      y: d => all_countries_b.get(d.iso3),
+      fill: d => {
+          if (d.rank > 2) return "#006837";
+          if (d.rank > 0) return "#85CB67";
+          if (d.rank < -2) return "#A50026";
+          if (d.rank < 0) return "#F88D52";
+          return "white";
+      },
+      fx: "index_name",
+      sort: {y: "fill"}
+    }),
+    Plot.text(df_rank2.filter(d => ["WCR", "WDCR"].includes(d.index)), {
+      x: "year",
+      y: d => all_countries_b.get(d.iso3),
+      fx: "index_name",
+      fill: d => (d.year === "Change" || d.rank > 10) ? "black" : "white",
+      fontSize: d => d.year === "Change" ? 14 : 10, 
+      text: d => {
+        if (d.year === "Change") {
+          if (d.rank > 2) return `↑`;
+          if (d.rank > 0) return `↗`;
+          if (d.rank < -2) return `↓`;
+          if (d.rank < 0) return `↘`;
+          return "–";
+        }
+        else return d.rank;
+      }
+    })
+  ]
+})
+)
+return {ordered_wcr,ordered,chart};
+}});
 
 </script>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
@@ -25,18 +380,23 @@ import "./_observablehq/client.34eb3252.js";
     <li class="observablehq-link observablehq-link-active"><a href="./">Innovation Ecosystem Monitor</a></li>
   </ol>
   <ol>
-    <li class="observablehq-link"><a href="./a_ranking">A. Ranking overview</a></li>
-    <li class="observablehq-link"><a href="./b_rnd">B. Research &amp; Development</a></li>
-    <li class="observablehq-link"><a href="./c_ens">C. Entrepreneurship &amp; Start-ups</a></li>
-    <li class="observablehq-link"><a href="./d_inno">D. Innovation Activities</a></li>
-    <li class="observablehq-link"><a href="./e_ktt">E. Knowledge and Technology Transfer</a></li>
-    <li class="observablehq-link"><a href="./f_snd">F. Sustainability and Digitalisation</a></li>
+    <li class="observablehq-link"><a href="./a_rnd">A. Research &amp; Development</a></li>
+    <li class="observablehq-link"><a href="./b_ens">B. Entrepreneurship &amp; Start-ups</a></li>
+    <li class="observablehq-link"><a href="./c_inno">C. Innovation Activities</a></li>
+    <li class="observablehq-link"><a href="./d_ktt">D. Knowledge and Technology Transfer</a></li>
+    <li class="observablehq-link"><a href="./e_snd">E. Sustainability and Digitalisation</a></li>
   </ol>
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#switzerland-maintains-its-top-position-in-the-two-most-prominent-innovation-rankings">Switzerland maintains its top position in the two most prominent innovation rankings</a></li>
+<li class="observablehq-secondary-link"><a href="#however-followers-may-be-catching-up">However, followers may be catching up</a></li>
+<li class="observablehq-secondary-link"><a href="#switzerland-among-the-top-5-in-imds-competitiveness-rankings">Switzerland among the top 5 in IMD&#x27;s competitiveness rankings</a></li>
+</ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
@@ -46,9 +406,119 @@ import "./_observablehq/client.34eb3252.js";
 <p>The goal of this monitoring is to provide you with an overview of the competitiveness of Switzerland's innovation ecosystem in an international context and go into more detail where it is relevant to Innosuisse. You will better understand the strengths and weaknesses of the Swiss innovation ecosystem and its development over time. Wherever possible we will link to reports that describe the findings in more detail.</p>
 <h3 id="from-the-abstract-to-the-concrete" tabindex="-1"><a class="observablehq-header-anchor" href="#from-the-abstract-to-the-concrete">From the abstract to the concrete</a></h3>
 <p>Switzerland regularly appears on top of international innovation rankings. These indices are constructed out of a multitude of selected indicators (and their selection influences the final ranking). The different indicators present different perspectives on the innovation ecosystem. In the following we will <strong>first</strong> take a bird's eye view and look at different innovation indices, <strong>then</strong> we will dive into detail and shed light on selected environment and framework conditions.</p>
-</main>
+<h3 id="customize-selection-of-countries-for-comparison" tabindex="-1"><a class="observablehq-header-anchor" href="#customize-selection-of-countries-for-comparison">Customize selection of countries for comparison</a></h3>
+<p>We have preselected the top 10 countries in the Global Innovation Index plus Israel and compare all indicators against this set of countries (where data is available). You can adjust the selection below, the charts below will update automatically.</p>
+<div class="observablehq observablehq--block"><!--:3a0062f4:--></div>
+<div class="observablehq observablehq--block"><!--:ad76519a:--></div>
+<div class="observablehq observablehq--block"><!--:8893e024:--></div>
+<div class="observablehq observablehq--block"><!--:8c3be053:--></div>
+<h2 id="switzerland-maintains-its-top-position-in-the-two-most-prominent-innovation-rankings" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerland-maintains-its-top-position-in-the-two-most-prominent-innovation-rankings">Switzerland maintains its top position in the two most prominent innovation rankings</a></h2>
+<p>Switzerland's position in the country rankings is stable. Generally, there is not a lot of movement among the top 10 countries in GII and EIS indices. Only Korea and Singapore have made significant progress.</p>
+<p>We've added the Economist's Impact Unit's Innovation Quotient (EIQ) to show that not all innovation indices show Switzerland on top (and that some ranking positions can be influenced by the selection of indicators: Compare e.g. the UK, the US or Denmark across rankings).</p>
+<div class="observablehq observablehq--block"><!--:ed74b42d:--></div>
+<div class="note"><details>
+  <summary>The picture is slightly different, if we compare agglomerations:</summary>
+  <p>Here, only Zurich (rank 50, -1 compared to 2023) and Basel (rank 96, +1 compared to 2023) rank among the <a href="https://www.wipo.int/web/global-innovation-index/2024/science-technology-clusters" target="_blank" rel="noopener noreferrer">top 100 S&amp;T-Clusters</a>. However, the concentration of S&amp;T clusters in Switzerland is so high in relation to the rest of the country (and in contrast to other countries) that Switzerland appears at the top of the rankings as a country.</p></details></div>
+<p></p>
+<h2 id="however-followers-may-be-catching-up" tabindex="-1"><a class="observablehq-header-anchor" href="#however-followers-may-be-catching-up">However, followers may be catching up</a></h2>
+<h3 id="european-innovation-scoreboard-index-score-2017-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#european-innovation-scoreboard-index-score-2017-2023">European Innovation Scoreboard Index Score 2017–2023</a></h3>
+<p>Its closest competitors in the European Innovation Scoreboard – <observablehq-loading></observablehq-loading><!--:1a7588f8:-->, <observablehq-loading></observablehq-loading><!--:e662b923:--> and <observablehq-loading></observablehq-loading><!--:fc642e84:--> – have made up substantial ground and are closing the gap. <observablehq-loading></observablehq-loading><!--:4e058e15:--> on the other hand has made only modest gains.</p>
+<div class="observablehq observablehq--block"><!--:4ebebd57:--></div>
+<h3 id="switzerlands-strengths-and-weaknesses" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerlands-strengths-and-weaknesses">Switzerland's strengths and weaknesses</a></h3>
+<p>The European Innovation Scoreboard (EIS) highlights Switzerland's greatest strengths in innovation as its universities' research output and the international composition of their student bodies / academic staff. Switzerland has recently shown significant progress in two crucial areas: <a href="./b_ens#venture-capital-investments-in-of-gdp-2017-2023">venture capital availability</a> and <a href="./c_inno#share-of-firms-with-product-or-business-process-innovations">product innovation by SMEs</a>. Notably, the long-declining trend in SME product innovation has finally reversed, showing positive momentum.</p>
+<table>
+<thead>
+<tr>
+<th><strong>🦾 Relative strengths</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./d_ktt#public-private-co-publications">Public-private co-publications</a></td>
+</tr>
+<tr>
+<td>International scientific co-publications</td>
+</tr>
+<tr>
+<td>Foreign doctorate students as a % of all doctorate students</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>⚠️ Relative weaknesses</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./a_rnd#business-expenditure-on-r-and-d-berd-financed-by-government">Direct and indirect government support of business R&amp;D</a></td>
+</tr>
+<tr>
+<td><a href="./e_snd#development-of-environment-related-technologies-inventions-per-person">Environment-related technologies</a></td>
+</tr>
+<tr>
+<td>SMEs introducing business process innovations</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>↗ Strong increases since 2017</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./b_ens#venture-capital-investments-in-of-gdp-2017-2023">Venture capital expenditures</a></td>
+</tr>
+<tr>
+<td>Population involved in lifelong learning</td>
+</tr>
+<tr>
+<td><a href="./c_inno#share-of-firms-with-product-or-business-process-innovations">SMEs introducing product innovations</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>↘ Strong decreases since 2017</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SMEs introducing business process innovations</td>
+</tr>
+<tr>
+<td>Employment in innovative enterprises</td>
+</tr>
+<tr>
+<td><a href="./e_snd#development-of-environment-related-technologies-inventions-per-person">Environment-related technologies</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="switzerland-among-the-top-5-in-imds-competitiveness-rankings" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerland-among-the-top-5-in-imds-competitiveness-rankings">Switzerland among the top 5 in IMD's competitiveness rankings</a></h2>
+<p>Switzerland is also well positioned in other, less innovation focused rankings.</p>
+<div class="observablehq observablehq--block"><!--:99ce5b85:--></div>
+ <details>
+    <summary><b>Sources and other indices</b></summary>
+   Sources
+   <ul> 
+   <li><a href="https://www.wipo.int/web-publications/global-innovation-index-2024/en/" target="_blank" rel="noopener noreferrer">Wipo (2024) Global Innovation Index</a></li> 
+   <li><a href="https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en" target="_blank" rel="noopener noreferrer">European Commission (2024) European Innovation Scoreboard</a></li> 
+       <li><a href="https://impact.economist.com/new-globalisation/innovation-quotient" target="_blank" rel="noopener noreferrer">Economist (2024) The Innovation Quotient</a></li>
+   <li><a href="https://www.imd.org/centers/wcc/world-competitiveness-center/rankings/world-competitiveness-ranking/" target="_blank" rel="noopener noreferrer">IMD (2024) World Competitiveness Ranking</a></li> 
+   <li><a href="https://www.imd.org/centers/wcc/world-competitiveness-center/rankings/world-digital-competitiveness-ranking/" target="_blank" rel="noopener noreferrer">IMD (2023) World Digital Competitiveness Ranking</a></li>
+   </ul>
+   Other indices 
+   <ul>
+   <li><a href="https://gemconsortium.org/reports/latest-global-report" target="_blank" rel="noopener noreferrer">GEM (2024) Global Entrepreneurship Monitor</a></li>
+   <li>The EU made a <a href="https://op.europa.eu/en/publication-detail/-/publication/70fe2318-fb72-11ed-a05c-01aa75ed71a1/language-en" target="_blank" rel="noopener noreferrer">study</a> on the development of an European startup scoreboard (analogue to the EIS)</li>
+   </ul>
+ </details></main>
 <footer id="observablehq-footer">
-<nav><a rel="next" href="./a_ranking"><span>A. Ranking overview</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-30T15:23:27">Oct 30, 2024</a>.</div>
+<nav><a rel="next" href="./a_rnd"><span>A. Research &amp; Development</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-31T12:36:05">Oct 31, 2024</a>.</div>
 </footer>
 </div>
