@@ -64,7 +64,7 @@ import {registerFile} from "./_observablehq/stdlib.d2397845.js";
 
 registerFile("./data/bfs_udemo_2020.csv", {"name":"./data/bfs_udemo_2020.csv","mimeType":"text/csv","path":"./_file/data/bfs_udemo_2020.31a1264c.csv","lastModified":1725538902630,"size":1939});
 registerFile("./data/df.csv", {"name":"./data/df.csv","mimeType":"text/csv","path":"./_file/data/df.0cd158b8.csv","lastModified":1729023039404,"size":3217707});
-registerFile("./data/df_rank2.csv", {"name":"./data/df_rank2.csv","mimeType":"text/csv","path":"./_file/data/df_rank2.41d6691d.csv","lastModified":1730368760149,"size":127974});
+registerFile("./data/df_rank2.csv", {"name":"./data/df_rank2.csv","mimeType":"text/csv","path":"./_file/data/df_rank2.45b9d25d.csv","lastModified":1730813844418,"size":127974});
 registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
 registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt","mimeType":"text/plain","path":"./_file/data/eurostat_pct_rd.c11032a1.txt","lastModified":1724938110038,"size":6807});
 registerFile("./data/gem_tea_2018-2023.csv", {"name":"./data/gem_tea_2018-2023.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2023.8a8724b7.csv","lastModified":1729598636680,"size":1656});
@@ -171,6 +171,12 @@ define({id: "bb3af2c1", inputs: ["eurostat_pct_rd","countries","display","Plot",
 return {df_pct_rd,df_pct_rd_sorted,df_pct_rd_text,plot_pct_rd};
 }});
 
+define({id: "4e058e15-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
 define({id: "3e84ad91", inputs: ["eurostat_pct_rd","countries","display","Plot","color_scale"], outputs: ["df_plot","highestPerCountry","df_pct_rd_text","plot_pct_rd"], body: (eurostat_pct_rd,countries,display,Plot,color_scale) => {
  // Extract data from df
   const df_plot = eurostat_pct_rd.filter(d => d.MEASURE === "pct_inno" & 
@@ -239,13 +245,13 @@ define({id: "3e84ad91", inputs: ["eurostat_pct_rd","countries","display","Plot",
 return {df_plot,highestPerCountry,df_pct_rd_text,plot_pct_rd};
 }});
 
-define({id: "4e058e15-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+define({id: "4e058e15-2", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
 display(await(
 colorLegend("CHE")
 ))
 }});
 
-define({id: "09106212", inputs: ["df_eis","countries","display","Plot","color_scale"], outputs: ["df_new_sales","df_new_sales_sorted","df_new_sales_text","plot_new_sales"], body: (df_eis,countries,display,Plot,color_scale) => {
+define({id: "d4d3dc73", inputs: ["df_eis","countries","display","Plot","color_scale"], outputs: ["df_new_sales","df_new_sales_sorted","df_new_sales_text","plot_new_sales"], body: (df_eis,countries,display,Plot,color_scale) => {
 // Extract data from df
   const df_new_sales = df_eis.filter(d => countries.includes(d.iso3) 
                                 & d.var_code === "new_innov_sales"
@@ -299,7 +305,17 @@ define({id: "09106212", inputs: ["df_eis","countries","display","Plot","color_sc
           }),
       Plot.text(df_new_sales_text.filter(d => d.years === "2018–2020"), {
         x: 'years', // Years in data from EIS need to recalibrated
-        y: 'obs_value',
+        y: d => {
+            if (d.country === "Netherlands") {
+              return d.obs_value * 1.06; // Move up
+            } else if (d.country === "Denmark") {
+              return d.obs_value * 1.04;
+              } else if (d.country === "Sweden") {
+              return d.obs_value * 0.98;
+            } else {
+              return d.obs_value; // No change
+            }
+          },
         text: d => `${d.country} (${d.obs_value.toFixed(0)} %)`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
@@ -336,10 +352,10 @@ return {countries_list,countries};
   </ol>
   <ol>
     <li class="observablehq-link"><a href="./a_rnd">A. Research &amp; Development</a></li>
-    <li class="observablehq-link"><a href="./b_ens">B. Entrepreneurship &amp; Start-ups</a></li>
+    <li class="observablehq-link"><a href="./b_ens">B. Entrepreneurship and Start-ups</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./c_inno">C. Innovation Activities</a></li>
     <li class="observablehq-link"><a href="./d_ktt">D. Knowledge and Technology Transfer</a></li>
-    <li class="observablehq-link"><a href="./e_snd">E. Sustainability and Digitalisation</a></li>
+    <li class="observablehq-link"><a href="./e_snd">E. Sustainability and High-tech Exports</a></li>
   </ol>
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
@@ -349,7 +365,7 @@ return {countries_list,countries};
 <div>Contents</div>
 <ol>
 <li class="observablehq-secondary-link"><a href="#share-of-firms-with-r-and-d-activities">Share of firms with R&amp;D activities</a></li>
-<li class="observablehq-secondary-link"><a href="#share-of-firms-with-product-or-business-process-innovations">Share of firms with product or business process innovations</a></li>
+<li class="observablehq-secondary-link"><a href="#share-of-firms-with-product-innovations">Share of firms with product innovations</a></li>
 <li class="observablehq-secondary-link"><a href="#sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover">Sales of new-to-market and new-to-enterprise innovations as a percentage of turnover</a></li>
 <li class="observablehq-secondary-link"><a href="#obstacles-to-innovation">Obstacles to innovation</a></li>
 </ol>
@@ -361,17 +377,16 @@ return {countries_list,countries};
 <div class="observablehq observablehq--block"><!--:1d7e54fd:--></div>
 <div class="observablehq observablehq--block"><!--:8c3be053:--></div>
 <h2 id="share-of-firms-with-r-and-d-activities" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-r-and-d-activities">Share of firms with R&amp;D activities</a></h2>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> lost over the last 20 years its dominant position in share of firms with R&amp;D activities. In 2018–2020, the number of firms with R&amp;D activities has started to increase again for the first time since 2000–2002. At the same time, the average share of R&amp;D expenditure has remained constant compared to the previous period, meaning that the concentration of R&amp;D expenditure in the economy as a whole has decreased.</p>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> lost over the last 20 years its dominant position in share of firms with R&amp;D activities. In 2018–2020, the number of firms with R&amp;D activities has started to increase again for the first time since 2000–2002. At the same time, the average share of R&amp;D expenditure has remained constant compared to the previous period, meaning that the concentration of R&amp;D expenditure in the economy as a whole has decreased in 2018–2020.</p>
 <div class="observablehq observablehq--block"><!--:bb3af2c1:--></div>
-<h2 id="share-of-firms-with-product-or-business-process-innovations" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-product-or-business-process-innovations">Share of firms with product or business process innovations</a></h2>
-<p>The share of firms with product or business process innovations has increased significantly as well in the last survey.</p>
+<h2 id="share-of-firms-with-product-innovations" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-product-innovations">Share of firms with product innovations</a></h2>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s share of firms with product innovations has - after a long decline - increased significantly as well in the last available survey.</p>
 <div class="observablehq observablehq--block"><!--:3e84ad91:--></div>
 <h2 id="sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover" tabindex="-1"><a class="observablehq-header-anchor" href="#sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover">Sales of new-to-market and new-to-enterprise innovations as a percentage of turnover</a></h2>
-<p>The recent uptick in innovative acitivity in <observablehq-loading></observablehq-loading><!--:4e058e15-1:--> is also mirrored in the sales of new innovations in percent of total turnover.</p>
-<p><em>Label aufräumen</em></p>
-<div class="observablehq observablehq--block"><!--:09106212:--></div>
+<p>The recent uptick in innovative acitivity in <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> is also mirrored in the sales of new innovations in percent of total turnover.</p>
+<div class="observablehq observablehq--block"><!--:d4d3dc73:--></div>
 <h2 id="obstacles-to-innovation" tabindex="-1"><a class="observablehq-header-anchor" href="#obstacles-to-innovation">Obstacles to innovation</a></h2>
-<p>The most cited obstacles to innovation are mostly concerning its economic viability: The cost of innovation projects, lack of equity and debt capital and long amortisation periods. The shortage of skilled labour / R&amp;D-personnel comes in 4th and 5th.</p>
+<p>The most cited obstacles to innovation are mostly concerning its economic viability: The cost of innovation projects, lack of equity and debt capital and long amortisation periods. The shortage of skilled labour and R&amp;D-personnel comes in 4th and 5th.</p>
 <details>
     <summary>Sources</summary>
     <ul>
@@ -383,7 +398,7 @@ return {countries_list,countries};
 <div class="observablehq observablehq--block"><!--:ad76519a:--></div>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./b_ens"><span>B. Entrepreneurship &amp; Start-ups</span></a><a rel="next" href="./d_ktt"><span>D. Knowledge and Technology Transfer</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-31T23:14:23">Oct 31, 2024</a>.</div>
+<nav><a rel="prev" href="./b_ens"><span>B. Entrepreneurship and Start-ups</span></a><a rel="next" href="./d_ktt"><span>D. Knowledge and Technology Transfer</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-06T00:16:50">Nov 6, 2024</a>.</div>
 </footer>
 </div>

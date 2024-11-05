@@ -64,7 +64,7 @@ import {registerFile} from "./_observablehq/stdlib.d2397845.js";
 
 registerFile("./data/bfs_udemo_2020.csv", {"name":"./data/bfs_udemo_2020.csv","mimeType":"text/csv","path":"./_file/data/bfs_udemo_2020.31a1264c.csv","lastModified":1725538902630,"size":1939});
 registerFile("./data/df.csv", {"name":"./data/df.csv","mimeType":"text/csv","path":"./_file/data/df.0cd158b8.csv","lastModified":1729023039404,"size":3217707});
-registerFile("./data/df_rank2.csv", {"name":"./data/df_rank2.csv","mimeType":"text/csv","path":"./_file/data/df_rank2.41d6691d.csv","lastModified":1730368760149,"size":127974});
+registerFile("./data/df_rank2.csv", {"name":"./data/df_rank2.csv","mimeType":"text/csv","path":"./_file/data/df_rank2.45b9d25d.csv","lastModified":1730813844418,"size":127974});
 registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
 registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt","mimeType":"text/plain","path":"./_file/data/eurostat_pct_rd.c11032a1.txt","lastModified":1724938110038,"size":6807});
 registerFile("./data/gem_tea_2018-2023.csv", {"name":"./data/gem_tea_2018-2023.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2023.8a8724b7.csv","lastModified":1729598636680,"size":1656});
@@ -256,7 +256,7 @@ define({id: "4e9adfca", inputs: ["df_eis","countries","display","Plot","color_sc
 return {df_ppcp,df_ppcp_sorted,df_ppcp_text,plot_pct};
 }});
 
-define({id: "f4cdbc8c", inputs: ["display","Plot","df_switt"], body: (display,Plot,df_switt) => {
+define({id: "794c5df0", inputs: ["display","Plot","df_switt"], body: (display,Plot,df_switt) => {
 display(
   Plot.plot({
   color: {legend: true},
@@ -281,9 +281,81 @@ display(
   ]
 })
 )
+ 
+
 }});
 
-define({id: "47246a9f", inputs: ["display","Plot"], outputs: ["df_innosuisse"], body: (display,Plot) => {
+define({id: "ef1e01b8", outputs: ["subtractYears"], body: () => {
+// Funktion, um die Jahresskala neu zu definieren. Die den rawdata angegebenen Daten des EIS beziehen sich auf das Jahr des SII nicht auf das letzte Jahr der Erhebung.
+function subtractYears(date, years) {
+  const newDate = new Date(date);
+  newDate.setFullYear(newDate.getFullYear() - years);
+  return newDate;
+}
+return {subtractYears};
+}});
+
+define({id: "ad76519a", inputs: ["df_rank2","view","Inputs"], outputs: ["countries_list","countries"], body: (df_rank2,view,Inputs) => {
+// Evtl. muss hier wieder die Abhängigkeit von der Israel-Checkbox eingefügt werden.
+const countries_list = new Map(
+  df_rank2.filter(d => d.index === "GII" && d.year === 2024)
+          .sort((a, b) => a.rank - b.rank)
+          .map(d => [d.country, d.iso3]))
+
+const countries = view(Inputs.select(countries_list, { 
+  value: ["CHE", "SWE", "USA", "SGP", "GBR", "KOR", "FIN", "NLD", "DEU", "DNK", "ISR"], 
+  multiple: 3, 
+  label: "Selected countries (add or deselect countries with Ctrl + Left-click)"}));
+return {countries_list,countries};
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Innovation Ecosystem Monitor</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./a_rnd">A. Research &amp; Development</a></li>
+    <li class="observablehq-link"><a href="./b_ens">B. Entrepreneurship and Start-ups</a></li>
+    <li class="observablehq-link"><a href="./c_inno">C. Innovation Activities</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./d_ktt">D. Knowledge and Technology Transfer</a></li>
+    <li class="observablehq-link"><a href="./e_snd">E. Sustainability and High-tech Exports</a></li>
+  </ol>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#pct-patent-applications-per-billion-gdp-in-pps">PCT patent applications per billion GDP (in PPS)</a></li>
+<li class="observablehq-secondary-link"><a href="#public-private-co-publications">Public-private co-publications</a></li>
+<li class="observablehq-secondary-link"><a href="#start-ups-from-swiss-public-research-organisations">Start-ups from Swiss public research organisations</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="d-knowledge-and-technology-transfer" tabindex="-1"><a class="observablehq-header-anchor" href="#d-knowledge-and-technology-transfer">D. Knowledge and Technology Transfer</a></h1>
+<div class="observablehq observablehq--block"><!--:3a0062f4:--></div>
+<div class="observablehq observablehq--block"><!--:1d7e54fd:--></div>
+<div class="observablehq observablehq--block"><!--:8c3be053:--></div>
+<h2 id="pct-patent-applications-per-billion-gdp-in-pps" tabindex="-1"><a class="observablehq-header-anchor" href="#pct-patent-applications-per-billion-gdp-in-pps">PCT patent applications per billion GDP (in PPS)</a></h2>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is well-positioned and its PCT patent applications per billion GDP have grown steadliy with the exceptions of 2019. This holds true as well if we look at patents per capita.</p>
+<p>PCT patents are international patents filed through the WIPO-administered Patent Cooperation Treaty. It makes it possible to seek patent protection for an invention simultaneously in a number of countries by filing a single application.</p>
+<div class="observablehq observablehq--block"><!--:2ea134f8:--></div>
+<h2 id="public-private-co-publications" tabindex="-1"><a class="observablehq-header-anchor" href="#public-private-co-publications">Public-private co-publications</a></h2>
+<p>One of the strengths in the international comparison are <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s public-private co-publications. Only <observablehq-loading></observablehq-loading><!--:1a7588f8:--> can keep pace. The Innosuisse monitoring data shows that Innovation Projects with Implementation Partner make their contribution to this knowldege transfer between research and business (xx % report a co-publicaton as one result of their Innovation Project).</p>
+<div class="observablehq observablehq--block"><!--:4e9adfca:--></div>
+<h2 id="start-ups-from-swiss-public-research-organisations" tabindex="-1"><a class="observablehq-header-anchor" href="#start-ups-from-swiss-public-research-organisations">Start-ups from Swiss public research organisations</a></h2>
+<p>Universities and other public research organisations have become an important driver of start-up growth in Switzerland. However, recent years have seen a decline both in total <span style="border-bottom: solid 2px #F28177;">start-ups</span> and more pronounced in <span style="border-bottom: solid 2px #C96D5F;">spin-offs (start-ups with a formal licence of IP)</span>.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:794c5df0:--></div>
+<div class="note">The swiTT report gives a relativly complete picture for start-ups and spin-offs from ETH and EPFL, other universities and universities of applied sciences are less well represented.</div>
+<!-- ## Innovation projects funded by Innosuisse with implementation partners
+*Ich würde diese Darstellung evtl. weglassen und auf [Zahlen und Fakten](https://www.innosuisse.admin.ch/de/zahlen-und-fakten) verweisen.*
+```js
 const df_innosuisse = [
   {
     "year_date": new Date ("2019-01-01"),
@@ -330,93 +402,21 @@ display(
   ]
 })
 )
-return {df_innosuisse};
-}});
-
-define({id: "ef1e01b8", outputs: ["subtractYears"], body: () => {
-// Funktion, um die Jahresskala neu zu definieren. Die den rawdata angegebenen Daten des EIS beziehen sich auf das Jahr des SII nicht auf das letzte Jahr der Erhebung.
-function subtractYears(date, years) {
-  const newDate = new Date(date);
-  newDate.setFullYear(newDate.getFullYear() - years);
-  return newDate;
-}
-return {subtractYears};
-}});
-
-define({id: "ad76519a", inputs: ["df_rank2","view","Inputs"], outputs: ["countries_list","countries"], body: (df_rank2,view,Inputs) => {
-// Evtl. muss hier wieder die Abhängigkeit von der Israel-Checkbox eingefügt werden.
-const countries_list = new Map(
-  df_rank2.filter(d => d.index === "GII" && d.year === 2024)
-          .sort((a, b) => a.rank - b.rank)
-          .map(d => [d.country, d.iso3]))
-
-const countries = view(Inputs.select(countries_list, { 
-  value: ["CHE", "SWE", "USA", "SGP", "GBR", "KOR", "FIN", "NLD", "DEU", "DNK", "ISR"], 
-  multiple: 3, 
-  label: "Selected countries (add or deselect countries with Ctrl + Left-click)"}));
-return {countries_list,countries};
-}});
-
-</script>
-<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
-<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
-<nav id="observablehq-sidebar">
-  <ol>
-    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
-    <li class="observablehq-link"><a href="./">Innovation Ecosystem Monitor</a></li>
-  </ol>
-  <ol>
-    <li class="observablehq-link"><a href="./a_rnd">A. Research &amp; Development</a></li>
-    <li class="observablehq-link"><a href="./b_ens">B. Entrepreneurship &amp; Start-ups</a></li>
-    <li class="observablehq-link"><a href="./c_inno">C. Innovation Activities</a></li>
-    <li class="observablehq-link observablehq-link-active"><a href="./d_ktt">D. Knowledge and Technology Transfer</a></li>
-    <li class="observablehq-link"><a href="./e_snd">E. Sustainability and Digitalisation</a></li>
-  </ol>
-</nav>
-<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
-<div id="observablehq-center">
-<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
-<nav>
-<div>Contents</div>
-<ol>
-<li class="observablehq-secondary-link"><a href="#pct-patent-applications-per-billion-gdp-in-pps">PCT patent applications per billion GDP (in PPS)</a></li>
-<li class="observablehq-secondary-link"><a href="#public-private-co-publications">Public-private co-publications</a></li>
-<li class="observablehq-secondary-link"><a href="#start-ups-from-swiss-public-research-organisations">Start-ups from Swiss public research organisations</a></li>
-<li class="observablehq-secondary-link"><a href="#innovation-projects-funded-by-innosuisse-with-implementation-partners">Innovation projects funded by Innosuisse with implementation partners</a></li>
-</ol>
-</nav>
-</aside>
-<main id="observablehq-main" class="observablehq">
-<h1 id="d-knowledge-and-technology-transfer" tabindex="-1"><a class="observablehq-header-anchor" href="#d-knowledge-and-technology-transfer">D. Knowledge and Technology Transfer</a></h1>
-<div class="observablehq observablehq--block"><!--:3a0062f4:--></div>
-<div class="observablehq observablehq--block"><!--:1d7e54fd:--></div>
-<div class="observablehq observablehq--block"><!--:8c3be053:--></div>
-<h2 id="pct-patent-applications-per-billion-gdp-in-pps" tabindex="-1"><a class="observablehq-header-anchor" href="#pct-patent-applications-per-billion-gdp-in-pps">PCT patent applications per billion GDP (in PPS)</a></h2>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is well-positioned and it's PCT patent applications have grown steadliy with the exceptions of 2019.</p>
-<p>PCT patents are international patents filed through the WIPO-administered Patent Cooperation Treaty. It makes it possible to seek patent protection for an invention simultaneously in a number of countries by filing a single application.</p>
-<div class="observablehq observablehq--block"><!--:2ea134f8:--></div>
-<h2 id="public-private-co-publications" tabindex="-1"><a class="observablehq-header-anchor" href="#public-private-co-publications">Public-private co-publications</a></h2>
-<p>One of the strengths in the international comparison are <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s public-private co-publications. Only <observablehq-loading></observablehq-loading><!--:1a7588f8:--> can keep pace. The Innosuisse monitoring data shows that Innovation Projects with Implementation Partner make their contribution to this knowldege transfer between research and business (xx % report a co-publicaton as result of their Innovation Project).</p>
-<div class="observablehq observablehq--block"><!--:4e9adfca:--></div>
-<h2 id="start-ups-from-swiss-public-research-organisations" tabindex="-1"><a class="observablehq-header-anchor" href="#start-ups-from-swiss-public-research-organisations">Start-ups from Swiss public research organisations</a></h2>
-<p>Universities and other public research organisations have become an important driver of start-up growth in Switzerland. However, recent years have seen a decline both in total start-ups and more pronounced in start-ups with a formal licence of IP.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f4cdbc8c:--></div>
-<h2 id="innovation-projects-funded-by-innosuisse-with-implementation-partners" tabindex="-1"><a class="observablehq-header-anchor" href="#innovation-projects-funded-by-innosuisse-with-implementation-partners">Innovation projects funded by Innosuisse with implementation partners</a></h2>
-<p><em>Ich würde diese Darstellung evtl. weglassen und auf <a href="https://www.innosuisse.admin.ch/de/zahlen-und-fakten" target="_blank" rel="noopener noreferrer">Zahlen und Fakten</a> verweisen.</em></p>
-<div class="observablehq observablehq--block"><!--:47246a9f:--></div>
+``` -->
 <details> 
 <summary>Sources with further details</summary> 
 <ul> 
 <li><a href="https://www.sbfi.admin.ch/sbfi/de/home/dienstleistungen/publikationen/publikationsdatenbank/wtt-endbericht-2023.html" target="_blank" rel="noopener noreferrer">SBFI (2024) Monitoring des Wissens- und Technologietransfers in der Schweiz</a></li> 
 <li><a href="https://switt.ch/switt-reports" target="_blank" rel="noopener noreferrer">swiTT (2023) swiTTreport 2023</a></li> 
-<li><a href="https://discover-innosuisse.ch/" target="_blank" rel="noopener noreferrer">Innosuisse (2023) Discover</a></li> 
+<li><a href="https://discover-innosuisse.ch/" target="_blank" rel="noopener noreferrer">Innosuisse (2023) Discover</a></li>
+<li><a href="https://www.innosuisse.admin.ch/en/facts-and-figures" target="_blank" rel="noopener noreferrer">Innosuisse (2023) Facts and figures</a></li>
 </ul> 
 </details>
 <div class="observablehq observablehq--block"><!--:ef1e01b8:--></div>
 <div class="observablehq observablehq--block"><!--:ad76519a:--></div>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./c_inno"><span>C. Innovation Activities</span></a><a rel="next" href="./e_snd"><span>E. Sustainability and Digitalisation</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-31T23:14:23">Oct 31, 2024</a>.</div>
+<nav><a rel="prev" href="./c_inno"><span>C. Innovation Activities</span></a><a rel="next" href="./e_snd"><span>E. Sustainability and High-tech Exports</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-06T00:16:50">Nov 6, 2024</a>.</div>
 </footer>
 </div>

@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="generator" content="Observable Framework v1.12.0">
-<title>E. Sustainability and Digitalisation | Innovation Ecosystem Monitor</title>
+<title>E. Sustainability and High-tech Exports | Innovation Ecosystem Monitor</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_import/styles.a2c58267.css">
@@ -64,8 +64,8 @@ import {registerFile} from "./_observablehq/stdlib.d2397845.js";
 
 registerFile("./data/bfs_udemo_2020.csv", {"name":"./data/bfs_udemo_2020.csv","mimeType":"text/csv","path":"./_file/data/bfs_udemo_2020.31a1264c.csv","lastModified":1725538902630,"size":1939});
 registerFile("./data/df.csv", {"name":"./data/df.csv","mimeType":"text/csv","path":"./_file/data/df.0cd158b8.csv","lastModified":1729023039404,"size":3217707});
-registerFile("./data/df_ht.csv", {"name":"./data/df_ht.csv","mimeType":"text/csv","path":"./_file/data/df_ht.74d7b3b7.csv","lastModified":1730408756948,"size":15500});
-registerFile("./data/df_rank2.csv", {"name":"./data/df_rank2.csv","mimeType":"text/csv","path":"./_file/data/df_rank2.41d6691d.csv","lastModified":1730368760149,"size":127974});
+registerFile("./data/df_ht.csv", {"name":"./data/df_ht.csv","mimeType":"text/csv","path":"./_file/data/df_ht.9794f53c.csv","lastModified":1730847378777,"size":18173});
+registerFile("./data/df_rank2.csv", {"name":"./data/df_rank2.csv","mimeType":"text/csv","path":"./_file/data/df_rank2.45b9d25d.csv","lastModified":1730813844418,"size":127974});
 registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
 registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt","mimeType":"text/plain","path":"./_file/data/eurostat_pct_rd.c11032a1.txt","lastModified":1724938110038,"size":6807});
 registerFile("./data/gem_tea_2018-2023.csv", {"name":"./data/gem_tea_2018-2023.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2023.8a8724b7.csv","lastModified":1729598636680,"size":1656});
@@ -124,7 +124,7 @@ colorLegend("DNK")
 ))
 }});
 
-define({id: "ec5c8b7e", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_ert","df_ert_sorted","df_ert_text","plot_ert"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
+define({id: "0df014e3", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_ert","df_ert_sorted","df_ert_text","plot_ert"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
 // Extract data from df
   const df_ert = df_eis.filter(d => countries.includes(d.iso3) & d.var_code === "env_tech") // only for selected countries
 
@@ -168,7 +168,22 @@ define({id: "ec5c8b7e", inputs: ["df_eis","countries","display","Plot","color_sc
           }),
       Plot.text(df_ert_text, {
         x: d => subtractYears(d.year_date, 5), // Years in data from EIS need to recalibrated
-        y: 'obs_value',
+        y: d => {
+            if (d.country === "Sweden") {
+              return d.obs_value * 1.01; 
+            }
+            else if (d.country === "South Korea") {
+              return d.obs_value * 0.98; // Move up
+            } 
+            else if (d.country === "Finland") {
+              return d.obs_value * 1.01; // Move up
+            } 
+            else if (d.country === "United Kingdom") {
+              return d.obs_value * 0.96; // Move up
+            } else {
+              return d.obs_value; // No change
+            }
+          },
         text: d => `${d.country} (${d.obs_value.toFixed(0)} %)`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
@@ -187,11 +202,8 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "915d7905", inputs: ["df_ht","all_countries","countries","display","Plot","color_scale"], outputs: ["df_htex","df_htex_sorted","df_htex_text","plot_htex"], body: (df_ht,all_countries,countries,display,Plot,color_scale) => {
-const df_htex = df_ht.map(row => ({
-    ...row,
-    iso3: all_countries[row.country] || all_countries.get(row.country) || ''}))
-    .filter(d => countries.includes(d.iso3) & d.year_date > new Date ("2016-01-01")) // only for selected countries
+define({id: "e9e4725d", inputs: ["df_ht","countries","display","Plot","color_scale"], outputs: ["df_htex","df_htex_sorted","df_htex_text","plot_htex"], body: (df_ht,countries,display,Plot,color_scale) => {
+const df_htex = df_ht.filter(d => countries.includes(d.iso3) & d.year_date > new Date ("2016-01-01")) // only for selected countries
 
   // Extract last available year by country in order to position labels
 const df_htex_sorted = df_htex.reduce((acc, item) => {if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
@@ -231,7 +243,13 @@ const df_htex_text = Object.values(df_htex_sorted)
           }),
       Plot.text(df_htex_text, {
         x: 'year_date',
-        y: 'obs_value',
+        y: d => {
+            if (d.country === "Switzerland") {
+              return d.obs_value * 1.005; 
+            } else {
+              return d.obs_value * 0.995; // No change
+            }
+          },
         text: d => `${d.country} (${d.obs_value.toFixed(1)} %)`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
@@ -261,7 +279,7 @@ colorLegend("DEU")
 ))
 }});
 
-define({id: "5373d02e", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_mht","df_mht_sorted","df_mht_text","ht_plot"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
+define({id: "4a8ec80c", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_mht","df_mht_sorted","df_mht_text","ht_plot"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
 // Extract data from df
   const df_mht = df_eis.filter(d => countries.includes(d.iso3) & d.var_code === "hi_tech_exports") // only for selected countries
 
@@ -304,7 +322,16 @@ define({id: "5373d02e", inputs: ["df_eis","countries","display","Plot","color_sc
           }),
       Plot.text(df_mht_text, {
         x: d => subtractYears(d.year_date, 1),
-        y: 'obs_value',
+        y: d => {
+            if (d.country === "Denmark") {
+              return d.obs_value * 1.01; 
+            }
+            else if (d.country === "Netherlands") {
+              return d.obs_value * 1.01; // Move up
+            } else {
+              return d.obs_value; // No change
+            }
+          },
         text: d => `${d.country} (${d.obs_value.toFixed(0)} %)`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
@@ -352,10 +379,10 @@ return {countries_list,countries};
   </ol>
   <ol>
     <li class="observablehq-link"><a href="./a_rnd">A. Research &amp; Development</a></li>
-    <li class="observablehq-link"><a href="./b_ens">B. Entrepreneurship &amp; Start-ups</a></li>
+    <li class="observablehq-link"><a href="./b_ens">B. Entrepreneurship and Start-ups</a></li>
     <li class="observablehq-link"><a href="./c_inno">C. Innovation Activities</a></li>
     <li class="observablehq-link"><a href="./d_ktt">D. Knowledge and Technology Transfer</a></li>
-    <li class="observablehq-link observablehq-link-active"><a href="./e_snd">E. Sustainability and Digitalisation</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./e_snd">E. Sustainability and High-tech Exports</a></li>
   </ol>
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
@@ -371,28 +398,24 @@ return {countries_list,countries};
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<h1 id="e-sustainability-and-digitalisation" tabindex="-1"><a class="observablehq-header-anchor" href="#e-sustainability-and-digitalisation">E. Sustainability and Digitalisation</a></h1>
-<p><em>sustainability and high-tech exports?</em></p>
+<h1 id="e-sustainability-and-high-tech-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#e-sustainability-and-high-tech-exports">E. Sustainability and High-tech Exports</a></h1>
 <div class="observablehq observablehq--block"><!--:3a0062f4:--></div>
 <div class="observablehq observablehq--block"><!--:aa0335fc:--></div>
 <div class="observablehq observablehq--block"><!--:8c3be053:--></div>
 <h2 id="development-of-environment-related-technologies-percentage-of-all-technologies" tabindex="-1"><a class="observablehq-header-anchor" href="#development-of-environment-related-technologies-percentage-of-all-technologies">Development of environment-related technologies, percentage of all technologies</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> has a comparably low share of green technologies in percent of all patents and the share has been declining. Of the top innovators, <observablehq-loading></observablehq-loading><!--:1a7588f8:--> has a clear focus on environment-related technologies and its importance has grown over time.</p>
-<p><em>Überlappende Labels noch aufräumen</em></p>
-<div class="observablehq observablehq--block"><!--:ec5c8b7e:--></div>
+<div class="observablehq observablehq--block"><!--:0df014e3:--></div>
 <h2 id="exports-of-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-high-technology-products-as-a-share-of-total-products-exports">Exports of high technology products as a share of total products exports</a></h2>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15-1:--> has very high share of high-tech exports. The pharmaceuticals industry will likely be an important factor in this good result.</p>
-<p><em>Es werden wahrscheinlich nicht alle möglichen Länder angezegit. Prüfen.</em></p>
-<div class="observablehq observablehq--block"><!--:915d7905:--></div>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15-1:--> has very high share of high-tech exports. The pharmaceuticals industry will likely be an important factor for Switzerland's top position.</p>
+<div class="observablehq observablehq--block"><!--:e9e4725d:--></div>
 <h2 id="exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports">Exports of medium and high technology products as a share of total products exports</a></h2>
-<p>Interestingly enough, if we widen the scope to medium and high-tech exports, <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> fares not nearly as well, compared to countries such as <observablehq-loading></observablehq-loading><!--:9a4da08b:--> or <observablehq-loading></observablehq-loading><!--:294697dd:-->.</p>
-<p><em>Überlappende Labels noch aufräumen</em></p>
-<div class="observablehq observablehq--block"><!--:5373d02e:--></div>
+<p>Interestingly enough, if we widen the scope to medium and high-tech exports, <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> fares not nearly as well, compared to countries such as <observablehq-loading></observablehq-loading><!--:9a4da08b:--> or <observablehq-loading></observablehq-loading><!--:294697dd:-->. Additionaly, there has been a steady decline since 2019.</p>
+<div class="observablehq observablehq--block"><!--:4a8ec80c:--></div>
 <div class="observablehq observablehq--block"><!--:ef1e01b8:--></div>
 <div class="observablehq observablehq--block"><!--:ad76519a:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./d_ktt"><span>D. Knowledge and Technology Transfer</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-31T23:14:23">Oct 31, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-06T00:16:50">Nov 6, 2024</a>.</div>
 </footer>
 </div>

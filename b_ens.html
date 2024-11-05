@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="generator" content="Observable Framework v1.12.0">
-<title>B. Entrepreneurship &amp; Start-ups | Innovation Ecosystem Monitor</title>
+<title>B. Entrepreneurship and Start-ups | Innovation Ecosystem Monitor</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_import/styles.a2c58267.css">
@@ -62,10 +62,10 @@
 import {define} from "./_observablehq/client.34eb3252.js";
 import {registerFile} from "./_observablehq/stdlib.d2397845.js";
 
-registerFile("./data/20241024_vc.txt", {"name":"./data/20241024_vc.txt","mimeType":"text/plain","path":"./_file/data/20241024_vc.be1c10c6.txt","lastModified":1730371672473,"size":73453});
+registerFile("./data/20241024_vc.txt", {"name":"./data/20241024_vc.txt","mimeType":"text/plain","path":"./_file/data/20241024_vc.9f54b694.txt","lastModified":1730842497480,"size":76013});
 registerFile("./data/bfs_udemo_2020.csv", {"name":"./data/bfs_udemo_2020.csv","mimeType":"text/csv","path":"./_file/data/bfs_udemo_2020.31a1264c.csv","lastModified":1725538902630,"size":1939});
 registerFile("./data/df.csv", {"name":"./data/df.csv","mimeType":"text/csv","path":"./_file/data/df.0cd158b8.csv","lastModified":1729023039404,"size":3217707});
-registerFile("./data/df_rank2.csv", {"name":"./data/df_rank2.csv","mimeType":"text/csv","path":"./_file/data/df_rank2.41d6691d.csv","lastModified":1730368760149,"size":127974});
+registerFile("./data/df_rank2.csv", {"name":"./data/df_rank2.csv","mimeType":"text/csv","path":"./_file/data/df_rank2.45b9d25d.csv","lastModified":1730813844418,"size":127974});
 registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
 registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt","mimeType":"text/plain","path":"./_file/data/eurostat_pct_rd.c11032a1.txt","lastModified":1724938110038,"size":6807});
 registerFile("./data/gem_tea_2018-2023.csv", {"name":"./data/gem_tea_2018-2023.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2023.8a8724b7.csv","lastModified":1729598636680,"size":1656});
@@ -134,15 +134,15 @@ colorLegend("USA")
 ))
 }});
 
-define({id: "4c12ec47", inputs: ["Inputs","view"], outputs: ["y_axis_values","y_axis_inputs","y_axis","checkbox"], body: (Inputs,view) => {
-const y_axis_values = ["VC share of GDP in %","VC per capita","VC growth"]
+define({id: "46ce2040", inputs: ["Inputs","view"], outputs: ["y_axis_values","y_axis_inputs","y_axis"], body: (Inputs,view) => {
+const y_axis_values = ["VC share of GDP in %","VC per capita"]
 const y_axis_inputs = Inputs.select(y_axis_values, {value: y_axis_values[0], label: "Measure"})
 const y_axis = view(y_axis_inputs);
-const checkbox = view(Inputs.checkbox(["Focus on Switzerland"],{disabled: y_axis === y_axis_values[0]}))
-return {y_axis_values,y_axis_inputs,y_axis,checkbox};
+//const checkbox = view(Inputs.checkbox(["Focus on Switzerland"],{disabled: y_axis === y_axis_values[0]}))
+return {y_axis_values,y_axis_inputs,y_axis};
 }});
 
-define({id: "e42f7005", inputs: ["df_vc_gdp","countries","y_axis","display","Plot","checkbox","color_scale","grey_innosuisse"], outputs: ["df_vc","df_vc_sorted","df_vc_text","plot_vc"], body: (df_vc_gdp,countries,y_axis,display,Plot,checkbox,color_scale,grey_innosuisse) => {
+define({id: "e994e68a", inputs: ["df_vc_gdp","countries","y_axis","display","Plot","color_scale","grey_innosuisse"], outputs: ["df_vc","df_vc_sorted","df_vc_text","plot_vc"], body: (df_vc_gdp,countries,y_axis,display,Plot,color_scale,grey_innosuisse) => {
 // Extract data from df
   const df_vc = df_vc_gdp.filter(d => countries.includes(d.iso3) && d.measure === y_axis) // only for selected countries
 
@@ -168,11 +168,11 @@ define({id: "e42f7005", inputs: ["df_vc_gdp","countries","y_axis","display","Plo
     Plot.plot({
     caption: 'Source: Crunchbase, startup-ticker.ch and OECD',
     marginLeft: 50,
-    marginRight: 145,
+    marginRight: 155,
     y: {
       label: y_axis,
-      percent: true,
-      domain: checkbox[0] === "Focus on Switzerland" ? [0,0.6] : undefined},
+      percent: y_axis === "VC share of GDP in %" ? true : false},
+      // domain: checkbox[0] === "Focus on Switzerland" ? [0,0.6] : undefined},
       color: color_scale, // take country colors from first plot
     marks: [
       Plot.line(df_vc, {
@@ -188,7 +188,7 @@ define({id: "e42f7005", inputs: ["df_vc_gdp","countries","y_axis","display","Plo
         defined: (d) => d.value !== null, // Define valid points
         interpolate: "linear" // Use linear interpolation
           }),
-      Plot.line(checkbox[0] === "Focus on Switzerland" ? df_vc.filter(d => !["ISR","USA","SGP","SWE","GBR"].includes(d.iso3)) : df_vc.filter(d => ["ISR","USA","SGP","GBR","SWE","CHE"].includes(d.iso3)), {
+      Plot.line(df_vc.filter(d => ["ISR","USA","SGP","GBR","SWE","CHE"].includes(d.iso3)), {
         x: 'year_date',
         y: 'obs_value',
         z: 'country',
@@ -196,12 +196,12 @@ define({id: "e42f7005", inputs: ["df_vc_gdp","countries","y_axis","display","Plo
         strokeWidth: d => d.iso3 === 'CHE' ? 2.5 : 1.5,
         strokeOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
         curve: 'linear',
-        title: y_axis === "VC share of GDP in %" ? d => `${d.country}: ${(d.obs_value*100).toFixed(2)}%` : d => `${d.country}: ${(d.obs_value)}`,
+        title: y_axis === "VC share of GDP in %" ? d => `${d.country}: ${(d.obs_value*100).toFixed(2)}%` : d => `${d.country}: ${(d.obs_value.toFixed(0))}`,
         tip: true,
         defined: (d) => d.value !== null, // Define valid points
         interpolate: "linear" // Use linear interpolation
           }),
-      Plot.text(checkbox[0] === "Focus on Switzerland" ? df_vc_text : df_vc_text.filter(d => ["ISR","USA","SGP","GBR","SWE","CHE"].includes(d.iso3)), {
+      Plot.text(df_vc_text.filter(d => ["ISR","USA","SGP","GBR","SWE","CHE"].includes(d.iso3)), {
         x: 'year_date',
         y: d => {
             if (d.country === "Denmark") {
@@ -222,103 +222,25 @@ define({id: "e42f7005", inputs: ["df_vc_gdp","countries","y_axis","display","Plo
               return d.obs_value; // No change
             }
           },
-        text: y_axis === "VC share of GDP in %" ? d => `${d.country} (${(d.obs_value*100).toFixed(1)} %)` : "country",
+        text: y_axis === "VC share of GDP in %" ? d => `${d.country} (${(d.obs_value*100).toFixed(1)} %)` : d => `${d.country} (${(d.obs_value.toFixed(0))})`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
         textAnchor: "start",
         fill: d => d.country === 'Switzerland' ? 'black' : 'grey'
-      })
+      }),
+      Plot.ruleY([0])
     ],
   }))
 return {df_vc,df_vc_sorted,df_vc_text,plot_vc};
 }});
 
-define({id: "37bbd597", inputs: ["df_udemo","countries","display","Plot","color_scale","grey_innosuisse"], outputs: ["df_high_growth","df_hg_sorted"], body: (df_udemo,countries,display,Plot,color_scale,grey_innosuisse) => {
-  const df_high_growth = 
-    df_udemo.filter(d => countries.includes(d.iso3))
-            .sort((a, b) => b.high_growth_firms - a.high_growth_firms);
-
-  // Extract the sorted country list from the sorted data for y-domain
-  const df_hg_sorted = df_high_growth.map(d => d.country);
-
-  display(
-    Plot.plot({
-    caption: "BFS UDEMO / Eurostat",
-    marginLeft: 100,
-    // height: 400,
-    x: {label: 'High growth firms in % of all firms'},
-    y: {
-      label: null,
-      domain: df_hg_sorted // Fix the order of the countries explicitly
-    },
-    color: color_scale,
-    marks: [
-      Plot.barX(df_high_growth, 
-                   {x: 100, 
-                    y: "country",
-                    fill: grey_innosuisse,
-                    fillOpacity: 0.2}),
-      Plot.barX(df_high_growth, 
-                   {x: "high_growth_firms", 
-                    y: "country",
-                    fillOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
-                    fill: "iso3"}),
-      Plot.textX(df_high_growth, 
-                   {x: "high_growth_firms", 
-                    y: "country",
-                    text: d => `${d.high_growth_firms.toFixed(1)} %`,
-                   dx: 17})
-    ]
-  })
-)
-
-return {df_high_growth,df_hg_sorted};
+define({id: "4e058e15-2", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
 }});
 
-define({id: "f7368db3", inputs: ["df_udemo","display","Plot","grey_innosuisse","black_innosuisse"], outputs: ["df_gazelles","df_gz_sorted"], body: (df_udemo,display,Plot,grey_innosuisse,black_innosuisse) => {
-const df_gazelles = 
-    df_udemo
-    .filter(d => d.gazelles_in_pct_of_high_growth_firms > 0)
-    .sort((a, b) => b.gazelles_in_pct_of_high_growth_firms - a.gazelles_in_pct_of_high_growth_firms);
-
-  // Extract the sorted country list from the sorted data for y-domain
-  const df_gz_sorted = df_gazelles.map(d => d.country);
-
-  display(
-    Plot.plot({
-    caption: "BFS UDEMO / Eurostat",
-    marginLeft: 100,
-    // height: 400,
-    x: {label: 'Gazelles in % of high growth firms'},
-    y: {
-      label: null,
-      domain: df_gz_sorted // Fix the order of the countries explicitly
-    },
-    // color: color_scale,
-    marks: [
-      Plot.barX(df_gazelles, 
-                   {x: 100, 
-                    y: "country",
-                    fill: grey_innosuisse,
-                    fillOpacity: 0.2}),
-      Plot.barX(df_gazelles, 
-                   {x: "gazelles_in_pct_of_high_growth_firms", 
-                    y: "country",
-                    fillOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
-                    fill: d => d.iso3 === "CHE" ? "#af7aa1" : black_innosuisse}),
-      Plot.textX(df_gazelles, 
-                   {x: "gazelles_in_pct_of_high_growth_firms", 
-                    y: "country",
-                    text: d => `${d.gazelles_in_pct_of_high_growth_firms.toFixed(1)} %`,
-                   dx: 20})
-    ]
-  })
-  )
-
-return {df_gazelles,df_gz_sorted};
-}});
-
-define({id: "0ed5485e", inputs: ["df_gem_tea","countries","display","Plot","color_scale"], outputs: ["df_tea","df_tea_sorted","df_tea_text","plot_tea"], body: (df_gem_tea,countries,display,Plot,color_scale) => {
+define({id: "b9b4a0e7", inputs: ["df_gem_tea","countries","display","Plot","color_scale"], outputs: ["df_tea","df_tea_sorted","df_tea_text","plot_tea"], body: (df_gem_tea,countries,display,Plot,color_scale) => {
 // Extract data from df
   const df_tea = df_gem_tea.filter(d => countries.includes(d.iso3)); // only for selected countries
 
@@ -363,7 +285,7 @@ define({id: "0ed5485e", inputs: ["df_gem_tea","countries","display","Plot","colo
         x: 'year_date',
         y: d => {
             if (d.country === "Switzerland") {
-              return d.obs_value * 1.04; // Move up
+              return d.obs_value * 1.06; // Move up
             } else {
               return d.obs_value; // No change
             }
@@ -373,7 +295,8 @@ define({id: "0ed5485e", inputs: ["df_gem_tea","countries","display","Plot","colo
         dy: 0, // Vertical adjustment,
         textAnchor: "start",
         fill: d => d.country === 'Switzerland' ? 'black' : 'grey'
-      })
+      }),
+      Plot.ruleY([0])
     ],
   }));
 return {df_tea,df_tea_sorted,df_tea_text,plot_tea};
@@ -403,10 +326,10 @@ return {countries_list,countries};
   </ol>
   <ol>
     <li class="observablehq-link"><a href="./a_rnd">A. Research &amp; Development</a></li>
-    <li class="observablehq-link observablehq-link-active"><a href="./b_ens">B. Entrepreneurship &amp; Start-ups</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./b_ens">B. Entrepreneurship and Start-ups</a></li>
     <li class="observablehq-link"><a href="./c_inno">C. Innovation Activities</a></li>
     <li class="observablehq-link"><a href="./d_ktt">D. Knowledge and Technology Transfer</a></li>
-    <li class="observablehq-link"><a href="./e_snd">E. Sustainability and Digitalisation</a></li>
+    <li class="observablehq-link"><a href="./e_snd">E. Sustainability and High-tech Exports</a></li>
   </ol>
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
@@ -416,35 +339,115 @@ return {countries_list,countries};
 <div>Contents</div>
 <ol>
 <li class="observablehq-secondary-link"><a href="#venture-capital-investments-in-of-gdp-2017-2023">Venture capital investments in % of GDP 2017–2023</a></li>
-<li class="observablehq-secondary-link"><a href="#share-of-high-growth-firms-in-of-all-firms-2020">Share of high growth firms in % of all firms (2020)</a></li>
-<li class="observablehq-secondary-link"><a href="#share-of-gazelles-in-of-high-growth-firms-2020">Share of gazelles in % of high growth firms (2020)</a></li>
 <li class="observablehq-secondary-link"><a href="#total-early-stage-entrepreneurial-activity-tea">Total early-stage entrepreneurial activity (TEA)</a></li>
 </ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
 <div class="observablehq observablehq--block"><!--:3a0062f4:--></div>
-<h1 id="b-entrepreneurship-and-start-ups" tabindex="-1"><a class="observablehq-header-anchor" href="#b-entrepreneurship-and-start-ups">B. Entrepreneurship &amp; Start-ups</a></h1>
+<h1 id="b-entrepreneurship-and-start-ups" tabindex="-1"><a class="observablehq-header-anchor" href="#b-entrepreneurship-and-start-ups">B. Entrepreneurship and Start-ups</a></h1>
 <div class="observablehq observablehq--block"><!--:f1bc4fb1:--></div>
 <div class="observablehq observablehq--block"><!--:8c3be053:--></div>
 <h2 id="venture-capital-investments-in-of-gdp-2017-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#venture-capital-investments-in-of-gdp-2017-2023">Venture capital investments in % of GDP 2017–2023</a></h2>
-<p>Venture capital availability in <observablehq-loading></observablehq-loading><!--:4e058e15:--> has been increasing steadily till 2021/2022, but has declined in the last year because of the national bank's interest rate reversals. The VC-numbers until Q3 of 2024 show that the performance in 2024 will be comparable or slightly below 2024.</p>
-<p>According to the report <a href="https://www.seco.admin.ch/dam/seco/en/dokumente/Standortfoerderung/KMU-Politik/Finanzierung%20der%20KMU/Bericht%20Postulat%20Derder%20-%20Rasch%20wachsende%20Jungunternehmen%20in%20der%20Schweiz.pdf.download.pdf/EN_Bericht_PO_Derder_Fast_growing_start_ups_in_Switzerland.pdf" target="_blank" rel="noopener noreferrer">"Fast-growing start-ups in Switzerland"</a> (SECO, 2017) the venture capital market in <observablehq-loading></observablehq-loading><!--:4e058e15-1:--> is not as mature as the markets in more advanced countries (such as <observablehq-loading></observablehq-loading><!--:a05991af:-->, the <observablehq-loading></observablehq-loading><!--:c55312a5:-->) and there is room for improvement.</p>
-<p><em>Das Dropdown und die  Checkbox müssen noch überarbeitet werden</em></p>
-<div class="observablehq observablehq--block"><!--:4c12ec47:--></div>
-<div class="observablehq observablehq--block"><!--:e42f7005:--></div>
-<h2 id="share-of-high-growth-firms-in-of-all-firms-2020" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-high-growth-firms-in-of-all-firms-2020">Share of high growth firms in % of all firms (2020)</a></h2>
-<p><em>Evtl. weglassen, da Aussagekraft relativ beschränkt ist, weil nur mit wenigen Top 10 Innovationsländern verglichen werden kann.</em></p>
-<div class="observablehq observablehq--block"><!--:37bbd597:--></div>
-<h2 id="share-of-gazelles-in-of-high-growth-firms-2020" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-gazelles-in-of-high-growth-firms-2020">Share of gazelles in % of high growth firms (2020)</a></h2>
-<div class="observablehq observablehq--block"><!--:f7368db3:--></div>
+<p>Venture capital availability in <observablehq-loading></observablehq-loading><!--:4e058e15:--> has been increasing steadily till 2021/2022, but has declined in the last year because - among other factors - the interest rate reversals. The VC-numbers until Q3 of 2024 show that the performance in 2024 will be comparable or slightly below 2024.</p>
+<p>According to the report <a href="https://www.seco.admin.ch/dam/seco/en/dokumente/Standortfoerderung/KMU-Politik/Finanzierung%20der%20KMU/Bericht%20Postulat%20Derder%20-%20Rasch%20wachsende%20Jungunternehmen%20in%20der%20Schweiz.pdf.download.pdf/EN_Bericht_PO_Derder_Fast_growing_start_ups_in_Switzerland.pdf" target="_blank" rel="noopener noreferrer">"Fast-growing start-ups in Switzerland"</a> (SECO, 2017) the venture capital market in <observablehq-loading></observablehq-loading><!--:4e058e15-1:--> was not as mature as the markets in more advanced countries (such as <observablehq-loading></observablehq-loading><!--:a05991af:-->, the <observablehq-loading></observablehq-loading><!--:c55312a5:-->). The VC market has since expanded, but there is still room for improvement.</p>
+<div class="observablehq observablehq--block"><!--:46ce2040:--></div>
+<div class="observablehq observablehq--block"><!--:e994e68a:--></div>
+<!-- ## Share of high growth firms in % of all firms (2020)
+
+*Evtl. weglassen, da Aussagekraft relativ beschränkt ist, weil nur mit wenigen Top 10 Innovationsländern verglichen werden kann.*
+
+```js
+  const df_high_growth = 
+    df_udemo.filter(d => countries.includes(d.iso3))
+            .sort((a, b) => b.high_growth_firms - a.high_growth_firms);
+
+  // Extract the sorted country list from the sorted data for y-domain
+  const df_hg_sorted = df_high_growth.map(d => d.country);
+
+  display(
+    Plot.plot({
+    caption: "BFS UDEMO / Eurostat",
+    marginLeft: 100,
+    // height: 400,
+    x: {label: 'High growth firms in % of all firms'},
+    y: {
+      label: null,
+      domain: df_hg_sorted // Fix the order of the countries explicitly
+    },
+    color: color_scale,
+    marks: [
+      Plot.barX(df_high_growth, 
+                   {x: 100, 
+                    y: "country",
+                    fill: grey_innosuisse,
+                    fillOpacity: 0.2}),
+      Plot.barX(df_high_growth, 
+                   {x: "high_growth_firms", 
+                    y: "country",
+                    fillOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
+                    fill: "iso3"}),
+      Plot.textX(df_high_growth, 
+                   {x: "high_growth_firms", 
+                    y: "country",
+                    text: d => `${d.high_growth_firms.toFixed(1)} %`,
+                   dx: 17})
+    ]
+  })
+)
+
+```
+
+## Share of gazelles in % of high growth firms (2020)
+
+```js
+const df_gazelles = 
+    df_udemo
+    .filter(d => d.gazelles_in_pct_of_high_growth_firms > 0)
+    .sort((a, b) => b.gazelles_in_pct_of_high_growth_firms - a.gazelles_in_pct_of_high_growth_firms);
+
+  // Extract the sorted country list from the sorted data for y-domain
+  const df_gz_sorted = df_gazelles.map(d => d.country);
+
+  display(
+    Plot.plot({
+    caption: "BFS UDEMO / Eurostat",
+    marginLeft: 100,
+    // height: 400,
+    x: {label: 'Gazelles in % of high growth firms'},
+    y: {
+      label: null,
+      domain: df_gz_sorted // Fix the order of the countries explicitly
+    },
+    // color: color_scale,
+    marks: [
+      Plot.barX(df_gazelles, 
+                   {x: 100, 
+                    y: "country",
+                    fill: grey_innosuisse,
+                    fillOpacity: 0.2}),
+      Plot.barX(df_gazelles, 
+                   {x: "gazelles_in_pct_of_high_growth_firms", 
+                    y: "country",
+                    fillOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
+                    fill: d => d.iso3 === "CHE" ? "#af7aa1" : black_innosuisse}),
+      Plot.textX(df_gazelles, 
+                   {x: "gazelles_in_pct_of_high_growth_firms", 
+                    y: "country",
+                    text: d => `${d.gazelles_in_pct_of_high_growth_firms.toFixed(1)} %`,
+                   dx: 20})
+    ]
+  })
+  )
+
+``` -->
 <h2 id="total-early-stage-entrepreneurial-activity-tea" tabindex="-1"><a class="observablehq-header-anchor" href="#total-early-stage-entrepreneurial-activity-tea">Total early-stage entrepreneurial activity (TEA)</a></h2>
-<p>Percentage of 18-64 population who are either a nascent entrepreneur or owner-manager of a new business</p>
-<div class="observablehq observablehq--block"><!--:0ed5485e:--></div>
+<p>The share of 18-64 population who are either a nascent entrepreneur or owner-manager of a new business in <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> has been hovering between 8 and 10 percent. This is a low- to mid-table position among innovation peers.</p>
+<div class="observablehq observablehq--block"><!--:b9b4a0e7:--></div>
 <div class="observablehq observablehq--block"><!--:ad76519a:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./a_rnd"><span>A. Research &amp; Development</span></a><a rel="next" href="./c_inno"><span>C. Innovation Activities</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-31T23:14:23">Oct 31, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-06T00:16:50">Nov 6, 2024</a>.</div>
 </footer>
 </div>
