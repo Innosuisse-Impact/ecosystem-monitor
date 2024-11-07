@@ -5,10 +5,10 @@
 <title>D. Knowledge and Technology Transfer | Innovation Ecosystem Monitor</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_import/styles.a2c58267.css">
+<link rel="preload" as="style" href="./_import/styles.62814f4a.css">
 <link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_import/styles.a2c58267.css">
+<link rel="stylesheet" type="text/css" href="./_import/styles.62814f4a.css">
 <link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="modulepreload" href="./_observablehq/client.34eb3252.js">
 <link rel="modulepreload" href="./_observablehq/runtime.03a75458.js">
@@ -196,7 +196,7 @@ colorLegend("DNK")
 ))
 }});
 
-define({id: "4e9adfca", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_ppcp","df_ppcp_sorted","df_ppcp_text","plot_pct"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
+define({id: "6bbbdf12", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_ppcp","df_ppcp_sorted","df_ppcp_text","plot_ppcp"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
 // Extract data from df
   const df_ppcp = df_eis.filter(d => 
                                 countries.includes(d.iso3) 
@@ -220,7 +220,7 @@ define({id: "4e9adfca", inputs: ["df_eis","countries","display","Plot","color_sc
     }));
 
   // Create Plot
-  const plot_pct = display(
+  const plot_ppcp = display(
     Plot.plot({
     caption: 'Source: European Commission',
     marginRight: 150,
@@ -253,7 +253,7 @@ define({id: "4e9adfca", inputs: ["df_eis","countries","display","Plot","color_sc
     ],
   })
   )
-return {df_ppcp,df_ppcp_sorted,df_ppcp_text,plot_pct};
+return {df_ppcp,df_ppcp_sorted,df_ppcp_text,plot_ppcp};
 }});
 
 define({id: "794c5df0", inputs: ["display","Plot","df_switt"], body: (display,Plot,df_switt) => {
@@ -348,7 +348,7 @@ return {countries_list,countries};
 <div class="observablehq observablehq--block"><!--:2ea134f8:--></div>
 <h2 id="public-private-co-publications" tabindex="-1"><a class="observablehq-header-anchor" href="#public-private-co-publications">Public-private co-publications</a></h2>
 <p>One of the strengths in the international comparison are <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s public-private co-publications. Only <observablehq-loading></observablehq-loading><!--:1a7588f8:--> can keep pace. The Innosuisse monitoring data shows that Innovation Projects with Implementation Partner make their contribution to this knowldege transfer between research and business (xx % report a co-publicaton as one result of their Innovation Project).</p>
-<div class="observablehq observablehq--block"><!--:4e9adfca:--></div>
+<div class="observablehq observablehq--block"><!--:6bbbdf12:--></div>
 <h2 id="start-ups-from-swiss-public-research-organisations" tabindex="-1"><a class="observablehq-header-anchor" href="#start-ups-from-swiss-public-research-organisations">Start-ups from Swiss public research organisations</a></h2>
 <p>Universities and other public research organisations have become an important driver of start-up growth in Switzerland. However, recent years have seen a decline both in total <span style="border-bottom: solid 2px #F28177;">start-ups</span> and more pronounced in <span style="border-bottom: solid 2px #C96D5F;">spin-offs (start-ups with a formal licence of IP)</span>.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:794c5df0:--></div>
@@ -417,6 +417,6 @@ display(
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./c_inno"><span>C. Innovation Activities</span></a><a rel="next" href="./e_snd"><span>E. Sustainability and High-tech Exports</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-06T00:16:50">Nov 6, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-07T17:02:34">Nov 7, 2024</a>.</div>
 </footer>
 </div>
