@@ -71,44 +71,54 @@ registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt",
 registerFile("./data/gem_tea_2018-2023.csv", {"name":"./data/gem_tea_2018-2023.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2023.8a8724b7.csv","lastModified":1729598636680,"size":1656});
 registerFile("./data/switt_startup_2023.csv", {"name":"./data/switt_startup_2023.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2023.4ecfbba9.csv","lastModified":1730374270709,"size":1071});
 
-define({id: "3a0062f4", inputs: ["df"], outputs: ["all_countries","all_countries_b","black_innosuisse","grey_innosuisse","aq"], body: async (df) => {
+define({id: "6b48e77c", inputs: ["df"], outputs: ["all_countries","all_countries_b","black_innosuisse","grey_innosuisse","aq"], body: async (df) => {
 const aq = await import("./_npm/arquero@7.1.0/6f3128cb.js");
-const all_countries = new Map(df.map(d => [d.country, d.iso3]))
-const all_countries_b = new Map(df.map(d => [d.iso3, d.country]))
-const black_innosuisse = "#53565A"
-const grey_innosuisse = "#D9D9D6"
+const all_countries = new Map(df.map((d) => [d.country, d.iso3]));
+const all_countries_b = new Map(df.map((d) => [d.iso3, d.country]));
+const black_innosuisse = "#53565A";
+const grey_innosuisse = "#D9D9D6";
 
 return {all_countries,all_countries_b,black_innosuisse,grey_innosuisse,aq};
 }});
 
-define({id: "aa0335fc", inputs: ["FileAttachment"], outputs: ["df","df_ht","df_eis","df_rank2","df_gem_tea","df_udemo","eurostat_pct_rd","df_switt"], body: async (FileAttachment) => {
+define({id: "b9efa587", inputs: ["FileAttachment"], outputs: ["df","df_ht","df_eis","df_rank2","df_gem_tea","df_udemo","eurostat_pct_rd","df_switt"], body: async (FileAttachment) => {
 // OECD MSTI Daten laden
-const df = await FileAttachment("./data/df.csv").csv({typed: true});
+const df = await FileAttachment("./data/df.csv").csv({ typed: true });
 // OECD ENV Daten
-const df_ht = await FileAttachment("./data/df_ht.csv").csv({typed: true});
+const df_ht = await FileAttachment("./data/df_ht.csv").csv({ typed: true });
 // EU European Innovation Scoreboard Daten laden
-const df_eis = await FileAttachment("./data/eurostat_eis_values.csv").csv({typed: true});
+const df_eis = await FileAttachment("./data/eurostat_eis_values.csv").csv({
+  typed: true,
+});
 // Rankingdaten laden.
-const df_rank2 = await FileAttachment("./data/df_rank2.csv").csv({typed: true});
+const df_rank2 = await FileAttachment("./data/df_rank2.csv").csv({ typed: true });
 // GEM-Daten laden
-const df_gem_tea = await FileAttachment("./data/gem_tea_2018-2023.csv").csv({typed: true});
+const df_gem_tea = await FileAttachment("./data/gem_tea_2018-2023.csv").csv({
+  typed: true,
+});
 //Display ${view(Inputs.table(df_rank.filter(d => ["EIS", "GII"].includes(d.index) & d.year != "Change")))}
-const df_udemo = await FileAttachment("./data/bfs_udemo_2020.csv").csv({typed: true});
+const df_udemo = await FileAttachment("./data/bfs_udemo_2020.csv").csv({
+  typed: true,
+});
 
-const eurostat_pct_rd = await FileAttachment("./data/eurostat_pct_rd.txt").tsv({typed: true})
+const eurostat_pct_rd = await FileAttachment("./data/eurostat_pct_rd.txt").tsv({
+  typed: true,
+});
 
-const df_switt = await FileAttachment("./data/switt_startup_2023.csv").csv({typed: true});
-
-
+const df_switt = await FileAttachment("./data/switt_startup_2023.csv").csv({
+  typed: true,
+});
 return {df,df_ht,df_eis,df_rank2,df_gem_tea,df_udemo,eurostat_pct_rd,df_switt};
 }});
 
-define({id: "8c3be053", inputs: ["Plot","countries","html","all_countries_b"], outputs: ["color_scale","colorLegend"], body: (Plot,countries,html,all_countries_b) => {
-const color_scale = Plot.scale(
-  {color: {scheme: "Tableau10", 
-           domain: countries}
-           });
-const colorLegend = (y) => html`<span style="border-bottom: solid 2px ${color_scale.apply(`${y}`)};">${all_countries_b.get(y)}</span>`;
+define({id: "6cac891f", inputs: ["Plot","countries","html","all_countries_b"], outputs: ["color_scale","colorLegend"], body: (Plot,countries,html,all_countries_b) => {
+const color_scale = Plot.scale({
+  color: { scheme: "Tableau10", domain: countries },
+});
+const colorLegend = (y) =>
+  html`<span style="border-bottom: solid 2px ${color_scale.apply(`${y}`)};"
+    >${all_countries_b.get(y)}</span
+  >`;
 return {color_scale,colorLegend};
 }});
 
@@ -124,75 +134,78 @@ colorLegend("DNK")
 ))
 }});
 
-define({id: "0df014e3", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_ert","df_ert_sorted","df_ert_text","plot_ert"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
+define({id: "23848d9d", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_ert","df_ert_sorted","df_ert_text","plot_ert"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
 // Extract data from df
-  const df_ert = df_eis.filter(d => countries.includes(d.iso3) & d.var_code === "env_tech") // only for selected countries
+const df_ert = df_eis.filter(
+  (d) => countries.includes(d.iso3) & (d.var_code === "env_tech")
+); // only for selected countries
 
-  // Extract last available year by country in order to position labels
-  const df_ert_sorted = df_ert.reduce((acc, item) => {if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
-    acc[item.iso3] = item;}
-    return acc;
-  }, {});
+// Extract last available year by country in order to position labels
+const df_ert_sorted = df_ert.reduce((acc, item) => {
+  if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
+    acc[item.iso3] = item;
+  }
+  return acc;
+}, {});
 
-  // Prepare text labels with coordinates
-  const df_ert_text = Object.values(df_ert_sorted)
-    .sort((a, b) => b.obs_value - a.obs_value)
-    .map(item => ({
-      iso3: item.iso3,
-      country: item.country,
-      year_date: item.year_date,
-      obs_value: item.obs_value
-    }));
+// Prepare text labels with coordinates
+const df_ert_text = Object.values(df_ert_sorted)
+  .sort((a, b) => b.obs_value - a.obs_value)
+  .map((item) => ({
+    iso3: item.iso3,
+    country: item.country,
+    year_date: item.year_date,
+    obs_value: item.obs_value,
+  }));
 
-  // Create Plot
-  const plot_ert = display(
-    Plot.plot({
-    caption: 'Source: European Commission, OECD Green Growth database',
+// Create Plot
+const plot_ert = display(
+  Plot.plot({
+    caption: "Source: European Commission, OECD Green Growth database",
     marginRight: 150,
-    x: {label: null},
-    y: {label: "Development of environment-related technologies, percentage of all technologies"
-       },
+    x: { label: null },
+    y: {
+      label:
+        "Development of environment-related technologies, percentage of all technologies",
+    },
     color: color_scale, // take country colors from first plot
     marks: [
       Plot.ruleY([0]),
       Plot.line(df_ert, {
-        x: d => subtractYears(d.year_date, 5), // Years in data from EIS need to recalibrated
-        y: 'obs_value',
-        z: 'country',
-        stroke: 'iso3',
-        strokeWidth: d => ["CHE", "DNK"].includes(d.iso3) ? 2.5 : 1.5,
-        strokeOpacity: d => ["CHE", "DNK"].includes(d.iso3) ? 1 : 0.6,
-        curve: 'linear',
+        x: (d) => subtractYears(d.year_date, 5), // Years in data from EIS need to recalibrated
+        y: "obs_value",
+        z: "country",
+        stroke: "iso3",
+        strokeWidth: (d) => (["CHE", "DNK"].includes(d.iso3) ? 2.5 : 1.5),
+        strokeOpacity: (d) => (["CHE", "DNK"].includes(d.iso3) ? 1 : 0.6),
+        curve: "linear",
         defined: (d) => d.value !== null, // Define valid points
-        interpolate: "linear" // Use linear interpolation
-          }),
+        interpolate: "linear", // Use linear interpolation
+      }),
       Plot.text(df_ert_text, {
-        x: d => subtractYears(d.year_date, 5), // Years in data from EIS need to recalibrated
-        y: d => {
-            if (d.country === "Sweden") {
-              return d.obs_value * 1.01; 
-            }
-            else if (d.country === "South Korea") {
-              return d.obs_value * 0.98; // Move up
-            } 
-            else if (d.country === "Finland") {
-              return d.obs_value * 1.01; // Move up
-            } 
-            else if (d.country === "United Kingdom") {
-              return d.obs_value * 0.96; // Move up
-            } else {
-              return d.obs_value; // No change
-            }
-          },
-        text: d => `${d.country} (${d.obs_value.toFixed(0)} %)`,
+        x: (d) => subtractYears(d.year_date, 5), // Years in data from EIS need to recalibrated
+        y: (d) => {
+          if (d.country === "Sweden") {
+            return d.obs_value * 1.01;
+          } else if (d.country === "South Korea") {
+            return d.obs_value * 0.98; // Move up
+          } else if (d.country === "Finland") {
+            return d.obs_value * 1.01; // Move up
+          } else if (d.country === "United Kingdom") {
+            return d.obs_value * 0.96; // Move up
+          } else {
+            return d.obs_value; // No change
+          }
+        },
+        text: (d) => `${d.country} (${d.obs_value.toFixed(0)} %)`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
         textAnchor: "start",
-        fill: d => d.iso3 === 'CHE' ? 'black' : 'grey'
-      })
+        fill: (d) => (d.iso3 === "CHE" ? "black" : "grey"),
+      }),
     ],
   })
-  )
+);
 return {df_ert,df_ert_sorted,df_ert_text,plot_ert};
 }});
 
@@ -202,62 +215,71 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "e9e4725d", inputs: ["df_ht","countries","display","Plot","color_scale"], outputs: ["df_htex","df_htex_sorted","df_htex_text","plot_htex"], body: (df_ht,countries,display,Plot,color_scale) => {
-const df_htex = df_ht.filter(d => countries.includes(d.iso3) & d.year_date > new Date ("2016-01-01")) // only for selected countries
+define({id: "0197c7e5", inputs: ["df_ht","countries","display","Plot","color_scale"], outputs: ["df_htex","df_htex_sorted","df_htex_text","plot_htex"], body: (df_ht,countries,display,Plot,color_scale) => {
+const df_htex = df_ht.filter(
+  (d) => countries.includes(d.iso3) & (d.year_date > new Date("2016-01-01"))
+); // only for selected countries
 
-  // Extract last available year by country in order to position labels
-const df_htex_sorted = df_htex.reduce((acc, item) => {if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
-    acc[item.iso3] = item;}
-    return acc;
-  }, {});
+// Extract last available year by country in order to position labels
+const df_htex_sorted = df_htex.reduce((acc, item) => {
+  if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
+    acc[item.iso3] = item;
+  }
+  return acc;
+}, {});
 
-  // Prepare text labels with coordinates
+// Prepare text labels with coordinates
 const df_htex_text = Object.values(df_htex_sorted)
-    .sort((a, b) => b.obs_value - a.obs_value)
-    .map(item => ({
-      iso3: item.iso3,
-      country: item.country,
-      year_date: item.year_date,
-      obs_value: item.obs_value
-    }));
+  .sort((a, b) => b.obs_value - a.obs_value)
+  .map((item) => ({
+    iso3: item.iso3,
+    country: item.country,
+    year_date: item.year_date,
+    obs_value: item.obs_value,
+  }));
 
-  // Create Plot
-  const plot_htex = display(
-    Plot.plot({
-    caption: 'Source: OECD Main Science and Technology Indicators (MSTI), https://oe.cd/msti',
+// Create Plot
+const plot_htex = display(
+  Plot.plot({
+    caption:
+      "Source: OECD Main Science and Technology Indicators (MSTI), https://oe.cd/msti",
     marginRight: 150,
-    x: {domain: [new Date("2017-01-01"), new Date ("2023-01-01")]},
-    y: {label: 'Exports of high technology products as a share of total products exports'},
+    x: { domain: [new Date("2017-01-01"), new Date("2023-01-01")] },
+    y: {
+      label:
+        "Exports of high technology products as a share of total products exports",
+    },
     color: color_scale, // take country colors from first plot
     marks: [
       Plot.line(df_htex, {
-        x: 'year_date',
-        y: 'obs_value',
-        z: 'country',
-        stroke: 'iso3',
-        strokeWidth: d => d.iso3 === 'CHE' ? 2.5 : 1.5,
-        strokeOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
-        curve: 'linear',
+        x: "year_date",
+        y: "obs_value",
+        z: "country",
+        stroke: "iso3",
+        strokeWidth: (d) => (d.iso3 === "CHE" ? 2.5 : 1.5),
+        strokeOpacity: (d) => (d.iso3 === "CHE" ? 1 : 0.6),
+        curve: "linear",
         defined: (d) => d.value !== null, // Define valid points
-        interpolate: "linear" // Use linear interpolation
-          }),
+        interpolate: "linear", // Use linear interpolation
+      }),
       Plot.text(df_htex_text, {
-        x: 'year_date',
-        y: d => {
-            if (d.country === "Switzerland") {
-              return d.obs_value * 1.005; 
-            } else {
-              return d.obs_value * 0.995; // No change
-            }
-          },
-        text: d => `${d.country} (${d.obs_value.toFixed(1)} %)`,
+        x: "year_date",
+        y: (d) => {
+          if (d.country === "Switzerland") {
+            return d.obs_value * 1.005;
+          } else {
+            return d.obs_value * 0.995; // No change
+          }
+        },
+        text: (d) => `${d.country} (${d.obs_value.toFixed(1)} %)`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
         textAnchor: "start",
-        fill: d => d.country === 'Switzerland' ? 'black' : 'grey'
-      })
+        fill: (d) => (d.country === "Switzerland" ? "black" : "grey"),
+      }),
     ],
-  }))
+  })
+);
 return {df_htex,df_htex_sorted,df_htex_text,plot_htex};
 }});
 
@@ -279,69 +301,73 @@ colorLegend("DEU")
 ))
 }});
 
-define({id: "4a8ec80c", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_mht","df_mht_sorted","df_mht_text","ht_plot"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
+define({id: "68f68e6c", inputs: ["df_eis","countries","display","Plot","color_scale","subtractYears"], outputs: ["df_mht","df_mht_sorted","df_mht_text","ht_plot"], body: (df_eis,countries,display,Plot,color_scale,subtractYears) => {
 // Extract data from df
-  const df_mht = df_eis.filter(d => countries.includes(d.iso3) & d.var_code === "hi_tech_exports") // only for selected countries
+const df_mht = df_eis.filter(
+  (d) => countries.includes(d.iso3) & (d.var_code === "hi_tech_exports")
+); // only for selected countries
 
-  // Extract last available year by country in order to position labels
-  const df_mht_sorted = df_mht.reduce((acc, item) => {if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
-    acc[item.iso3] = item;}
-    return acc;
-  }, {});
+// Extract last available year by country in order to position labels
+const df_mht_sorted = df_mht.reduce((acc, item) => {
+  if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
+    acc[item.iso3] = item;
+  }
+  return acc;
+}, {});
 
-  // Prepare text labels with coordinates
-  const df_mht_text = Object.values(df_mht_sorted)
-    .sort((a, b) => b.obs_value - a.obs_value)
-    .map(item => ({
-      iso3: item.iso3,
-      country: item.country,
-      year_date: item.year_date,
-      obs_value: item.obs_value
-    }));
+// Prepare text labels with coordinates
+const df_mht_text = Object.values(df_mht_sorted)
+  .sort((a, b) => b.obs_value - a.obs_value)
+  .map((item) => ({
+    iso3: item.iso3,
+    country: item.country,
+    year_date: item.year_date,
+    obs_value: item.obs_value,
+  }));
 
-  // Create Plot
-  const ht_plot = display(
-    Plot.plot({
-    caption: 'Source: European Commission',
+// Create Plot
+const ht_plot = display(
+  Plot.plot({
+    caption: "Source: European Commission",
     marginRight: 150,
-    x: {label: null},
-    y: {label: df_mht[0].var_axis //,
-       },
+    x: { label: null },
+    y: {
+      label: df_mht[0].var_axis, //,
+    },
     color: color_scale, // take country colors from first plot
     marks: [
       Plot.line(df_mht, {
-        x: d => subtractYears(d.year_date, 1), // Years in data from EIS need to recalibrated
-        y: 'obs_value',
-        z: 'country',
-        stroke: 'iso3',
-        strokeWidth: d => d.iso3 === 'CHE' ? 2.5 : 1.5,
-        strokeOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
-        curve: 'linear',
+        x: (d) => subtractYears(d.year_date, 1), // Years in data from EIS need to recalibrated
+        y: "obs_value",
+        z: "country",
+        stroke: "iso3",
+        strokeWidth: (d) => (d.iso3 === "CHE" ? 2.5 : 1.5),
+        strokeOpacity: (d) => (d.iso3 === "CHE" ? 1 : 0.6),
+        curve: "linear",
         defined: (d) => d.value !== null, // Define valid points
-        interpolate: "linear" // Use linear interpolation
-          }),
+        interpolate: "linear", // Use linear interpolation
+      }),
       Plot.text(df_mht_text, {
-        x: d => subtractYears(d.year_date, 1),
-        y: d => {
-            if (d.country === "Denmark") {
-              return d.obs_value * 1.01; 
-            }
-            else if (d.country === "Netherlands") {
-              return d.obs_value * 1.01; // Move up
-            } else {
-              return d.obs_value; // No change
-            }
-          },
-        text: d => `${d.country} (${d.obs_value.toFixed(0)} %)`,
+        x: (d) => subtractYears(d.year_date, 1),
+        y: (d) => {
+          if (d.country === "Denmark") {
+            return d.obs_value * 1.01;
+          } else if (d.country === "Netherlands") {
+            return d.obs_value * 1.01; // Move up
+          } else {
+            return d.obs_value; // No change
+          }
+        },
+        text: (d) => `${d.country} (${d.obs_value.toFixed(0)} %)`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
         textAnchor: "start",
-        fill: d => d.iso3 === 'CHE' ? 'black' : 'grey',
-        stroke: "white"
-      })
+        fill: (d) => (d.iso3 === "CHE" ? "black" : "grey"),
+        stroke: "white",
+      }),
     ],
   })
-  )
+);
 return {df_mht,df_mht_sorted,df_mht_text,ht_plot};
 }});
 
@@ -355,17 +381,35 @@ function subtractYears(date, years) {
 return {subtractYears};
 }});
 
-define({id: "ad76519a", inputs: ["df_rank2","view","Inputs"], outputs: ["countries_list","countries"], body: (df_rank2,view,Inputs) => {
+define({id: "86f58194", inputs: ["df_rank2","view","Inputs"], outputs: ["countries_list","countries"], body: (df_rank2,view,Inputs) => {
 // Evtl. muss hier wieder die Abhängigkeit von der Israel-Checkbox eingefügt werden.
 const countries_list = new Map(
-  df_rank2.filter(d => d.index === "GII" && d.year === 2024)
-          .sort((a, b) => a.rank - b.rank)
-          .map(d => [d.country, d.iso3]))
+  df_rank2
+    .filter((d) => d.index === "GII" && d.year === 2024)
+    .sort((a, b) => a.rank - b.rank)
+    .map((d) => [d.country, d.iso3])
+);
 
-const countries = view(Inputs.select(countries_list, { 
-  value: ["CHE", "SWE", "USA", "SGP", "GBR", "KOR", "FIN", "NLD", "DEU", "DNK", "ISR"], 
-  multiple: 3, 
-  label: "Selected countries (add or deselect countries with Ctrl + Left-click)"}));
+const countries = view(
+  Inputs.select(countries_list, {
+    value: [
+      "CHE",
+      "SWE",
+      "USA",
+      "SGP",
+      "GBR",
+      "KOR",
+      "FIN",
+      "NLD",
+      "DEU",
+      "DNK",
+      "ISR",
+    ],
+    multiple: 3,
+    label:
+      "Selected countries (add or deselect countries with Ctrl + Left-click)",
+  })
+);
 return {countries_list,countries};
 }});
 
@@ -387,6 +431,9 @@ return {countries_list,countries};
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
+<header id="observablehq-header">
+<a href="https://www.innosuisse.admin.ch/en" class="logo" id="header-logo-container" aria-label="Open Homepage" target="_blank" rel="noopener noreferrer"><img src="./_file/images/swiss-logo-flag.bf25413a.svg" class="logo__flag" tabindex="0" alt="Logo with Swiss flag" ,="" height="30px"></a><a href="https://www.innosuisse.admin.ch/en" target="_blank" rel="noopener noreferrer">Innosuisse<br>Swiss Innovation Agency</a>
+</header>
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
 <div>Contents</div>
@@ -399,23 +446,23 @@ return {countries_list,countries};
 </aside>
 <main id="observablehq-main" class="observablehq">
 <h1 id="e-sustainability-and-high-tech-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#e-sustainability-and-high-tech-exports">E. Sustainability and High-tech Exports</a></h1>
-<div class="observablehq observablehq--block"><!--:3a0062f4:--></div>
-<div class="observablehq observablehq--block"><!--:aa0335fc:--></div>
-<div class="observablehq observablehq--block"><!--:8c3be053:--></div>
+<div class="observablehq observablehq--block"><!--:6b48e77c:--></div>
+<div class="observablehq observablehq--block"><!--:b9efa587:--></div>
+<div class="observablehq observablehq--block"><!--:6cac891f:--></div>
 <h2 id="development-of-environment-related-technologies-percentage-of-all-technologies" tabindex="-1"><a class="observablehq-header-anchor" href="#development-of-environment-related-technologies-percentage-of-all-technologies">Development of environment-related technologies, percentage of all technologies</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> has a comparably low share of green technologies in percent of all patents and the share has been declining. Of the top innovators, <observablehq-loading></observablehq-loading><!--:1a7588f8:--> has a clear focus on environment-related technologies and its importance has grown over time.</p>
-<div class="observablehq observablehq--block"><!--:0df014e3:--></div>
+<div class="observablehq observablehq--block"><!--:23848d9d:--></div>
 <h2 id="exports-of-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-high-technology-products-as-a-share-of-total-products-exports">Exports of high technology products as a share of total products exports</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15-1:--> has very high share of high-tech exports. The pharmaceuticals industry will likely be an important factor for Switzerland's top position.</p>
-<div class="observablehq observablehq--block"><!--:e9e4725d:--></div>
+<div class="observablehq observablehq--block"><!--:0197c7e5:--></div>
 <h2 id="exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports">Exports of medium and high technology products as a share of total products exports</a></h2>
 <p>Interestingly enough, if we widen the scope to medium and high-tech exports, <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> fares not nearly as well, compared to countries such as <observablehq-loading></observablehq-loading><!--:9a4da08b:--> or <observablehq-loading></observablehq-loading><!--:294697dd:-->. Additionaly, there has been a steady decline since 2019.</p>
-<div class="observablehq observablehq--block"><!--:4a8ec80c:--></div>
+<div class="observablehq observablehq--block"><!--:68f68e6c:--></div>
 <div class="observablehq observablehq--block"><!--:ef1e01b8:--></div>
-<div class="observablehq observablehq--block"><!--:ad76519a:--></div>
+<div class="observablehq observablehq--block"><!--:86f58194:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./d_ktt"><span>D. Knowledge and Technology Transfer</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-07T17:02:34">Nov 7, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-08T11:35:02">Nov 8, 2024</a>.</div>
 </footer>
 </div>

@@ -71,42 +71,56 @@ registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt",
 registerFile("./data/gem_tea_2018-2023.csv", {"name":"./data/gem_tea_2018-2023.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2023.8a8724b7.csv","lastModified":1729598636680,"size":1656});
 registerFile("./data/switt_startup_2023.csv", {"name":"./data/switt_startup_2023.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2023.4ecfbba9.csv","lastModified":1730374270709,"size":1071});
 
-define({id: "3a0062f4", inputs: ["df"], outputs: ["all_countries","all_countries_b","black_innosuisse","grey_innosuisse","aq"], body: async (df) => {
+define({id: "6b48e77c", inputs: ["df"], outputs: ["all_countries","all_countries_b","black_innosuisse","grey_innosuisse","aq"], body: async (df) => {
 const aq = await import("./_npm/arquero@7.1.0/6f3128cb.js");
-const all_countries = new Map(df.map(d => [d.country, d.iso3]))
-const all_countries_b = new Map(df.map(d => [d.iso3, d.country]))
-const black_innosuisse = "#53565A"
-const grey_innosuisse = "#D9D9D6"
+const all_countries = new Map(df.map((d) => [d.country, d.iso3]));
+const all_countries_b = new Map(df.map((d) => [d.iso3, d.country]));
+const black_innosuisse = "#53565A";
+const grey_innosuisse = "#D9D9D6";
 
 return {all_countries,all_countries_b,black_innosuisse,grey_innosuisse,aq};
 }});
 
-define({id: "f1bc4fb1", inputs: ["FileAttachment"], outputs: ["df","df_eis","df_rank2","df_gem_tea","df_vc_gdp","df_udemo","eurostat_pct_rd","df_switt"], body: async (FileAttachment) => {
+define({id: "0d8a1a42", inputs: ["FileAttachment"], outputs: ["df","df_eis","df_rank2","df_gem_tea","df_vc_gdp","df_udemo","eurostat_pct_rd","df_switt"], body: async (FileAttachment) => {
 // OECD MSTI Daten laden
-const df = await FileAttachment("./data/df.csv").csv({typed: true});
+const df = await FileAttachment("./data/df.csv").csv({ typed: true });
 // EU European Innovation Scoreboard Daten laden
-const df_eis = await FileAttachment("./data/eurostat_eis_values.csv").csv({typed: true});
+const df_eis = await FileAttachment("./data/eurostat_eis_values.csv").csv({
+  typed: true,
+});
 // Rankingdaten laden.
-const df_rank2 = await FileAttachment("./data/df_rank2.csv").csv({typed: true});
+const df_rank2 = await FileAttachment("./data/df_rank2.csv").csv({ typed: true });
 // GEM-Daten laden
-const df_gem_tea = await FileAttachment("./data/gem_tea_2018-2023.csv").csv({typed: true});
+const df_gem_tea = await FileAttachment("./data/gem_tea_2018-2023.csv").csv({
+  typed: true,
+});
 //Display ${view(Inputs.table(df_rank.filter(d => ["EIS", "GII"].includes(d.index) & d.year != "Change")))}
-const df_vc_gdp = await FileAttachment("./data/20241024_vc.txt").tsv({typed: true})
+const df_vc_gdp = await FileAttachment("./data/20241024_vc.txt").tsv({
+  typed: true,
+});
 // UDEMO Daten laden
-const df_udemo = await FileAttachment("./data/bfs_udemo_2020.csv").csv({typed: true});
+const df_udemo = await FileAttachment("./data/bfs_udemo_2020.csv").csv({
+  typed: true,
+});
 
-const eurostat_pct_rd = await FileAttachment("./data/eurostat_pct_rd.txt").tsv({typed: true})
+const eurostat_pct_rd = await FileAttachment("./data/eurostat_pct_rd.txt").tsv({
+  typed: true,
+});
 
-const df_switt = await FileAttachment("./data/switt_startup_2023.csv").csv({typed: true});
+const df_switt = await FileAttachment("./data/switt_startup_2023.csv").csv({
+  typed: true,
+});
 return {df,df_eis,df_rank2,df_gem_tea,df_vc_gdp,df_udemo,eurostat_pct_rd,df_switt};
 }});
 
-define({id: "8c3be053", inputs: ["Plot","countries","html","all_countries_b"], outputs: ["color_scale","colorLegend"], body: (Plot,countries,html,all_countries_b) => {
-const color_scale = Plot.scale(
-  {color: {scheme: "Tableau10", 
-           domain: countries}
-           });
-const colorLegend = (y) => html`<span style="border-bottom: solid 2px ${color_scale.apply(`${y}`)};">${all_countries_b.get(y)}</span>`;
+define({id: "6cac891f", inputs: ["Plot","countries","html","all_countries_b"], outputs: ["color_scale","colorLegend"], body: (Plot,countries,html,all_countries_b) => {
+const color_scale = Plot.scale({
+  color: { scheme: "Tableau10", domain: countries },
+});
+const colorLegend = (y) =>
+  html`<span style="border-bottom: solid 2px ${color_scale.apply(`${y}`)};"
+    >${all_countries_b.get(y)}</span
+  >`;
 return {color_scale,colorLegend};
 }});
 
@@ -134,103 +148,124 @@ colorLegend("USA")
 ))
 }});
 
-define({id: "46ce2040", inputs: ["Inputs","view"], outputs: ["y_axis_values","y_axis_inputs","y_axis"], body: (Inputs,view) => {
-const y_axis_values = ["VC share of GDP in %","VC per capita"]
-const y_axis_inputs = Inputs.select(y_axis_values, {value: y_axis_values[0], label: "Measure"})
+define({id: "499176ef", inputs: ["Inputs","view"], outputs: ["y_axis_values","y_axis_inputs","y_axis"], body: (Inputs,view) => {
+const y_axis_values = ["VC share of GDP in %", "VC per capita"];
+const y_axis_inputs = Inputs.select(y_axis_values, {
+  value: y_axis_values[0],
+  label: "Measure",
+});
 const y_axis = view(y_axis_inputs);
 //const checkbox = view(Inputs.checkbox(["Focus on Switzerland"],{disabled: y_axis === y_axis_values[0]}))
 return {y_axis_values,y_axis_inputs,y_axis};
 }});
 
-define({id: "e994e68a", inputs: ["df_vc_gdp","countries","y_axis","display","Plot","color_scale","grey_innosuisse"], outputs: ["df_vc","df_vc_sorted","df_vc_text","plot_vc"], body: (df_vc_gdp,countries,y_axis,display,Plot,color_scale,grey_innosuisse) => {
+define({id: "fd560c7a", inputs: ["df_vc_gdp","countries","y_axis","display","Plot","color_scale","grey_innosuisse"], outputs: ["df_vc","df_vc_sorted","df_vc_text","plot_vc"], body: (df_vc_gdp,countries,y_axis,display,Plot,color_scale,grey_innosuisse) => {
 // Extract data from df
-  const df_vc = df_vc_gdp.filter(d => countries.includes(d.iso3) && d.measure === y_axis) // only for selected countries
+const df_vc = df_vc_gdp.filter(
+  (d) => countries.includes(d.iso3) && d.measure === y_axis
+); // only for selected countries
 
-  // Extract last available year by country in ordr to position labels
-  const df_vc_sorted = df_vc.reduce((acc, item) => {if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
-    acc[item.iso3] = item;}
-    return acc;
-  }, {});
+// Extract last available year by country in ordr to position labels
+const df_vc_sorted = df_vc.reduce((acc, item) => {
+  if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
+    acc[item.iso3] = item;
+  }
+  return acc;
+}, {});
 
-  // Prepare text labels with coordinates
-  const df_vc_text = Object.values(df_vc_sorted)
-    .sort((a, b) => b.year - a.year)
-    .map(item => ({
-      iso3: item.iso3,
-      country: item.country,
-      year: item.year,
-      year_date: item.year_date,
-      obs_value: item.obs_value
-    }));
+// Prepare text labels with coordinates
+const df_vc_text = Object.values(df_vc_sorted)
+  .sort((a, b) => b.year - a.year)
+  .map((item) => ({
+    iso3: item.iso3,
+    country: item.country,
+    year: item.year,
+    year_date: item.year_date,
+    obs_value: item.obs_value,
+  }));
 
-  // Create Plot
-  const plot_vc = display(
-    Plot.plot({
-    caption: 'Source: Crunchbase, startup-ticker.ch and OECD',
+// Create Plot
+const plot_vc = display(
+  Plot.plot({
+    caption: "Source: Crunchbase, startup-ticker.ch and OECD",
     marginLeft: 50,
     marginRight: 155,
     y: {
       label: y_axis,
-      percent: y_axis === "VC share of GDP in %" ? true : false},
-      // domain: checkbox[0] === "Focus on Switzerland" ? [0,0.6] : undefined},
-      color: color_scale, // take country colors from first plot
+      percent: y_axis === "VC share of GDP in %" ? true : false,
+    },
+    // domain: checkbox[0] === "Focus on Switzerland" ? [0,0.6] : undefined},
+    color: color_scale, // take country colors from first plot
     marks: [
       Plot.line(df_vc, {
-        x: 'year_date',
-        y: 'obs_value',
-        z: 'country',
+        x: "year_date",
+        y: "obs_value",
+        z: "country",
         stroke: grey_innosuisse,
-        strokeWidth: d => d.iso3 === 'CHE' ? 2.5 : 1.5,
-        strokeOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
-        curve: 'linear',
-        title: d => `${d.country}: ${(d.obs_value*100).toFixed(2)}%`,
+        strokeWidth: (d) => (d.iso3 === "CHE" ? 2.5 : 1.5),
+        strokeOpacity: (d) => (d.iso3 === "CHE" ? 1 : 0.6),
+        curve: "linear",
+        title: (d) => `${d.country}: ${(d.obs_value * 100).toFixed(2)}%`,
         tip: true,
         defined: (d) => d.value !== null, // Define valid points
-        interpolate: "linear" // Use linear interpolation
-          }),
-      Plot.line(df_vc.filter(d => ["ISR","USA","SGP","GBR","SWE","CHE"].includes(d.iso3)), {
-        x: 'year_date',
-        y: 'obs_value',
-        z: 'country',
-        stroke: "iso3",
-        strokeWidth: d => d.iso3 === 'CHE' ? 2.5 : 1.5,
-        strokeOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
-        curve: 'linear',
-        title: y_axis === "VC share of GDP in %" ? d => `${d.country}: ${(d.obs_value*100).toFixed(2)}%` : d => `${d.country}: ${(d.obs_value.toFixed(0))}`,
-        tip: true,
-        defined: (d) => d.value !== null, // Define valid points
-        interpolate: "linear" // Use linear interpolation
-          }),
-      Plot.text(df_vc_text.filter(d => ["ISR","USA","SGP","GBR","SWE","CHE"].includes(d.iso3)), {
-        x: 'year_date',
-        y: d => {
+        interpolate: "linear", // Use linear interpolation
+      }),
+      Plot.line(
+        df_vc.filter((d) =>
+          ["ISR", "USA", "SGP", "GBR", "SWE", "CHE"].includes(d.iso3)
+        ),
+        {
+          x: "year_date",
+          y: "obs_value",
+          z: "country",
+          stroke: "iso3",
+          strokeWidth: (d) => (d.iso3 === "CHE" ? 2.5 : 1.5),
+          strokeOpacity: (d) => (d.iso3 === "CHE" ? 1 : 0.6),
+          curve: "linear",
+          title:
+            y_axis === "VC share of GDP in %"
+              ? (d) => `${d.country}: ${(d.obs_value * 100).toFixed(2)}%`
+              : (d) => `${d.country}: ${d.obs_value.toFixed(0)}`,
+          tip: true,
+          defined: (d) => d.value !== null, // Define valid points
+          interpolate: "linear", // Use linear interpolation
+        }
+      ),
+      Plot.text(
+        df_vc_text.filter((d) =>
+          ["ISR", "USA", "SGP", "GBR", "SWE", "CHE"].includes(d.iso3)
+        ),
+        {
+          x: "year_date",
+          y: (d) => {
             if (d.country === "Denmark") {
-              return d.obs_value * 1.07; 
-            }
-            else if (d.country === "Finland") {
+              return d.obs_value * 1.07;
+            } else if (d.country === "Finland") {
               return d.obs_value * 1.1; // Move up
-            }
-            else if (d.country === "Republic of Korea") {
+            } else if (d.country === "Republic of Korea") {
               return d.obs_value * 0.82; // Move up
-            } 
-            else if (d.country === "Germany") {
+            } else if (d.country === "Germany") {
               return d.obs_value * 0.95; // Move up
-            } 
-            else if (d.country === "Singapore") {
+            } else if (d.country === "Singapore") {
               return d.obs_value * 1.05; // Move up
             } else {
               return d.obs_value; // No change
             }
           },
-        text: y_axis === "VC share of GDP in %" ? d => `${d.country} (${(d.obs_value*100).toFixed(1)} %)` : d => `${d.country} (${(d.obs_value.toFixed(0))})`,
-        dx: 10, // Offset to the right
-        dy: 0, // Vertical adjustment,
-        textAnchor: "start",
-        fill: d => d.country === 'Switzerland' ? 'black' : 'grey'
-      }),
-      Plot.ruleY([0])
+          text:
+            y_axis === "VC share of GDP in %"
+              ? (d) => `${d.country} (${(d.obs_value * 100).toFixed(1)} %)`
+              : (d) => `${d.country} (${d.obs_value.toFixed(0)})`,
+          dx: 10, // Offset to the right
+          dy: 0, // Vertical adjustment,
+          textAnchor: "start",
+          fill: (d) => (d.country === "Switzerland" ? "black" : "grey"),
+        }
+      ),
+      Plot.ruleY([0]),
     ],
-  }))
+  })
+);
 return {df_vc,df_vc_sorted,df_vc_text,plot_vc};
 }});
 
@@ -240,79 +275,99 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "b9b4a0e7", inputs: ["df_gem_tea","countries","display","Plot","color_scale"], outputs: ["df_tea","df_tea_sorted","df_tea_text","plot_tea"], body: (df_gem_tea,countries,display,Plot,color_scale) => {
+define({id: "50dea1bd", inputs: ["df_gem_tea","countries","display","Plot","color_scale"], outputs: ["df_tea","df_tea_sorted","df_tea_text","plot_tea"], body: (df_gem_tea,countries,display,Plot,color_scale) => {
 // Extract data from df
-  const df_tea = df_gem_tea.filter(d => countries.includes(d.iso3)); // only for selected countries
+const df_tea = df_gem_tea.filter((d) => countries.includes(d.iso3)); // only for selected countries
 
-  // Extract last available year by country in order to position labels
-  const df_tea_sorted = df_tea.reduce((acc, item) => {if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
-    acc[item.iso3] = item;}
-    return acc;
-  }, {});
+// Extract last available year by country in order to position labels
+const df_tea_sorted = df_tea.reduce((acc, item) => {
+  if (!acc[item.iso3] || acc[item.iso3].year < item.year) {
+    acc[item.iso3] = item;
+  }
+  return acc;
+}, {});
 
+// Prepare text labels with coordinates
+const df_tea_text = Object.values(df_tea_sorted)
+  .sort((a, b) => b.obs_value - a.obs_value)
+  .map((item) => ({
+    iso3: item.iso3,
+    country: item.country,
+    year: item.year,
+    year_date: item.year_date,
+    obs_value: item.obs_value,
+  }));
 
-  // Prepare text labels with coordinates
-  const df_tea_text = Object.values(df_tea_sorted)
-    .sort((a, b) => b.obs_value - a.obs_value)
-    .map(item => ({
-      iso3: item.iso3,
-      country: item.country,
-      year: item.year,
-      year_date: item.year_date,
-      obs_value: item.obs_value
-    }));
-
-  // Create Plot
-  const plot_tea = display(
-    Plot.plot({
-    caption: 'Source: GEM Report',
+// Create Plot
+const plot_tea = display(
+  Plot.plot({
+    caption: "Source: GEM Report",
     marginRight: 110,
-    y: {label: '% of 18-64 population'},
+    y: { label: "% of 18-64 population" },
     color: color_scale, // take country colors from first plot
     marks: [
       Plot.line(df_tea, {
-        x: 'year_date',
-        y: 'obs_value',
-        z: 'country',
-        stroke: 'iso3',
-        strokeWidth: d => d.iso3 === 'CHE' ? 2.5 : 1.5,
-        strokeOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
+        x: "year_date",
+        y: "obs_value",
+        z: "country",
+        stroke: "iso3",
+        strokeWidth: (d) => (d.iso3 === "CHE" ? 2.5 : 1.5),
+        strokeOpacity: (d) => (d.iso3 === "CHE" ? 1 : 0.6),
         // curve: 'linear',
         // defined: (d) => d.value !== null, // Define valid points
         // interpolate: "linear" // Use linear interpolation
-          }),
+      }),
       Plot.text(df_tea_text, {
-        x: 'year_date',
-        y: d => {
-            if (d.country === "Switzerland") {
-              return d.obs_value * 1.06; // Move up
-            } else {
-              return d.obs_value; // No change
-            }
-          },
-        text: d => `${d.country} (${d.obs_value.toFixed(1)} %)`,
+        x: "year_date",
+        y: (d) => {
+          if (d.country === "Switzerland") {
+            return d.obs_value * 1.06; // Move up
+          } else {
+            return d.obs_value; // No change
+          }
+        },
+        text: (d) => `${d.country} (${d.obs_value.toFixed(1)} %)`,
         dx: 10, // Offset to the right
         dy: 0, // Vertical adjustment,
         textAnchor: "start",
-        fill: d => d.country === 'Switzerland' ? 'black' : 'grey'
+        fill: (d) => (d.country === "Switzerland" ? "black" : "grey"),
       }),
-      Plot.ruleY([0])
+      Plot.ruleY([0]),
     ],
-  }));
+  })
+);
 return {df_tea,df_tea_sorted,df_tea_text,plot_tea};
 }});
 
-define({id: "ad76519a", inputs: ["df_rank2","view","Inputs"], outputs: ["countries_list","countries"], body: (df_rank2,view,Inputs) => {
+define({id: "86f58194", inputs: ["df_rank2","view","Inputs"], outputs: ["countries_list","countries"], body: (df_rank2,view,Inputs) => {
 // Evtl. muss hier wieder die Abhängigkeit von der Israel-Checkbox eingefügt werden.
 const countries_list = new Map(
-  df_rank2.filter(d => d.index === "GII" && d.year === 2024)
-          .sort((a, b) => a.rank - b.rank)
-          .map(d => [d.country, d.iso3]))
+  df_rank2
+    .filter((d) => d.index === "GII" && d.year === 2024)
+    .sort((a, b) => a.rank - b.rank)
+    .map((d) => [d.country, d.iso3])
+);
 
-const countries = view(Inputs.select(countries_list, { 
-  value: ["CHE", "SWE", "USA", "SGP", "GBR", "KOR", "FIN", "NLD", "DEU", "DNK", "ISR"], 
-  multiple: 3, 
-  label: "Selected countries (add or deselect countries with Ctrl + Left-click)"}));
+const countries = view(
+  Inputs.select(countries_list, {
+    value: [
+      "CHE",
+      "SWE",
+      "USA",
+      "SGP",
+      "GBR",
+      "KOR",
+      "FIN",
+      "NLD",
+      "DEU",
+      "DNK",
+      "ISR",
+    ],
+    multiple: 3,
+    label:
+      "Selected countries (add or deselect countries with Ctrl + Left-click)",
+  })
+);
 return {countries_list,countries};
 }});
 
@@ -334,6 +389,9 @@ return {countries_list,countries};
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
+<header id="observablehq-header">
+<a href="https://www.innosuisse.admin.ch/en" class="logo" id="header-logo-container" aria-label="Open Homepage" target="_blank" rel="noopener noreferrer"><img src="./_file/images/swiss-logo-flag.bf25413a.svg" class="logo__flag" tabindex="0" alt="Logo with Swiss flag" ,="" height="30px"></a><a href="https://www.innosuisse.admin.ch/en" target="_blank" rel="noopener noreferrer">Innosuisse<br>Swiss Innovation Agency</a>
+</header>
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
 <div>Contents</div>
@@ -344,21 +402,21 @@ return {countries_list,countries};
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:3a0062f4:--></div>
+<div class="observablehq observablehq--block"><!--:6b48e77c:--></div>
 <h1 id="b-entrepreneurship-and-start-ups" tabindex="-1"><a class="observablehq-header-anchor" href="#b-entrepreneurship-and-start-ups">B. Entrepreneurship and Start-ups</a></h1>
-<div class="observablehq observablehq--block"><!--:f1bc4fb1:--></div>
-<div class="observablehq observablehq--block"><!--:8c3be053:--></div>
+<div class="observablehq observablehq--block"><!--:0d8a1a42:--></div>
+<div class="observablehq observablehq--block"><!--:6cac891f:--></div>
 <h2 id="venture-capital-investments-in-of-gdp-2017-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#venture-capital-investments-in-of-gdp-2017-2023">Venture capital investments in % of GDP 2017–2023</a></h2>
 <p>Venture capital availability in <observablehq-loading></observablehq-loading><!--:4e058e15:--> has been increasing steadily till 2021/2022, but has declined in the last year because - among other factors - the interest rate reversals. The VC-numbers until Q3 of 2024 show that the performance in 2024 will be comparable or slightly below 2024.</p>
 <p>According to the report <a href="https://www.seco.admin.ch/dam/seco/en/dokumente/Standortfoerderung/KMU-Politik/Finanzierung%20der%20KMU/Bericht%20Postulat%20Derder%20-%20Rasch%20wachsende%20Jungunternehmen%20in%20der%20Schweiz.pdf.download.pdf/EN_Bericht_PO_Derder_Fast_growing_start_ups_in_Switzerland.pdf" target="_blank" rel="noopener noreferrer">"Fast-growing start-ups in Switzerland"</a> (SECO, 2017) the venture capital market in <observablehq-loading></observablehq-loading><!--:4e058e15-1:--> was not as mature as the markets in more advanced countries (such as <observablehq-loading></observablehq-loading><!--:a05991af:-->, the <observablehq-loading></observablehq-loading><!--:c55312a5:-->). The VC market has since expanded, but there is still room for improvement.</p>
-<div class="observablehq observablehq--block"><!--:46ce2040:--></div>
-<div class="observablehq observablehq--block"><!--:e994e68a:--></div>
+<div class="observablehq observablehq--block"><!--:499176ef:--></div>
+<div class="observablehq observablehq--block"><!--:fd560c7a:--></div>
 <!-- ## Share of high growth firms in % of all firms (2020)
 
 *Evtl. weglassen, da Aussagekraft relativ beschränkt ist, weil nur mit wenigen Top 10 Innovationsländern verglichen werden kann.*
 
 ```js
-  const df_high_growth = 
+  const df_high_growth =
     df_udemo.filter(d => countries.includes(d.iso3))
             .sort((a, b) => b.high_growth_firms - a.high_growth_firms);
 
@@ -377,18 +435,18 @@ return {countries_list,countries};
     },
     color: color_scale,
     marks: [
-      Plot.barX(df_high_growth, 
-                   {x: 100, 
+      Plot.barX(df_high_growth,
+                   {x: 100,
                     y: "country",
                     fill: grey_innosuisse,
                     fillOpacity: 0.2}),
-      Plot.barX(df_high_growth, 
-                   {x: "high_growth_firms", 
+      Plot.barX(df_high_growth,
+                   {x: "high_growth_firms",
                     y: "country",
                     fillOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
                     fill: "iso3"}),
-      Plot.textX(df_high_growth, 
-                   {x: "high_growth_firms", 
+      Plot.textX(df_high_growth,
+                   {x: "high_growth_firms",
                     y: "country",
                     text: d => `${d.high_growth_firms.toFixed(1)} %`,
                    dx: 17})
@@ -401,7 +459,7 @@ return {countries_list,countries};
 ## Share of gazelles in % of high growth firms (2020)
 
 ```js
-const df_gazelles = 
+const df_gazelles =
     df_udemo
     .filter(d => d.gazelles_in_pct_of_high_growth_firms > 0)
     .sort((a, b) => b.gazelles_in_pct_of_high_growth_firms - a.gazelles_in_pct_of_high_growth_firms);
@@ -421,18 +479,18 @@ const df_gazelles =
     },
     // color: color_scale,
     marks: [
-      Plot.barX(df_gazelles, 
-                   {x: 100, 
+      Plot.barX(df_gazelles,
+                   {x: 100,
                     y: "country",
                     fill: grey_innosuisse,
                     fillOpacity: 0.2}),
-      Plot.barX(df_gazelles, 
-                   {x: "gazelles_in_pct_of_high_growth_firms", 
+      Plot.barX(df_gazelles,
+                   {x: "gazelles_in_pct_of_high_growth_firms",
                     y: "country",
                     fillOpacity: d => d.iso3 === 'CHE' ? 1 : 0.6,
                     fill: d => d.iso3 === "CHE" ? "#af7aa1" : black_innosuisse}),
-      Plot.textX(df_gazelles, 
-                   {x: "gazelles_in_pct_of_high_growth_firms", 
+      Plot.textX(df_gazelles,
+                   {x: "gazelles_in_pct_of_high_growth_firms",
                     y: "country",
                     text: d => `${d.gazelles_in_pct_of_high_growth_firms.toFixed(1)} %`,
                    dx: 20})
@@ -443,11 +501,17 @@ const df_gazelles =
 ``` -->
 <h2 id="total-early-stage-entrepreneurial-activity-tea" tabindex="-1"><a class="observablehq-header-anchor" href="#total-early-stage-entrepreneurial-activity-tea">Total early-stage entrepreneurial activity (TEA)</a></h2>
 <p>The share of 18-64 population who are either a nascent entrepreneur or owner-manager of a new business in <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> has been hovering between 8 and 10 percent. This is a low- to mid-table position among innovation peers.</p>
-<div class="observablehq observablehq--block"><!--:b9b4a0e7:--></div>
-<div class="observablehq observablehq--block"><!--:ad76519a:--></div>
+<div class="observablehq observablehq--block"><!--:50dea1bd:--></div>
+<div class="observablehq observablehq--block"><!--:86f58194:--></div>
+<h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
+<p>
+   </p><ul>
+   <li><a href="https://gemconsortium.org/reports/latest-global-report" target="_blank" rel="noopener noreferrer">GEM (2024) Global Entrepreneurship Monitor</a></li>
+   </ul>
+<p></p>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./a_rnd"><span>A. Research &amp; Development</span></a><a rel="next" href="./c_inno"><span>C. Innovation Activities</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-07T17:02:34">Nov 7, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-08T11:35:02">Nov 8, 2024</a>.</div>
 </footer>
 </div>
