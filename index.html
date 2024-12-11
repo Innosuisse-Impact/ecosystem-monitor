@@ -71,51 +71,6 @@ registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt",
 registerFile("./data/gem_tea_2018-2023.csv", {"name":"./data/gem_tea_2018-2023.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2023.8a8724b7.csv","lastModified":1729598636680,"size":1656});
 registerFile("./data/switt_startup_2023.csv", {"name":"./data/switt_startup_2023.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2023.4ecfbba9.csv","lastModified":1730374270709,"size":1071});
 
-define({id: "7d3393e3", inputs: ["df"], outputs: ["all_countries","all_countries_b","black_innosuisse","grey_innosuisse","aq"], body: async (df) => {
-const aq = await import("./_npm/arquero@7.1.0/6f3128cb.js");
-// Assuming you have a data array with unique categories
-const all_countries = new Map(df.map((d) => [d.country, d.iso3]));
-const all_countries_b = new Map(df.map((d) => [d.iso3, d.country]));
-const black_innosuisse = "#53565A";
-const grey_innosuisse = "#D9D9D6";
-
-return {all_countries,all_countries_b,black_innosuisse,grey_innosuisse,aq};
-}});
-
-define({id: "230768dc", inputs: ["df_rank2","view","Inputs"], outputs: ["countries_list","countries"], body: (df_rank2,view,Inputs) => {
-// Evtl. muss hier wieder die Abhängigkeit von der Israel-Checkbox eingefügt werden.
-const countries_list = new Map(
-  df_rank2
-    .filter((d) => d.index === "GII" && d.year === 2024)
-    .sort((a, b) => a.rank - b.rank)
-    .map((d) => [d.country, d.iso3])
-);
-
-const countries = view(
-  Inputs.select(countries_list, {
-    value: [
-      "CHE",
-      "SWE",
-      "USA",
-      "SGP",
-      "GBR",
-      "KOR",
-      "FIN",
-      "NLD",
-      "DEU",
-      "DNK",
-      "ISR",
-    ],
-    multiple: 3,
-    auto_expand_horizontally: true,
-    selected_items_on_top: true,
-    label:
-      "Selected countries (add or deselect countries with Ctrl + Left-click)",
-  })
-);
-return {countries_list,countries};
-}});
-
 define({id: "0d8a1a42", inputs: ["FileAttachment"], outputs: ["df","df_eis","df_rank2","df_gem_tea","df_vc_gdp","df_udemo","eurostat_pct_rd","df_switt"], body: async (FileAttachment) => {
 // OECD MSTI Daten laden
 const df = await FileAttachment("./data/df.csv").csv({ typed: true });
@@ -465,6 +420,51 @@ const chart = display(
 return {ordered,chart};
 }});
 
+define({id: "7d3393e3", inputs: ["df"], outputs: ["all_countries","all_countries_b","black_innosuisse","grey_innosuisse","aq"], body: async (df) => {
+const aq = await import("./_npm/arquero@7.1.0/6f3128cb.js");
+// Assuming you have a data array with unique categories
+const all_countries = new Map(df.map((d) => [d.country, d.iso3]));
+const all_countries_b = new Map(df.map((d) => [d.iso3, d.country]));
+const black_innosuisse = "#53565A";
+const grey_innosuisse = "#D9D9D6";
+
+return {all_countries,all_countries_b,black_innosuisse,grey_innosuisse,aq};
+}});
+
+define({id: "230768dc", inputs: ["df_rank2","view","Inputs"], outputs: ["countries_list","countries"], body: (df_rank2,view,Inputs) => {
+// Evtl. muss hier wieder die Abhängigkeit von der Israel-Checkbox eingefügt werden.
+const countries_list = new Map(
+  df_rank2
+    .filter((d) => d.index === "GII" && d.year === 2024)
+    .sort((a, b) => a.rank - b.rank)
+    .map((d) => [d.country, d.iso3])
+);
+
+const countries = view(
+  Inputs.select(countries_list, {
+    value: [
+      "CHE",
+      "SWE",
+      "USA",
+      "SGP",
+      "GBR",
+      "KOR",
+      "FIN",
+      "NLD",
+      "DEU",
+      "DNK",
+      "ISR",
+    ],
+    multiple: 3,
+    auto_expand_horizontally: true,
+    selected_items_on_top: true,
+    label:
+      "Selected countries (add or deselect countries with Ctrl + Left-click)",
+  })
+);
+return {countries_list,countries};
+}});
+
 </script>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
 <label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
@@ -499,8 +499,10 @@ return {ordered,chart};
 </aside>
 <main id="observablehq-main" class="observablehq">
 <h1 id="innovation-ecosystem-monitor-2024" tabindex="-1"><a class="observablehq-header-anchor" href="#innovation-ecosystem-monitor-2024">Innovation Ecosystem Monitor 2024</a></h1>
-<p><em>Authors: Adrian Riser und Adrian Berwert, Impact Analysis, Innosuisse</em><br>
-<em>Last changes: 13.11.2024</em></p>
+<div style="display: grid; grid-template-columns: 80px 400px; column-gap: 10px; row-gap: 0px; font-size: 10px;">
+  <p>Authors:<br>Last changes:</p>
+      <p>Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse<br>02.12.2024</p>
+</div>
 <h2 id="mapping-switzerlands-strengths-weaknesses-and-their-evolution-over-time" tabindex="-1"><a class="observablehq-header-anchor" href="#mapping-switzerlands-strengths-weaknesses-and-their-evolution-over-time">Mapping Switzerland's Strengths, Weaknesses and Their Evolution Over Time</a></h2>
 <h3 id="what-is-its-purpose" tabindex="-1"><a class="observablehq-header-anchor" href="#what-is-its-purpose">What is its purpose?</a></h3>
 <p>The goal of this monitoring is to provide you with an overview of the competitiveness of Switzerland's innovation ecosystem in an international context and go into more detail where it is relevant to Innosuisse. You will better understand the strengths and weaknesses of the Swiss innovation ecosystem and its development over time. Wherever possible we will link to reports that describe the findings in more detail. This report builds on the <a href="https://intranet.collab.admin.ch/wbf/innosuisse/de-ch/finanzen/PublishingImages/Seiten/wirkung/Innosuisse%20Innovation%20Ecosystem%20Monitor%202023.pptx" target="_blank" rel="noopener noreferrer">Innovation Ecosystem Monitor 2023</a> with updated data, structure and in a new form.</p>
@@ -515,10 +517,6 @@ return {ordered,chart};
 <li><a href="./d_ktt">D. Knowledge and Technology Transfer</a></li>
 <li><a href="./e_snd">E. Sustainability and High-tech Exports</a></li>
 </ul>
-<h3 id="customize-selection-of-countries-for-comparison" tabindex="-1"><a class="observablehq-header-anchor" href="#customize-selection-of-countries-for-comparison">Customize selection of countries for comparison</a></h3>
-<p>We have preselected the top 10 countries in the Global Innovation Index plus Israel and compare all indicators against this set of countries (where data is available). You can adjust the selection below, the charts below will update automatically.</p>
-<div class="observablehq observablehq--block"><!--:7d3393e3:--></div>
-<div class="observablehq observablehq--block"><!--:230768dc:--></div>
 <div class="observablehq observablehq--block"><!--:0d8a1a42:--></div>
 <div class="observablehq observablehq--block"><!--:6cac891f:--></div>
 <h2 id="switzerland-maintains-its-top-position-in-the-two-most-prominent-innovation-rankings" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerland-maintains-its-top-position-in-the-two-most-prominent-innovation-rankings">Switzerland maintains its top position in the two most prominent innovation rankings</a></h2>
@@ -539,7 +537,7 @@ return {ordered,chart};
 </p><p>The reason why Switzerland appears nonetheless at the top of the rankings as a country is twofold:</p>
 <ol>
 <li>The S&amp;T-Clusters are - unlike the countries - not compared relative to their size, but in absolute terms. Consequently bigger clusters have an advantage.</li>
-<li>The concentration of S&amp;T-Clusters in Switzerland is very high in relation to the rest of the country (and in contrast to other countries).<p></p></li></ol></details></div>
+<li>The concentration of S&amp;T-Clusters in Switzerland is very high in relation to the rest of the country (and in contr-ast to other countries).<p></p></li></ol></details></div>
 
 <p></p>
 <h2 id="however-followers-may-be-catching-up" tabindex="-1"><a class="observablehq-header-anchor" href="#however-followers-may-be-catching-up">However, followers may be catching up</a></h2>
@@ -643,9 +641,13 @@ return {ordered,chart};
    <li>The EU made a <a href="https://op.europa.eu/en/publication-detail/-/publication/70fe2318-fb72-11ed-a05c-01aa75ed71a1/language-en" target="_blank" rel="noopener noreferrer">study</a> on the development of an European startup scoreboard (comparable to the EIS)</li>
    </ul>
 <p></p>
+<h3 id="customize-selection-of-countries-for-comparison" tabindex="-1"><a class="observablehq-header-anchor" href="#customize-selection-of-countries-for-comparison">Customize selection of countries for comparison</a></h3>
+<p>We have preselected the top 10 countries in the Global Innovation Index plus Israel and compare all indicators against this set of countries (where data is available). You can adjust the selection below, the charts will update automatically.</p>
+<div class="observablehq observablehq--block"><!--:7d3393e3:--></div>
+<div class="observablehq observablehq--block"><!--:230768dc:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./a_rnd"><span>A. Research &amp; Development</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-28T15:12:06">Nov 28, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-11T08:16:49">Dec 11, 2024</a>.</div>
 </footer>
 </div>
