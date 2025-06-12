@@ -1,0 +1,14 @@
+source,target,value
+Business enterprise sector,Business enterprise sector,15.4
+Confederation,Business enterprise sector,0.1
+Confederation,Confederation,0.2
+Confederation,Higher education institutions,3.1
+Confederation,Private organisations without gainful activity,0.5
+Cantons,Business enterprise sector,0.1
+Cantons,Higher education institutions,2.5
+Higher education institutions,Higher education institutions,0.3
+Abroad,Business enterprise sector,1
+Abroad,Higher education institutions,0.3
+Business enterprise sector,Higher education institutions,0.7
+Business enterprise sector,Abroad,7.1
+Confederation,Abroad,0.3
