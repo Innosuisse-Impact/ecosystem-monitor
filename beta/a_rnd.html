@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.12.0">
+<title>A. Research &amp; Development | Ecosystem Monitor</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_import/styles.8c11cbd3.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_import/styles.8c11cbd3.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.34eb3252.js">
+<link rel="modulepreload" href="./_observablehq/runtime.03a75458.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.d2397845.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.ea33b160.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.84732fc5.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_stacked_x.1715b31f.js">
+<link rel="modulepreload" href="./_import/components/data.fa5dc2d2.js">
+<link rel="modulepreload" href="./_import/components/utils/colors.99726961.js">
+<link rel="modulepreload" href="./_import/components/sankey.ad4d61e4.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.8a28c26d.js">
+<link rel="modulepreload" href="./_import/components/utils/occlusionY.64a87aff.js">
+<link rel="modulepreload" href="./_node/@observablehq/plot@0.6.16/index.bac1276b.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
+<link rel="modulepreload" href="./_node/d3@7.9.0/index.e21134d2.js">
+<link rel="modulepreload" href="./_npm/d3-sankey@0.12.3/4d634262.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_node/isoformat@0.2.1/index.0882e9d9.js">
+<link rel="modulepreload" href="./_node/interval-tree-1d@1.0.4/index.f507a53c.js">
+<link rel="modulepreload" href="./_node/acorn@8.14.0/index.80ce3267.js">
+<link rel="modulepreload" href="./_node/@uwdata/flechette@1.1.1/index.0ec36e66.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_node/d3-array@3.2.4/index.f89e3560.js">
+<link rel="modulepreload" href="./_node/d3-axis@3.0.0/index.34ded868.js">
+<link rel="modulepreload" href="./_node/d3-brush@3.0.0/index.1c3fc471.js">
+<link rel="modulepreload" href="./_node/d3-chord@3.0.1/index.9b04aad8.js">
+<link rel="modulepreload" href="./_node/d3-color@3.1.0/index.e8c126ff.js">
+<link rel="modulepreload" href="./_node/d3-contour@4.0.2/index.0d0783e1.js">
+<link rel="modulepreload" href="./_node/d3-delaunay@6.0.4/index.1771ba9f.js">
+<link rel="modulepreload" href="./_node/d3-dispatch@3.0.1/index.be49ca5f.js">
+<link rel="modulepreload" href="./_node/d3-drag@3.0.0/index.8e5f73cc.js">
+<link rel="modulepreload" href="./_node/d3-dsv@3.0.1/index.a1fe4c7b.js">
+<link rel="modulepreload" href="./_node/d3-ease@3.0.1/index.09153f73.js">
+<link rel="modulepreload" href="./_node/d3-fetch@3.0.1/index.e91238ad.js">
+<link rel="modulepreload" href="./_node/d3-force@3.0.0/index.952bd793.js">
+<link rel="modulepreload" href="./_node/d3-format@3.1.0/index.75f84505.js">
+<link rel="modulepreload" href="./_node/d3-geo@3.1.1/index.75f0ca91.js">
+<link rel="modulepreload" href="./_node/d3-hierarchy@3.1.2/index.0a013d9a.js">
+<link rel="modulepreload" href="./_node/d3-interpolate@3.0.1/index.7ed7c7fe.js">
+<link rel="modulepreload" href="./_node/d3-path@3.1.0/index.c2b3c473.js">
+<link rel="modulepreload" href="./_node/d3-polygon@3.0.1/index.b64a6d51.js">
+<link rel="modulepreload" href="./_node/d3-quadtree@3.0.1/index.e9fed2eb.js">
+<link rel="modulepreload" href="./_node/d3-random@3.0.1/index.fd2cc361.js">
+<link rel="modulepreload" href="./_node/d3-scale@4.0.2/index.61617510.js">
+<link rel="modulepreload" href="./_node/d3-scale-chromatic@3.1.0/index.7961cbed.js">
+<link rel="modulepreload" href="./_node/d3-selection@3.0.0/index.13204b25.js">
+<link rel="modulepreload" href="./_node/d3-shape@3.2.0/index.b551bc1c.js">
+<link rel="modulepreload" href="./_node/d3-time@3.1.0/index.8fcc123e.js">
+<link rel="modulepreload" href="./_node/d3-time-format@4.1.0/index.20c5f3ca.js">
+<link rel="modulepreload" href="./_node/d3-timer@3.0.1/index.0ee6092b.js">
+<link rel="modulepreload" href="./_node/d3-transition@3.0.1/index.d140d658.js">
+<link rel="modulepreload" href="./_node/d3-zoom@3.0.0/index.0e732a91.js">
+<link rel="modulepreload" href="./_npm/d3-array@2.12.1/bca3792b.js">
+<link rel="modulepreload" href="./_npm/d3-shape@1.3.7/9a730356.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_node/binary-search-bounds@2.0.5/index.990a1c6d.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_node/internmap@2.0.3/index.4106013c.js">
+<link rel="modulepreload" href="./_node/delaunator@5.0.1/index.70ae1478.js">
+<link rel="modulepreload" href="./_npm/internmap@1.0.1/b4c0ca9e.js">
+<link rel="modulepreload" href="./_npm/d3-path@1.0.9/b57ea69b.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_node/robust-predicates@3.0.2/index.bdc459cc.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.34eb3252.js";
+import {registerFile} from "./_observablehq/stdlib.d2397845.js";
+
+registerFile("./data/df_gtard.csv", {"name":"./data/df_gtard.csv","mimeType":"text/csv","path":"./_file/data/df_gtard.55903679.csv","lastModified":1732800277595,"size":31608});
+registerFile("./data/df_oecd_msti.csv", {"name":"./data/df_oecd_msti.csv","mimeType":"text/csv","path":"./_file/data/df_oecd_msti.4a33b5a7.csv","lastModified":1749050204037,"size":3644208});
+registerFile("./data/df_rnd_type.csv", {"name":"./data/df_rnd_type.csv","mimeType":"text/csv","path":"./_file/data/df_rnd_type.b2801318.csv","lastModified":1749046260846,"size":7595});
+registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1749135464465,"size":1873});
+registerFile("./data/rnd_ch_2021.csv", {"name":"./data/rnd_ch_2021.csv","mimeType":"text/csv","path":"./_file/data/rnd_ch_2021.f34503f2.csv","lastModified":1748874355833,"size":627});
+
+define({id: "e329b6e2", inputs: ["FileAttachment"], outputs: ["line_cis","line_oecd","line_oecd_gbard","bar_stacked_y_normalized","area_stacked_y_gerd_ch","bar_stacked_x","country_iso3","iso3_country","color_scale","colorLegend","countries","rnd_ch_sankey","df_gtard","df_oecd_msti","df_rnd_ch","df_rnd_type","filter_oecd_msti","df_gerd","df_gerd_gov","df_berd_gov","df_rnd_personnel","df_gbard_tax","df_gerd_type","rnd_type","df_ch_gerd"], body: async (FileAttachment) => {
+const [{line_cis, line_oecd, line_oecd_gbard}, {bar_stacked_y_normalized, area_stacked_y_gerd_ch}, {bar_stacked_x}, {country_iso3, iso3_country}, {color_scale, colorLegend, countries}, {rnd_ch_sankey}] = await Promise.all([import("./_import/components/plots/line_plots.ea33b160.js"), import("./_import/components/plots/bar_stacked_y.84732fc5.js"), import("./_import/components/plots/bar_stacked_x.1715b31f.js"), import("./_import/components/data.fa5dc2d2.js"), import("./_import/components/utils/colors.99726961.js"), import("./_import/components/sankey.ad4d61e4.js")]);
+// Load components
+
+// Load data
+const df_gtard = await FileAttachment("./data/df_gtard.csv").csv({ typed: true });
+const df_oecd_msti = await FileAttachment("./data/df_oecd_msti.csv").csv({ typed: true });
+const df_rnd_ch = await FileAttachment("./data/rnd_ch_2021.csv").csv({ typed: true });
+const df_rnd_type = await FileAttachment("./data/df_rnd_type.csv").csv({ typed: true });
+
+// Manipulate data
+function filter_oecd_msti(data, unit = "PT_B1GQ", measure = "G", countries = ["CHE"]) {
+  return data.filter((d) => (d.unit === unit) & d.measure === measure & countries.includes(d.iso3))
+}
+const df_gerd = filter_oecd_msti(df_oecd_msti, "PT_B1GQ", "G", countries)
+const df_gerd_gov = filter_oecd_msti(df_oecd_msti, "PT_B1GQ","G_FG", countries)
+const df_berd_gov = filter_oecd_msti(df_oecd_msti, "PT_BERD","B_FG", countries)
+const df_rnd_personnel = filter_oecd_msti(df_oecd_msti, "10P3EMP","T_TT", countries)
+const df_gbard_tax = df_gtard
+    .filter((d) => countries.includes(d.iso3))
+    .sort((a, b) => a.year - b.year); // only for selected countries
+const df_gerd_type = df_oecd_msti.filter((d) => ["B", "GV", "H"].includes(d.measure) &&
+      d.unit === "PT_B1GQ" &&
+      countries.includes(d.iso3) &&
+      [2021].includes(d.year)
+  ).sort((a, b) => {
+    if (a.measure < b.measure) return -1;
+    if (a.measure > b.measure) return 1;
+    return b.obs_value - a.obs_value; // Descending order for obs_value
+  });
+const rnd_type = df_rnd_type.filter(d => countries.includes(d.iso3))
+
+const df_ch_gerd = df_oecd_msti.filter(
+  (d) => ["B", "GV", "H"].includes(d.measure) &&
+  d.unit === "PT_B1GQ" &&
+  ["CHE"].includes(d.iso3) &&
+  [2021, 2019, 2017].includes(d.year));
+return {line_cis,line_oecd,line_oecd_gbard,bar_stacked_y_normalized,area_stacked_y_gerd_ch,bar_stacked_x,country_iso3,iso3_country,color_scale,colorLegend,countries,rnd_ch_sankey,df_gtard,df_oecd_msti,df_rnd_ch,df_rnd_type,filter_oecd_msti,df_gerd,df_gerd_gov,df_berd_gov,df_rnd_personnel,df_gbard_tax,df_gerd_type,rnd_type,df_ch_gerd};
+}});
+
+define({id: "c0cb44f5", inputs: ["display","rnd_ch_sankey","df_rnd_ch"], body: (display,rnd_ch_sankey,df_rnd_ch) => {
+display(rnd_ch_sankey(df_rnd_ch))
+}});
+
+define({id: "4e058e15", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
+define({id: "a05991af", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("ISR")
+))
+}});
+
+define({id: "9a4da08b", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("KOR")
+))
+}});
+
+define({id: "c55312a5", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("USA")
+))
+}});
+
+define({id: "23b49dbb", inputs: ["display","line_oecd","df_gerd"], body: (display,line_oecd,df_gerd) => {
+display(line_oecd(df_gerd))
+}});
+
+define({id: "e7a223f9", inputs: ["view","Inputs"], outputs: ["normalize"], body: (view,Inputs) => {
+const normalize = view(
+  Inputs.toggle({
+    label: "Normalized to 100%",
+    value: true
+  })
+);
+return {normalize};
+}});
+
+define({id: "ab2f8e53", inputs: ["display","bar_stacked_y_normalized","df_gerd_type","normalize"], body: (display,bar_stacked_y_normalized,df_gerd_type,normalize) => {
+display(bar_stacked_y_normalized(df_gerd_type, normalize))
+}});
+
+define({id: "b2e9e42c", inputs: ["display","area_stacked_y_gerd_ch","df_ch_gerd"], body: (display,area_stacked_y_gerd_ch,df_ch_gerd) => {
+display(area_stacked_y_gerd_ch(df_ch_gerd))
+}});
+
+define({id: "e88db2f5", inputs: ["display","bar_stacked_x","rnd_type"], body: (display,bar_stacked_x,rnd_type) => {
+display(bar_stacked_x(rnd_type))
+}});
+
+define({id: "4e058e15-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
+define({id: "294697dd", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("DEU")
+))
+}});
+
+define({id: "9a4da08b-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("KOR")
+))
+}});
+
+define({id: "a05991af-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("ISR")
+))
+}});
+
+define({id: "7abc8307", inputs: ["display","line_oecd","df_gerd_gov"], body: (display,line_oecd,df_gerd_gov) => {
+display(line_oecd(df_gerd_gov))
+}});
+
+define({id: "4e058e15-2", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
+define({id: "80402fbd", inputs: ["display","line_oecd","df_berd_gov"], body: (display,line_oecd,df_berd_gov) => {
+display(line_oecd(df_berd_gov))
+// title: 'Business expenditure on R&D (BERD) financed by government'
+}});
+
+define({id: "5557d2bd", mode: "inline", inputs: ["display","line_oecd","df_gbard_tax"], body: (display,line_oecd,df_gbard_tax) => {
+display(line_oecd(df_gbard_tax,"% of GDP", false, "OECD R&D Tax Incentives database","https://data-explorer.oecd.org/vis?lc=en&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_RDTAX%40DF_RDTAX&df[ag]=OECD.STI.STP&df[vs]=1.0&dq=.A.DF_GTARD.PT_B1GQ..&pd=2015%2C&to[TIME_PERIOD]=false&vw=tb",2))
+}});
+
+define({id: "4e058e15-3", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
+define({id: "cadbc91d", inputs: ["display","line_oecd","df_rnd_personnel"], body: (display,line_oecd,df_rnd_personnel) => {
+display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment")) 
+// title: 'R&D personnel per 1\'000 employment',
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Ecosystem Monitor</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>International benchmarking</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./a_rnd">A. Research &amp; Development</a></li>
+    <li class="observablehq-link"><a href="./b_ens">B. Entrepreneurship and Start-ups</a></li>
+    <li class="observablehq-link"><a href="./c_inno">C. Innovation Activities</a></li>
+    <li class="observablehq-link"><a href="./d_ktt">D. Knowledge and Technology Transfer</a></li>
+    <li class="observablehq-link"><a href="./e_snd">E. Sustainability and High-tech Exports</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Topics of national relevance</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./1_investors">1. Mapping investors for European innovators</a></li>
+    <li class="observablehq-link"><a href="./2_innovation_report">2. Innovation report</a></li>
+    <li class="observablehq-link"><a href="./3_unicorns">3. Unicorns</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#a1-r-and-d-expenditure">A1. R&amp;D Expenditure</a></li>
+<li class="observablehq-secondary-link"><a href="#a2-r-and-d-funding">A2. R&amp;D Funding</a></li>
+<li class="observablehq-secondary-link"><a href="#a3-r-and-d-personnel-per-1-000-employment">A3. R&amp;D personnel per 1&#x27;000 employment</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="a-research-and-development" tabindex="-1"><a class="observablehq-header-anchor" href="#a-research-and-development">A. Research &amp; Development</a></h1>
+<div class="observablehq observablehq--block"><!--:e329b6e2:--></div>
+<h3 id="funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2021">Funding and expenditure on R&amp;D in Switzerland by sector in 2021</a></h3>
+<p><mark>In Switzerland - as in most countries - the majority of R&amp;D funding has its source and its destination in business. The outlow abroad relatively high. The federal government funds R&amp;D mostly indirectly via the universities. A substantial part is the funding of the ETH/EPFL. Innosuisse funding is also a minor part. With the new instruments, the direct funding may be increasing. Israel has very high funding from abroad.</mark></p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c0cb44f5:--></div>
+<figcaption><span>Source: <a href="https://www.bfs.admin.ch/asset/de/25045812" target="_blank" rel="noopener noreferrer">Federal Statistical Office</a></span></figcaption>
+<p>In the following we look in more detail from two perspectives that can be adpoted:</p>
+<ul>
+<li><a href="#a1-r-and-d-expenditure">Who performs the R&amp;D?</a></li>
+<li><a href="#a2-r-and-d-funding">Who finances the R&amp;D?</a></li>
+</ul>
+<h2 id="a1-r-and-d-expenditure" tabindex="-1"><a class="observablehq-header-anchor" href="#a1-r-and-d-expenditure">A1. R&amp;D Expenditure</a></h2>
+<h3 id="gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2022">Gross Domestic Expenditure on Research and Development (GERD) in % of GDP 2017–2022</a></h3>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is among the top five countries in R&amp;D spending as a percentage of GDP (3.3% or CHF 24.6 billion). Its GERD has grown slightly by 0.2 percentage points from 2017 to 2021. The R&amp;D expenditures of <observablehq-loading></observablehq-loading><!--:a05991af:-->, <observablehq-loading></observablehq-loading><!--:9a4da08b:-->, and the <observablehq-loading></observablehq-loading><!--:c55312a5:--> have increased more significantly, while others have stagnated on levels comparable to Switzerland.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:23b49dbb:--></div>
+<h3 id="gross-domestic-expenditure-on-research-and-development-r-and-d-in-of-gdp-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#gross-domestic-expenditure-on-research-and-development-r-and-d-in-of-gdp-2021">Gross Domestic Expenditure on Research and Development (R&amp;D) in % of GDP 2021</a></h3>
+<p>Research and Development in Switzerland is mainly performed (not financed) by <span style="border-bottom: solid 2px #ff725c">private businesses</span> or <span style="border-bottom: solid 2px #4269d0">higher education institutions</span> and rarely by the <span style="border-bottom: solid 2px #efb118">government</span> itself. Switzerland has one of the lowest share of R&amp;D performed by government institutions. Sweden and Denmark's pattern of research and development most closely mirrors that of Switzerland. The high proportion of R&amp;D carried out by the private sector in Israel is also striking.</p>
+<div class="observablehq observablehq--block"><!--:e7a223f9:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:ab2f8e53:--></div>
+<div class="note" label="Note">Innosuisse's primary instrument – Innovation Projects – contributes to the <span style="border-bottom: solid 2px #4269d0">Higher Education Expenditure on R&amp;D (HERD)</span> since it only covers the research partner's costs while requiring companies to self-fund their portion of the project. In contrast, the newer funding instruments – Swiss Accelerator and Start-up Innovation Projects – would contribute to <span style="border-bottom: solid 2px #ff725c">Business Enterprise Expenditure on R&amp;D (BERD)</span> as they provide direct financial support to companies. However, these programs fall outside the relevant timeframe since they were only recently introduced.</div>
+<h3 id="switzerlands-gross-domestic-expenditure-on-research-and-development-r-and-d-in-of-gdp-2017-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerlands-gross-domestic-expenditure-on-research-and-development-r-and-d-in-of-gdp-2017-2021">Switzerland's Gross Domestic Expenditure on Research and Development (R&amp;D) in % of GDP 2017–2021</a></h3>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:b2e9e42c:--></div>
+<h3 id="r-and-d-expenditure-by-type-of-research" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-expenditure-by-type-of-research">R&amp;D expenditure by type of research</a></h3>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e88db2f5:--></div>
+<h2 id="a2-r-and-d-funding" tabindex="-1"><a class="observablehq-header-anchor" href="#a2-r-and-d-funding">A2. R&amp;D Funding</a></h2>
+<h3 id="gerd-financed-by-government-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-financed-by-government-in-of-gdp-2017-2022">GERD financed by government in % of GDP 2017–2022</a></h3>
+<p>While <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s government-financed R&amp;D remained stable in the last 5 years, <observablehq-loading></observablehq-loading><!--:294697dd:--> and <observablehq-loading></observablehq-loading><!--:9a4da08b-1:--> have increased their financing ratio to GDP. Interestingly, <observablehq-loading></observablehq-loading><!--:a05991af-1:--> has a comparatively low share of government-financed GERD. Its R&amp;D is mainly driven by private funding (cf. also <a href="./b_ens#venture-capital-investments-in-of-gdp-2017-2024">venture capital investments</a>).</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:7abc8307:--></div>
+<h3 id="business-expenditure-on-r-and-d-berd-financed-by-government" tabindex="-1"><a class="observablehq-header-anchor" href="#business-expenditure-on-r-and-d-berd-financed-by-government">Business expenditure on R&amp;D (BERD) financed by government</a></h3>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15-2:-->'s restrained approach to direct funding of BERD stands out clearly in an international comparison. Compared to other countries there has been very little direct financial support for business R&amp;D.</p>
+<div><a href="./_file/data/gov_berd.ad9b141b.png" download="gov_berd.png">
+    <button type="button">⤓ Download Image</button>
+</a></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:80402fbd:--></div>
+<div class="note" label="Note">
+  <details>
+    <summary>
+      Swiss Accelerator and Start-up Innovation Projects are not yet included
+    </summary>
+    The 2022/2023 data will reflect new contributions from the Swiss Accelerator
+    and Start-up Innovation Projects, though these additions are unlikely to
+    significantly change the overall ranking among the top 10 innovators.
+  </details>
+  <details>
+    <summary>
+      The picture is similar, if tax incentives for R&amp;D are included and set in
+      relation to GDP.
+    </summary>
+    <div class="card" style="background-color: white;">
+      <h2>
+        Sum of tax incentive support for business R&amp;D (GTARD) and
+        government-financed BERD in % of GDP
+      </h2>
+      <observablehq-loading></observablehq-loading><!--:5557d2bd:-->
+    </div>
+  </details>
+</div>
+<h2 id="a3-r-and-d-personnel-per-1-000-employment" tabindex="-1"><a class="observablehq-header-anchor" href="#a3-r-and-d-personnel-per-1-000-employment">A3. R&amp;D personnel per 1'000 employment</a></h2>
+<p>The number of personnel employed in R&amp;D has increased over the years. <observablehq-loading></observablehq-loading><!--:4e058e15-3:--> is no exception.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:cadbc91d:--></div>
+<h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
+<p>
+    </p><ul>
+        <li><a href="https://www.sbfi.admin.ch/sbfi/de/home/forschung-und-innovation/forschung-und-innovation-in-der-schweiz/f-und-i-bericht.html" target="_blank" rel="noopener noreferrer">SBFI (2022) Forschung und Innovation in der Schweiz – Zwischenbericht 2022</a></li>
+    </ul>
+<p></p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./"><span>Ecosystem Monitor</span></a><a rel="next" href="./b_ens"><span>B. Entrepreneurship and Start-ups</span></a></nav>
+<div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>
+</footer>
+</div>
