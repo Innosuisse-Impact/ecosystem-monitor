@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="generator" content="Observable Framework v1.13.3">
-<title>Sustainability and High-tech Exports | Ecosystem Monitor</title>
+<title>Unicorn companies | Ecosystem Monitor</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_import/styles.fc871980.css">
@@ -13,23 +13,24 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.6cb6e0f1.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
-<link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
-<link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
-<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
-<link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_x.6e0580c6.js">
+<link rel="modulepreload" href="./_import/components/plots/arrow_y.6dc5a07a.js">
 <link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/d761ef9b.js">
-<link rel="modulepreload" href="./_npm/d3@7.9.0/e780feca.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
+<link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
+<link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
 <link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/e780feca.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
 <link rel="modulepreload" href="./_node/d3@7.9.0/index.e21134d2.js">
 <link rel="modulepreload" href="./_node/isoformat@0.2.1/index.0882e9d9.js">
 <link rel="modulepreload" href="./_node/interval-tree-1d@1.0.4/index.f507a53c.js">
 <link rel="modulepreload" href="./_node/acorn@8.14.0/index.80ce3267.js">
 <link rel="modulepreload" href="./_node/@uwdata/flechette@1.1.1/index.0ec36e66.js">
-<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
-<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
 <link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
 <link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
 <link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
@@ -59,6 +60,7 @@
 <link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
 <link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
 <link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
 <link rel="modulepreload" href="./_node/d3-array@3.2.4/index.f89e3560.js">
 <link rel="modulepreload" href="./_node/d3-axis@3.0.0/index.34ded868.js">
 <link rel="modulepreload" href="./_node/d3-brush@3.0.0/index.1c3fc471.js">
@@ -90,7 +92,6 @@
 <link rel="modulepreload" href="./_node/d3-transition@3.0.1/index.d140d658.js">
 <link rel="modulepreload" href="./_node/d3-zoom@3.0.0/index.0e732a91.js">
 <link rel="modulepreload" href="./_node/binary-search-bounds@2.0.5/index.990a1c6d.js">
-<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
 <link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
 <link rel="modulepreload" href="./_npm/delaunator@5.0.1/02d43215.js">
 <link rel="modulepreload" href="./_node/internmap@2.0.3/index.4106013c.js">
@@ -103,99 +104,53 @@
 import {define} from "./_observablehq/client.19f413ec.js";
 import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 
-registerFile("./data/df_ht.csv", {"name":"./data/df_ht.csv","mimeType":"text/csv","path":"./_file/data/df_ht.9794f53c.csv","lastModified":1750325928323,"size":18173});
-registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
+registerFile("./data/df_oecd_msti.csv", {"name":"./data/df_oecd_msti.csv","mimeType":"text/csv","path":"./_file/data/df_oecd_msti.b09f8d54.csv","lastModified":1750325916319,"size":3644208});
+registerFile("./data/df_unicorns_ch.csv", {"name":"./data/df_unicorns_ch.csv","mimeType":"text/csv","path":"./_file/data/df_unicorns_ch.179401b3.csv","lastModified":1749117648077,"size":1440});
+registerFile("./data/df_unicorns_country.csv", {"name":"./data/df_unicorns_country.csv","mimeType":"text/csv","path":"./_file/data/df_unicorns_country.74964139.csv","lastModified":1749115345173,"size":929});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 
-define({id: "09152368", inputs: ["FileAttachment","subtractYears"], outputs: ["line_oecd","color_range","color_scale","colorLegend","countries","df_ht","df_eis","df_ert","df_htex","df_mht"], body: async (FileAttachment,subtractYears) => {
-const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.6cb6e0f1.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
-
-// OECD ENV Daten
-const df_ht = await FileAttachment("./data/df_ht.csv").csv({ typed: true });
-// EU European Innovation Scoreboard Daten laden
-const df_eis = await FileAttachment("./data/eurostat_eis_values.csv").csv({
-  typed: true,
-});
-const df_ert = df_eis.filter(
-  (d) => countries.includes(d.iso3) & (d.var_code === "env_tech")
-).map(d => ({
-  ...d,
-  year_date: subtractYears(d.year_date, 5),
-      zIndex: d.iso3 === "CHE" ? 1 : 0
-      }))
-      .sort((a, b) => a.zIndex - b.zIndex)
-const df_htex = df_ht.filter((d) => countries.includes(d.iso3) & (d.year_date > new Date("2016-01-01")))
-.map(d => ({
-      ...d,
-      zIndex: d.iso3 === "CHE" ? 1 : 0
-      }))
-      .sort((a, b) => a.zIndex - b.zIndex);
-const df_mht = df_eis.filter((d) => countries.includes(d.iso3) & (d.var_code === "hi_tech_exports"))
-  .map(d => ({
-      ...d,
-        year_date: subtractYears(d.year_date, 1),
-      zIndex: d.iso3 === "CHE" ? 1 : 0
-      }))
-      .sort((a, b) => a.zIndex - b.zIndex);
-return {line_oecd,color_range,color_scale,colorLegend,countries,df_ht,df_eis,df_ert,df_htex,df_mht};
+define({id: "9d0533e8", outputs: ["FileAttachment","countries","color_scale","color_range","bar_x_unicorn","arrow_unicorns","df_oecd_msti","df_unicorns_country","df_unicorns_ch","gdp","df_ug"], body: async () => {
+const [{FileAttachment}, {countries, color_scale, color_range}, {bar_x_unicorn}, {arrow_unicorns}] = await Promise.all([import("./_observablehq/stdlib.31fc9623.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/bar_x.6e0580c6.js"), import("./_import/components/plots/arrow_y.6dc5a07a.js")]);
+const df_oecd_msti = await FileAttachment("./data/df_oecd_msti.csv").csv({ typed: true });
+const df_unicorns_country = await FileAttachment("./data/df_unicorns_country.csv").csv({ typed: true });
+const df_unicorns_ch = await FileAttachment("./data/df_unicorns_ch.csv").csv({ typed: true });
+const gdp = df_oecd_msti
+    .filter(
+      (d) =>
+        d.year_date < new Date("2024-01-01") &&
+        d.year_date > new Date("2022-01-01") &&
+        countries.includes(d.iso3) &&
+        d.unit === "USD_PPP" &&
+        d.measure === "GDP"
+    )
+    .map((d) => ({
+      iso3: d.iso3,
+      country: d.country,
+      year: d.year_date,
+      measure: d.measure_name,
+      gdp: d.obs_value
+    }));
+const df_ug = df_unicorns_country
+    .filter((d) => countries.includes(d.iso3))
+    .map((unicorn) => {
+      // Find matching GDP record
+      const gdpRecord = gdp.find((g) => g.iso3 === unicorn.iso3);
+      // Return unicorn data with added GDP
+      return {
+        ...unicorn,
+        gdp: gdpRecord ? gdpRecord.gdp / 133000 : null, // Add GDP or null if no match
+        gdp_unicorn: unicorn.unicorns / (gdpRecord.gdp / 133000)
+      };
+    });
+return {FileAttachment,countries,color_scale,color_range,bar_x_unicorn,arrow_unicorns,df_oecd_msti,df_unicorns_country,df_unicorns_ch,gdp,df_ug};
 }});
 
-define({id: "4e058e15", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
-display(await(
-colorLegend("CHE")
-))
+define({id: "592fcfc2", mode: "inline", inputs: ["display","bar_x_unicorn","df_ug","color_scale"], body: (display,bar_x_unicorn,df_ug,color_scale) => {
+display(bar_x_unicorn(df_ug, color_scale))
 }});
 
-define({id: "1a7588f8", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
-display(await(
-colorLegend("DNK")
-))
-}});
-
-define({id: "766b649e", inputs: ["display","line_oecd","df_ert"], body: (display,line_oecd,df_ert) => {
-display(line_oecd(df_ert,"Development of environment-related technologies, percentage of all technologies",false,"European Commission, OECD Green Growth database","https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en"))
-}});
-
-define({id: "4e058e15-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
-display(await(
-colorLegend("CHE")
-))
-}});
-
-define({id: "c597b25a", inputs: ["display","line_oecd","df_htex"], body: (display,line_oecd,df_htex) => {
-display(line_oecd(df_htex,"Exports of high technology products as a share of total products exports",false,"European Commission","https://data.europa.eu/data/datasets/vfajyjoirq3icsstf1zw?locale=en"))
-}});
-
-define({id: "4e058e15-2", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
-display(await(
-colorLegend("CHE")
-))
-}});
-
-define({id: "9a4da08b", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
-display(await(
-colorLegend("KOR")
-))
-}});
-
-define({id: "294697dd", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
-display(await(
-colorLegend("DEU")
-))
-}});
-
-define({id: "e52e595e", inputs: ["display","line_oecd","df_mht"], body: (display,line_oecd,df_mht) => {
-display(line_oecd(df_mht, "Exports of medium and high technology products as a share of total products exports", false, "European Commission","https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en"))
-}});
-
-define({id: "ef1e01b8", outputs: ["subtractYears"], body: () => {
-// Funktion, um die Jahresskala neu zu definieren. Die den rawdata angegebenen Daten des EIS beziehen sich auf das Jahr des SII nicht auf das letzte Jahr der Erhebung.
-function subtractYears(date, years) {
-  const newDate = new Date(date);
-  newDate.setFullYear(newDate.getFullYear() - years);
-  return newDate;
-}
-return {subtractYears};
+define({id: "2134d829", mode: "inline", inputs: ["display","arrow_unicorns","df_unicorns_ch"], body: (display,arrow_unicorns,df_unicorns_ch) => {
+display(arrow_unicorns(df_unicorns_ch))
 }});
 
 </script>
@@ -208,22 +163,22 @@ return {subtractYears};
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
     <li class="observablehq-link"><a href="./">Ecosystem Monitor</a></li>
   </ol>
-  <section class="observablehq-section-active">
+  <section>
     <summary>International benchmarking</summary>
     <ol>
     <li class="observablehq-link"><a href="./a_rnd">Research &amp; Development</a></li>
     <li class="observablehq-link"><a href="./b_ens">Entrepreneurship and Start-ups</a></li>
     <li class="observablehq-link"><a href="./c_inno">Innovation Activities</a></li>
     <li class="observablehq-link"><a href="./d_ktt">Knowledge and Technology Transfer</a></li>
-    <li class="observablehq-link observablehq-link-active"><a href="./e_snd">Sustainability and High-tech Exports</a></li>
+    <li class="observablehq-link"><a href="./e_snd">Sustainability and High-tech Exports</a></li>
     </ol>
   </section>
-  <section>
+  <section class="observablehq-section-active">
     <summary>Topics of national relevance</summary>
     <ol>
     <li class="observablehq-link"><a href="./innovation_report">Innovation Activities </a></li>
     <li class="observablehq-link"><a href="./investors">Technology Intensity of Investment Portfolios</a></li>
-    <li class="observablehq-link"><a href="./unicorns">Unicorns</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./unicorns">Unicorns</a></li>
     </ol>
   </section>
 </nav>
@@ -233,32 +188,25 @@ return {subtractYears};
 <nav>
 <div>Contents</div>
 <ol>
-<li class="observablehq-secondary-link"><a href="#exports-of-high-technology-products-as-a-share-of-total-products-exports">Exports of high technology products as a share of total products exports</a></li>
-<li class="observablehq-secondary-link"><a href="#exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports">Exports of medium and high technology products as a share of total products exports</a></li>
+<li class="observablehq-secondary-link"><a href="#number-of-unicorns-relative-to-gdp">Number of unicorns relative to GDP</a></li>
+<li class="observablehq-secondary-link"><a href="#swiss-unicorn-companies">Swiss unicorn companies</a></li>
 </ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:09152368:--></div>
-<h1 id="sustainability-and-high-tech-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#sustainability-and-high-tech-exports">Sustainability and High-tech Exports</a></h1>
-<h2 id="development-of-environment-related-technologies-percentage-of-all-technologies" tabindex="-1"><a class="observablehq-header-anchor" href="#development-of-environment-related-technologies-percentage-of-all-technologies">Development of environment-related technologies, percentage of all technologies</a></h2>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> has a comparably low share of green technologies in percent of all patents and the share has been declining. Of the top innovators, <observablehq-loading></observablehq-loading><!--:1a7588f8:--> has a clear focus on environment-related technologies and its importance has grown over time.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:766b649e:--></div>
-<h2 id="exports-of-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-high-technology-products-as-a-share-of-total-products-exports">Exports of high technology products as a share of total products exports</a></h2>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15-1:--> has very high share of high-tech exports. The pharmaceuticals industry is likely the most important factor for Switzerland's top position, next to the other subsectors ("computer, electronic and optical products" and "air and spacecraft and related machinery").</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c597b25a:--></div>
-<h2 id="exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports">Exports of medium and high technology products as a share of total products exports</a></h2>
-<p>Interestingly enough, if we widen the scope to medium and high-tech exports, <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> fares not nearly as well, compared to countries such as <observablehq-loading></observablehq-loading><!--:9a4da08b:--> or <observablehq-loading></observablehq-loading><!--:294697dd:-->. Additionaly, there has been a steady decline since 2019.</p>
-<p>Medium-tech exports are – among others – chemical products, machinery, medical and dental instruments, etc.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e52e595e:--></div>
-<div class="observablehq observablehq--block"><!--:ef1e01b8:--></div>
-<h4 id="source" tabindex="-1"><a class="observablehq-header-anchor" href="#source">Source</a></h4>
-<p>
-   </p><ul> 
-   <li><a href="https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en" target="_blank" rel="noopener noreferrer">European Commission (2024) European Innovation Scoreboard</a></li>
-   </ul><p></p></main>
+<div class="observablehq observablehq--block"><!--:9d0533e8:--></div>
+<p><mark>New</mark></p>
+<h1 id="unicorn-companies" tabindex="-1"><a class="observablehq-header-anchor" href="#unicorn-companies">Unicorn companies</a></h1>
+<p>This report uses CB Insights' unicorn database as the main data source, as it offers the best, freely available basis for comparing unicorns across countries. Since there's no official data on unicorns and different sources define them differently, we compared the data to the results of Dealroom, PitchBook, and Crunchbase. While the exact numbers vary, the relative differences between countries are similar.</p>
+<div class="warning" label="Note">Please note that these statistics should be thus viewed cautiously, as methods for identifying unicorns differ between data providers. The list of Swiss unicorns makes no claim to completeness or accuracy, but is intended to give an impression.</div>
+<h2 id="number-of-unicorns-relative-to-gdp" tabindex="-1"><a class="observablehq-header-anchor" href="#number-of-unicorns-relative-to-gdp">Number of unicorns relative to GDP</a></h2>
+<p>The graph below compares countries' efficiency in creating unicorn companies relative to their economic size, measured as the number of unicorns per $133 billion of GDP. Switzerland produces one unicorn per $133 billion GDP, similar to the Netherlands and Sweden. In contrast, the United States and Israel significantly outperform this benchmark, generating 3-6 times more unicorns relative to their GDP. CB Insights defines a unicorn company, or unicorn startup, as a private company with a valuation over $1 billion.</p>
+<div><observablehq-loading></observablehq-loading><!--:592fcfc2:--></div>
+<h2 id="swiss-unicorn-companies" tabindex="-1"><a class="observablehq-header-anchor" href="#swiss-unicorn-companies">Swiss unicorn companies</a></h2>
+<p>We've also created our own list of Swiss unicorns, including both current unicorns and former ones that have gone public or been acquired, thus some might not meet the strictest unicorn definition. Accordingly, the number is significantly higher than the number in the CB Insights data (28 vs 6). The list is based on the list of the Swiss ICT Investor Club (SICTIC) and has been updated with our own research.</p>
+<div><observablehq-loading></observablehq-loading><!--:2134d829:--></div></main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./d_ktt"><span>Knowledge and Technology Transfer</span></a><a rel="next" href="./innovation_report"><span>Innovation Activities </span></a></nav>
+<nav><a rel="prev" href="./investors"><span>Technology Intensity of Investment Portfolios</span></a></nav>
 <div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>
 </footer>
 </div>
