@@ -4,24 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="generator" content="Observable Framework v1.13.3">
-<title>Innovation Activities | Ecosystem Monitor</title>
+<title>Innovation Activities | Innovation Ecosystem</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_import/styles.fc871980.css">
+<link rel="preload" as="style" href="./_import/styles.f3db8c0e.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_import/styles.fc871980.css">
+<link rel="stylesheet" type="text/css" href="./_import/styles.f3db8c0e.css">
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
 <link rel="modulepreload" href="./_npm/arquero@8.0.3/175c2cad.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.6cb6e0f1.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.cb7e2383.js">
+<link rel="modulepreload" href="./_import/components/plots/lin_reg.79e82931.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
 <link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
 <link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
-<link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/d761ef9b.js">
+<link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
+<link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/e780feca.js">
 <link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
 <link rel="modulepreload" href="./_npm/acorn@8.15.0/c47b807d.js">
@@ -106,24 +108,84 @@
 import {define} from "./_observablehq/client.19f413ec.js";
 import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 
+registerFile("./data/df_oecd_mfp.csv", {"name":"./data/df_oecd_mfp.csv","mimeType":"text/csv","path":"./_file/data/df_oecd_mfp.c0637aab.csv","lastModified":1750327339094,"size":62853});
 registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt","mimeType":"text/plain","path":"./_file/data/eurostat_pct_rd.82571fe6.txt","lastModified":1749202398923,"size":44518});
+registerFile("./data/innovationserhebung.csv", {"name":"./data/innovationserhebung.csv","mimeType":"text/csv","path":"./_file/data/innovationserhebung.bc01f6ac.csv","lastModified":1749047740478,"size":20667});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 
-define({id: "c9cd77fd", inputs: ["FileAttachment"], outputs: ["aq","line_cis","color_scale","colorLegend","countries","eurostat_pct_rd","domain_x","eurostat_pct_rd_filtered"], body: async (FileAttachment) => {
-const [aq, {line_cis}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_npm/arquero@8.0.3/175c2cad.js"), import("./_import/components/plots/line_plots.6cb6e0f1.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
+define({id: "52693e24", inputs: ["FileAttachment"], outputs: ["aq","line_cis","line_oecd","line_oecd_mfp","line_rank","lin_reg","color_scale","colorLegend","countries","eurostat_pct_rd","domain_x","eurostat_pct_rd_filtered","ie","df_oecd_mfp","df_oecd_mfp_plot"], body: async (FileAttachment) => {
+const [aq, {line_cis, line_oecd, line_oecd_mfp, line_rank}, {lin_reg}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_npm/arquero@8.0.3/175c2cad.js"), import("./_import/components/plots/line_plots.cb7e2383.js"), import("./_import/components/plots/lin_reg.79e82931.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
 
 const eurostat_pct_rd = await FileAttachment("./data/eurostat_pct_rd.txt").tsv({
   typed: true,
 });
 const domain_x = undefined
-const eurostat_pct_rd_filtered = eurostat_pct_rd.filter(d => countries.includes(d.iso3))
-//&& domain_x.includes(d.years)
-return {aq,line_cis,color_scale,colorLegend,countries,eurostat_pct_rd,domain_x,eurostat_pct_rd_filtered};
+const eurostat_pct_rd_filtered = eurostat_pct_rd.filter(d => countries.includes(d.iso3)) //&& domain_x.includes(d.years)
+const ie = await FileAttachment("./data/innovationserhebung.csv").csv({ typed: true });
+const df_oecd_mfp = await FileAttachment("./data/df_oecd_mfp.csv").csv({ typed: true });
+const df_oecd_mfp_plot = df_oecd_mfp
+    .filter((d) => countries.includes(d.iso3))
+    .sort((a, b) => a.year_date - b.year_date); // only for selected countries
+return {aq,line_cis,line_oecd,line_oecd_mfp,line_rank,lin_reg,color_scale,colorLegend,countries,eurostat_pct_rd,domain_x,eurostat_pct_rd_filtered,ie,df_oecd_mfp,df_oecd_mfp_plot};
+}});
+
+define({id: "1b4157d6", mode: "inline", inputs: ["lin_reg","ie","display"], body: async (lin_reg,ie,display) => {
+display(await(
+lin_reg(ie, "F&E im Inland ja/nein", true, false, [0, 100])
+))
+}});
+
+define({id: "dd20d8a2", mode: "inline", inputs: ["lin_reg","ie","display"], body: async (lin_reg,ie,display) => {
+display(await(
+lin_reg(ie, "Produkt-/Prozessinnovationen ja/nein", true, false, [0, 100])
+))
+}});
+
+define({id: "41a6b08b", mode: "inline", inputs: ["lin_reg","ie","display"], body: async (lin_reg,ie,display) => {
+display(await(
+lin_reg(ie, "Umsatzanteil F&E-Ausgaben", true, false, [0,50])
+))
+}});
+
+define({id: "a09cf931", mode: "inline", inputs: ["lin_reg","ie","display"], body: async (lin_reg,ie,display) => {
+display(await(
+lin_reg(ie, "Umsatzanteil innovative Produkte", true, false, [0, 50])
+))
+}});
+
+define({id: "54024707", mode: "inline", inputs: ["line_rank","ie","display"], body: async (line_rank,ie,display) => {
+display(await(
+line_rank(ie, "Bedeutung externer Wissensquellen", true, true)
+))
+}});
+
+define({id: "61958339", mode: "inline", inputs: ["line_rank","ie","display"], body: async (line_rank,ie,display) => {
+display(await(
+line_rank(ie,"Innovationshemmnisse", true, true)
+))
+}});
+
+define({id: "89ddffe5", mode: "inline", inputs: ["line_rank","ie","display"], body: async (line_rank,ie,display) => {
+display(await(
+line_rank(ie,"Innovationsförderung Stellen", true, true)
+))
 }});
 
 define({id: "4e058e15", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
 display(await(
 colorLegend("CHE")
+))
+}});
+
+define({id: "ee7ee5ae", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("NLD")
+))
+}});
+
+define({id: "fc642e84", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("FIN")
 ))
 }});
 
@@ -168,6 +230,12 @@ display(line_cis(eurostat_pct_rd_filtered, "pct_sales_inno", domain_x, color_sca
 // The most cited obstacles to innovation are mostly concerning its economic viability: The cost of innovation projects, lack of equity and debt capital and long amortisation periods. The shortage of skilled labour and R&D-personnel comes in 4th and 5th.
 }});
 
+define({id: "b8433528", mode: "inline", inputs: ["line_oecd","df_oecd_mfp_plot","display"], body: async (line_oecd,df_oecd_mfp_plot,display) => {
+display(await(
+line_oecd(df_oecd_mfp_plot, "Multifactor productivity (Index = 2015, Current prices)",false,"OECD Productivity database","https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_PDB@DF_PDB_GR,1.0/.A.MFPH..IX.V...?startPeriod=1998&format=csvfilewithlabels", 1, false, false)
+))
+}});
+
 </script>
 </head>
 <body>
@@ -176,26 +244,15 @@ display(line_cis(eurostat_pct_rd_filtered, "pct_sales_inno", domain_x, color_sca
 <nav id="observablehq-sidebar">
   <ol>
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
-    <li class="observablehq-link"><a href="./">Ecosystem Monitor</a></li>
+    <li class="observablehq-link"><a href="./">Innovation Ecosystem</a></li>
   </ol>
-  <section class="observablehq-section-active">
-    <summary>International benchmarking</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./a_rnd">Research &amp; Development</a></li>
+  <ol>
+    <li class="observablehq-link"><a href="./a_rnd">Research and Development</a></li>
     <li class="observablehq-link"><a href="./b_ens">Entrepreneurship and Start-ups</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./c_inno">Innovation Activities</a></li>
     <li class="observablehq-link"><a href="./d_ktt">Knowledge and Technology Transfer</a></li>
     <li class="observablehq-link"><a href="./e_snd">Sustainability and High-tech Exports</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Topics of national relevance</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./innovation_report">Innovation Activities </a></li>
-    <li class="observablehq-link"><a href="./investors">Technology Intensity of Investment Portfolios</a></li>
-    <li class="observablehq-link"><a href="./unicorns">Unicorns</a></li>
-    </ol>
-  </section>
+  </ol>
 </nav>
 <script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
@@ -203,32 +260,58 @@ display(line_cis(eurostat_pct_rd_filtered, "pct_sales_inno", domain_x, color_sca
 <nav>
 <div>Contents</div>
 <ol>
-<li class="observablehq-secondary-link"><a href="#share-of-firms-with-product-innovations">Share of firms with product innovations</a></li>
-<li class="observablehq-secondary-link"><a href="#sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover">Sales of new-to-market and new-to-enterprise innovations as a percentage of turnover</a></li>
+<li class="observablehq-secondary-link"><a href="#the-swiss-innovation-landscape-robust-but-facing-challenges">The Swiss innovation landscape: Robust, but facing challenges</a></li>
+<li class="observablehq-secondary-link"><a href="#the-international-innovation-landscape-divergence-in-r-and-d-convergence-in-product-innovations">The international innovation landscape: Divergence in R&amp;D, convergence in product innovations</a></li>
 </ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:c9cd77fd:--></div>
+<div class="observablehq observablehq--block"><!--:52693e24:--></div>
 <h1 id="innovation-activities" tabindex="-1"><a class="observablehq-header-anchor" href="#innovation-activities">Innovation Activities</a></h1>
-<h2 id="share-of-firms-with-r-and-d-activities" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-r-and-d-activities">Share of firms with R&amp;D activities</a></h2>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> lost its top position in share of firms with R&amp;D activities over the last 20 years. In 2018–2020, the number of firms with R&amp;D activities has started to slightly increase again for the first time since 2000–2002. At the same time, the average share of R&amp;D expenditure has remained constant compared to the previous period, meaning that the concentration of R&amp;D expenditure in the economy as a whole has decreased since 2018–2020.</p>
+<p><mark>New:</mark>&nbsp;&nbsp;&nbsp;The KOF Swiss Economic Institute of the ETH Zürich publishes every two years the results of its innovation survey. The report and survey are mainly financed by the SEFRI. The results are also included in the Community Innovation Survey of the European Union and allow for limited international comparison . Since 2019 Innosuisse finances an extension of the company panel with applicants of Innosuisse grants with applications since 2016.</p>
+<h2 id="the-swiss-innovation-landscape-robust-but-facing-challenges" tabindex="-1"><a class="observablehq-header-anchor" href="#the-swiss-innovation-landscape-robust-but-facing-challenges">The Swiss innovation landscape: Robust, but facing challenges</a></h2>
+<h3 id="the-downward-trend-in-business-r-and-d-and-innovation-activity-has-bottomed-out" tabindex="-1"><a class="observablehq-header-anchor" href="#the-downward-trend-in-business-r-and-d-and-innovation-activity-has-bottomed-out">The downward trend in business R&amp;D and innovation activity has bottomed out</a></h3>
+<p>The share of companies active in R&amp;D and innovation has been declining for years and has only stabilised in the last survey periods (2016–18 and 2014–16).</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; max-width: 640px">
+  <observablehq-loading></observablehq-loading><!--:1b4157d6:-->
+  <observablehq-loading></observablehq-loading><!--:dd20d8a2:-->
+</div>
+<h3 id="r-and-d-and-innovation-are-partially-becoming-decoupled" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-and-innovation-are-partially-becoming-decoupled">R&amp;D and innovation are partially becoming decoupled</a></h3>
+<p>At the same time, the share of R&amp;D expenditure in turnover and the share of turnover from innovative products and services remained relatively stable, with R&amp;D expenditure rising slightly and the share of innovative products in turnover declining slightly. This means: Fewer companies invest more in R&amp;D. The R&amp;D intensity of the still R&amp;D active companies has increased. And while fewer companies are innovation active, the share of turnover from innovative has only slightly decreased. At the same time the share of non-R&amp;D-driven innovations is growing relatively, indicating a change in innovation strategies.</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; max-width: 640px">
+  <observablehq-loading></observablehq-loading><!--:41a6b08b:-->
+  <observablehq-loading></observablehq-loading><!--:a09cf931:-->
+</div>
+<h3 id="software-developers-suppliers-have-become-a-source-for-innovation" tabindex="-1"><a class="observablehq-header-anchor" href="#software-developers-suppliers-have-become-a-source-for-innovation">Software developers / suppliers have become a source for innovation</a></h3>
+<p>Suppliers and customers are key players in companies' innovation processes. Software developers are now the second most important source of knowledge for innovation, with a strong increase in importance. The dependence on international software developers is a risk as well for innovation performance.</p>
+<div><observablehq-loading></observablehq-loading><!--:54024707:--></div>
+<h3 id="securing-funding-is-no-longer-the-only-major-obstacle" tabindex="-1"><a class="observablehq-header-anchor" href="#securing-funding-is-no-longer-the-only-major-obstacle">Securing funding is no longer the only major obstacle</a></h3>
+<p>The high cost of innovation is still the major obstacle to innovation, but hast lost relevance compared to skills shortages and building regulations/spatial planning.</p>
+<div><observablehq-loading></observablehq-loading><!--:61958339:--></div>
+<h3 id="subnational-agencies-have-gained-in-importance" tabindex="-1"><a class="observablehq-header-anchor" href="#subnational-agencies-have-gained-in-importance">Subnational agencies have gained in importance</a></h3>
+<p>Between 4% and 6% of the surveyed Swiss companies have received support from Innosuisse in the observations periods from 2012 to 2022. Since the observation period 2014–16, the share of companies that received support from regional/cantonal agencies has increased from between 2% to 4% to around 7%. The offers from regional agencies have a lower treshhold and are more coaching-oriented than the support offers of Innosuisse.</p>
+<div><observablehq-loading></observablehq-loading><!--:89ddffe5:--></div>
+<h2 id="the-international-innovation-landscape-divergence-in-r-and-d-convergence-in-product-innovations" tabindex="-1"><a class="observablehq-header-anchor" href="#the-international-innovation-landscape-divergence-in-r-and-d-convergence-in-product-innovations">The international innovation landscape: Divergence in R&amp;D, convergence in product innovations</a></h2>
+<h3 id="share-of-firms-with-r-and-d-activities" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-r-and-d-activities">Share of firms with R&amp;D activities</a></h3>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> lost its top position in share of firms with R&amp;D activities over the last 20 years. In 2018–2020, the number of firms with R&amp;D activities has started to slightly increase again for the first time since 2000–2002. At the same time, the average share of R&amp;D expenditure has remained constant compared to the previous period, meaning that the concentration of R&amp;D expenditure in the economy as a whole has decreased since 2018–2020. <observablehq-loading></observablehq-loading><!--:ee7ee5ae:--> and <observablehq-loading></observablehq-loading><!--:fc642e84:--> have a significantly higher share of firms with R&amp;D and have been trending upwards.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c1f1545b:--></div>
-<h2 id="share-of-firms-with-product-innovations" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-product-innovations">Share of firms with product innovations</a></h2>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s share of firms with product innovations had, after a long decline, increased significantly as well in 2018–2020. However, the latest observation period seems to confirm the general downward trend.</p>
+<h3 id="share-of-firms-with-product-innovations" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-product-innovations">Share of firms with product innovations</a></h3>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s share of firms with product innovations had, after a long decline, increased significantly as well in 2018–2020. However, the latest observation period seems to confirm the general downward trend. Among European innovation leaders, the range in the share of companies with product innovations narrowed from 25%–55% to 27%–38% in twenty years.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:45c547d0:--></div>
-<h2 id="sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover" tabindex="-1"><a class="observablehq-header-anchor" href="#sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover">Sales of new-to-market and new-to-enterprise innovations as a percentage of turnover</a></h2>
+<h3 id="sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover" tabindex="-1"><a class="observablehq-header-anchor" href="#sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover">Sales of new-to-market and new-to-enterprise innovations as a percentage of turnover</a></h3>
 <p>The recent up- and than downwardtick in innovative acitivity in <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> is also mirrored in the sales of new innovations in percent of total turnover.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:554f63b9:--></div>
+<h3 id="productivity-is-increasing" tabindex="-1"><a class="observablehq-header-anchor" href="#productivity-is-increasing">Productivity is increasing</a></h3>
+<p>Survey results show that process innovations are leading to significant reductions in production costs, particularly among SMEs. This is reflected in the development of multifactor productivity (MFP), which points to positive productivity effects from innovation activities. MFP is a measure of economic efficiency that captures the portion of output growth that cannot be explained by increases in labor and capital inputs alone. It reflects how effectively an economy or firm combines its resources to produce goods and services, essentially measuring the "residual" productivity gains that stem from technological progress, improved processes, organizational changes, and other innovations.</p>
+<div><observablehq-loading></observablehq-loading><!--:b8433528:--></div>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
-<p>
-    </p><ul>
-       <li>For a more detailed national persepective, see Topics of national relevance: <a href="./innovation_report">Innovation Acitvities</a></li>
-        <li><a href="https://doi.org/10.3929/ethz-b-000583885" target="_blank" rel="noopener noreferrer">Spescha A. &amp; Wörter M. (2022) Innovation und Digitalisierung in der Schweizer Privatwirtschaft – Ergebnisse der Innovationserhebung 2020</a></li>
-        <li><a href="https://doi.org/10.3929/ethz-b-000657551" target="_blank" rel="noopener noreferrer">Gersbach H. &amp; Wörter M. (2024) Challenges for the Swiss Innovation System</a></li>
-        <li><a href="https://www.sbfi.admin.ch/sbfi/de/home/forschung-und-innovation/forschung-und-innovation-in-der-schweiz/f-und-i-bericht.html" target="_blank" rel="noopener noreferrer">SBFI (2022) Forschung und Innovation in der Schweiz – Zwischenbericht 2022</a>, p. 90ff</li>
-    </ul>
-<p></p></main>
+<ul>
+<li>KOF (<a href="https://innovationserhebung.ch/innovationsbericht_2023/" target="_blank" rel="noopener noreferrer">2025</a>) Innovation report 2023</li>
+<li>Innosuisse has taken part in this survey since 2019 in order to learn more about the innovation behaviour and innovation environment of the companies that apply for funding (<a href="https://www.innosuisse.admin.ch/en/innovation-survey-2023" target="_blank" rel="noopener noreferrer">Innosuisse innovation support: the perspective of firms, 2025</a>). The aim is to be able to draw selected comparisons with innovative companies that have not submitted a funding application to Innosuisse.</li>
+<li>Gersbach H. &amp; Wörter M. (<a href="https://doi.org/10.3929/ethz-b-000657551" target="_blank" rel="noopener noreferrer">2024</a>) Challenges for the Swiss Innovation System</li>
+<li>SBFI (<a href="https://www.sbfi.admin.ch/sbfi/de/home/forschung-und-innovation/forschung-und-innovation-in-der-schweiz/f-und-i-bericht.html" target="_blank" rel="noopener noreferrer">2022</a>) Forschung und Innovation in der Schweiz – Zwischenbericht 2022, p.90ff</li>
+</ul>
+</main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./b_ens"><span>Entrepreneurship and Start-ups</span></a><a rel="next" href="./d_ktt"><span>Knowledge and Technology Transfer</span></a></nav>
 <div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>

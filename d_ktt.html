@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="generator" content="Observable Framework v1.13.3">
-<title>Knowledge and Technology Transfer | Ecosystem Monitor</title>
+<title>Knowledge and Technology Transfer | Innovation Ecosystem</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_import/styles.fc871980.css">
+<link rel="preload" as="style" href="./_import/styles.f3db8c0e.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_import/styles.fc871980.css">
+<link rel="stylesheet" type="text/css" href="./_import/styles.f3db8c0e.css">
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.8d80ffa1.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.11179a13.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.6cb6e0f1.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.cb7e2383.js">
 <link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
@@ -110,7 +110,7 @@ registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeT
 registerFile("./data/switt_startup_2024.csv", {"name":"./data/switt_startup_2024.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2024.69dc4a42.csv","lastModified":1749203568598,"size":1175});
 
 define({id: "f7c4dea9", inputs: ["FileAttachment","subtractYears"], outputs: ["bar_stacked_y","color_range","color_scale","colorLegend","countries","line_oecd","df","df_eis","df_switt","df_patents","df_ppcp"], body: async (FileAttachment,subtractYears) => {
-const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.8d80ffa1.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.6cb6e0f1.js")]);
+const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.11179a13.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.cb7e2383.js")]);
 
 // OECD MSTI Daten laden
 const df = await FileAttachment("./data/df.csv").csv({ typed: true });
@@ -194,26 +194,15 @@ return {subtractYears};
 <nav id="observablehq-sidebar">
   <ol>
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
-    <li class="observablehq-link"><a href="./">Ecosystem Monitor</a></li>
+    <li class="observablehq-link"><a href="./">Innovation Ecosystem</a></li>
   </ol>
-  <section class="observablehq-section-active">
-    <summary>International benchmarking</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./a_rnd">Research &amp; Development</a></li>
+  <ol>
+    <li class="observablehq-link"><a href="./a_rnd">Research and Development</a></li>
     <li class="observablehq-link"><a href="./b_ens">Entrepreneurship and Start-ups</a></li>
     <li class="observablehq-link"><a href="./c_inno">Innovation Activities</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./d_ktt">Knowledge and Technology Transfer</a></li>
     <li class="observablehq-link"><a href="./e_snd">Sustainability and High-tech Exports</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Topics of national relevance</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./innovation_report">Innovation Activities </a></li>
-    <li class="observablehq-link"><a href="./investors">Technology Intensity of Investment Portfolios</a></li>
-    <li class="observablehq-link"><a href="./unicorns">Unicorns</a></li>
-    </ol>
-  </section>
+  </ol>
 </nav>
 <script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
@@ -241,15 +230,13 @@ return {subtractYears};
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:dbe1c9ae:--></div>
 <div class="note" label="Note">The swiTT report gives a relativly complete picture for start-ups and spin-offs from ETH Zürch, EPFL and universities; universities of applied sciences are less thoroughly represented.</div>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
-<p>
-</p><ul> 
-   <li><a href="https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en" target="_blank" rel="noopener noreferrer">European Commission (2024) European Innovation Scoreboard</a></li>
-<li><a href="https://www.sbfi.admin.ch/sbfi/de/home/dienstleistungen/publikationen/publikationsdatenbank/wtt-endbericht-2023.html" target="_blank" rel="noopener noreferrer">SBFI (2024) Monitoring des Wissens- und Technologietransfers in der Schweiz</a></li> 
-<li><a href="https://switt.ch/switt-reports" target="_blank" rel="noopener noreferrer">swiTT (2025) swiTTreport 2024</a>&nbsp;&nbsp;&nbsp;<mark>New</mark>&nbsp;&nbsp;&nbsp;</li> 
-<li><a href="https://discover-innosuisse.ch/" target="_blank" rel="noopener noreferrer">Innosuisse (2025) Discover</a>&nbsp;&nbsp;&nbsp;<mark>New</mark>&nbsp;&nbsp;&nbsp;</li>
-<li><a href="https://www.innosuisse.admin.ch/en/figures-funding-data-portal" target="_blank" rel="noopener noreferrer">Innosuisse (2025) Figures: funding data portal</a>&nbsp;&nbsp;&nbsp;<mark>New</mark>&nbsp;&nbsp;&nbsp;</li>
-</ul> 
-<p></p>
+<ul>
+<li>European Commission (<a href="https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en" target="_blank" rel="noopener noreferrer">2024</a>) European Innovation Scoreboard</li>
+<li>SBFI (<a href="https://www.sbfi.admin.ch/sbfi/de/home/dienstleistungen/publikationen/publikationsdatenbank/wtt-endbericht-2023.html" target="_blank" rel="noopener noreferrer">2024</a>) Monitoring des Wissens- und Technologietransfers in der Schweiz</li>
+<li>swiTT (<a href="https://switt.ch/switt-reports" target="_blank" rel="noopener noreferrer">2025</a>) swiTTreport 2024&nbsp;&nbsp;&nbsp;<mark>New</mark></li>
+<li>Innosuisse (<a href="https://discover-innosuisse.ch/" target="_blank" rel="noopener noreferrer">2025</a>) Discover&nbsp;&nbsp;&nbsp;<mark>New</mark></li>
+<li>Innosuisse (<a href="https://www.innosuisse.admin.ch/en/figures-funding-data-portal" target="_blank" rel="noopener noreferrer">2025</a>) Figures: funding data portal&nbsp;&nbsp;&nbsp;<mark>New</mark></li>
+</ul>
 <div class="observablehq observablehq--block"><!--:ef1e01b8:--></div>
 </main>
 <footer id="observablehq-footer">

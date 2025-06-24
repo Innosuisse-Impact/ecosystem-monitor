@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="generator" content="Observable Framework v1.13.3">
-<title>Sustainability and High-tech Exports | Ecosystem Monitor</title>
+<title>Sustainability and High-tech Exports | Innovation Ecosystem</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_import/styles.fc871980.css">
+<link rel="preload" as="style" href="./_import/styles.f3db8c0e.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_import/styles.fc871980.css">
+<link rel="stylesheet" type="text/css" href="./_import/styles.f3db8c0e.css">
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.6cb6e0f1.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.cb7e2383.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
 <link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
@@ -108,7 +108,7 @@ registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_valu
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 
 define({id: "09152368", inputs: ["FileAttachment","subtractYears"], outputs: ["line_oecd","color_range","color_scale","colorLegend","countries","df_ht","df_eis","df_ert","df_htex","df_mht"], body: async (FileAttachment,subtractYears) => {
-const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.6cb6e0f1.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
+const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.cb7e2383.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
 
 // OECD ENV Daten
 const df_ht = await FileAttachment("./data/df_ht.csv").csv({ typed: true });
@@ -206,26 +206,15 @@ return {subtractYears};
 <nav id="observablehq-sidebar">
   <ol>
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
-    <li class="observablehq-link"><a href="./">Ecosystem Monitor</a></li>
+    <li class="observablehq-link"><a href="./">Innovation Ecosystem</a></li>
   </ol>
-  <section class="observablehq-section-active">
-    <summary>International benchmarking</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./a_rnd">Research &amp; Development</a></li>
+  <ol>
+    <li class="observablehq-link"><a href="./a_rnd">Research and Development</a></li>
     <li class="observablehq-link"><a href="./b_ens">Entrepreneurship and Start-ups</a></li>
     <li class="observablehq-link"><a href="./c_inno">Innovation Activities</a></li>
     <li class="observablehq-link"><a href="./d_ktt">Knowledge and Technology Transfer</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./e_snd">Sustainability and High-tech Exports</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Topics of national relevance</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./innovation_report">Innovation Activities </a></li>
-    <li class="observablehq-link"><a href="./investors">Technology Intensity of Investment Portfolios</a></li>
-    <li class="observablehq-link"><a href="./unicorns">Unicorns</a></li>
-    </ol>
-  </section>
+  </ol>
 </nav>
 <script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
@@ -253,12 +242,12 @@ return {subtractYears};
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e52e595e:--></div>
 <div class="observablehq observablehq--block"><!--:ef1e01b8:--></div>
 <h4 id="source" tabindex="-1"><a class="observablehq-header-anchor" href="#source">Source</a></h4>
-<p>
-   </p><ul> 
-   <li><a href="https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en" target="_blank" rel="noopener noreferrer">European Commission (2024) European Innovation Scoreboard</a></li>
-   </ul><p></p></main>
+<ul>
+<li>European Commission (<a href="https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en" target="_blank" rel="noopener noreferrer">2024</a>) European Innovation Scoreboard</li>
+</ul>
+</main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./d_ktt"><span>Knowledge and Technology Transfer</span></a><a rel="next" href="./innovation_report"><span>Innovation Activities </span></a></nav>
+<nav><a rel="prev" href="./d_ktt"><span>Knowledge and Technology Transfer</span></a></nav>
 <div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>
 </footer>
 </div>
