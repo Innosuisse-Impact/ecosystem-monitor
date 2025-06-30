@@ -16,7 +16,7 @@
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.cb7e2383.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.6d7f4138.js">
 <link rel="modulepreload" href="./_import/components/plots/bar_x.18bdc39d.js">
 <link rel="modulepreload" href="./_import/components/plots/bar_y.5a8da785.js">
 <link rel="modulepreload" href="./_import/components/plots/arrow_y.c792346d.js">
@@ -107,7 +107,7 @@
 <link rel="modulepreload" href="./_npm/delaunator@5.0.1/02d43215.js">
 <link rel="modulepreload" href="./_node/robust-predicates@3.0.2/index.bdc459cc.js">
 <link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/aa00730b.js">
-<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<link rel="icon" href="./_file/favicon-32x32.d06a8ecd.png" type="image/png" sizes="32x32">
 <script type="module">
 
 import {define} from "./_observablehq/client.19f413ec.js";
@@ -123,14 +123,14 @@ registerFile("./data/df_unicorns_country.csv", {"name":"./data/df_unicorns_count
 registerFile("./data/gem_tea_2018-2024.csv", {"name":"./data/gem_tea_2018-2024.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2024.13589a2d.csv","lastModified":1749219487650,"size":1301});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 
-define({id: "437517e5", inputs: ["FileAttachment","isr"], outputs: ["color_scale","color_range","colorLegend","countries","line_oecd","bar_x","bar_x_unicorn","bar_vc_ch","arrow_unicorns","aq","df_oecd_vc","df_vc_gdp","df_gem_tea","df_vc_ch","countries_filtered","df_vc","df_tea","df_vc_ch_rounds","df_vc_ch_fin","df_epo","df_oecd_msti","df_unicorns_country","df_unicorns_ch","gdp","df_ug"], body: async (FileAttachment,isr) => {
-const [{color_scale, color_range, colorLegend, countries}, {line_oecd}, {bar_x, bar_x_unicorn}, {bar_vc_ch}, {arrow_unicorns}, aq] = await Promise.all([import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.cb7e2383.js"), import("./_import/components/plots/bar_x.18bdc39d.js"), import("./_import/components/plots/bar_y.5a8da785.js"), import("./_import/components/plots/arrow_y.c792346d.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
+define({id: "47f4dc99", inputs: ["FileAttachment","isr"], outputs: ["color_scale","color_range","colorLegend","countries","line_oecd","bar_x","bar_x_unicorn","bar_vc_ch","arrow_unicorns","aq","df_oecd_vc","df_vc_gdp","df_gem_tea","df_vc_ch","countries_filtered","df_vc","df_tea","df_vc_ch_rounds","df_vc_ch_fin","df_epo","df_oecd_msti","df_unicorns_country","df_unicorns_ch","gdp","df_ug"], body: async (FileAttachment,isr) => {
+const [{color_scale, color_range, colorLegend, countries}, {line_oecd}, {bar_x, bar_x_unicorn}, {bar_vc_ch}, {arrow_unicorns}, aq] = await Promise.all([import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.6d7f4138.js"), import("./_import/components/plots/bar_x.18bdc39d.js"), import("./_import/components/plots/bar_y.5a8da785.js"), import("./_import/components/plots/arrow_y.c792346d.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
 
 const df_oecd_vc = await FileAttachment("./data/df_oecd_vc.csv").csv({typed: true});
 const df_vc_gdp = await FileAttachment("./data/20241024_vc.txt").tsv({typed: true});
 const df_gem_tea = await FileAttachment("./data/gem_tea_2018-2024.csv").csv({typed: true});
 const df_vc_ch = await FileAttachment("./data/df_startupticker_vc.csv").csv({typed: true});
-const countries_filtered = isr ? countries : countries.filter(d => !["ISR", "USA"].includes(d))
+const countries_filtered = isr ? countries.filter(d => !["DEU", "FIN", "NLD", "SWE"].includes(d)) : countries.filter(d => !["ISR", "USA"].includes(d))
 const df_vc = df_oecd_vc.filter(
     (d) =>
       (d.measure === "VC_INV_MKT") && // R&D Personnel
@@ -293,7 +293,7 @@ display(arrow_unicorns(df_unicorns_ch))
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:437517e5:--></div>
+<div class="observablehq observablehq--block"><!--:47f4dc99:--></div>
 <h1 id="entrepreneurship-and-start-ups" tabindex="-1"><a class="observablehq-header-anchor" href="#entrepreneurship-and-start-ups">Entrepreneurship and Start-ups</a></h1>
 <h2 id="venture-capital-market-in-switzerland" tabindex="-1"><a class="observablehq-header-anchor" href="#venture-capital-market-in-switzerland">Venture capital market in Switzerland</a></h2>
 <p><mark>New:</mark>&nbsp;&nbsp;&nbsp;Venture capital availability in <observablehq-loading></observablehq-loading><!--:4e058e15:--> has been increasing steadily until 2022, but has declined since. The financing rounds have become only slightly fewer, but smaller. The in- and then decreasing VC funding with a peak in 2021/2022 is mirrored in other countries (see below).</p>
@@ -313,7 +313,8 @@ display(arrow_unicorns(df_unicorns_ch))
 <p><mark>New:</mark>&nbsp;&nbsp;&nbsp;The European Patent Office (EPO) links its own patent data to <a href="https://dealroom.co" target="_blank" rel="noopener noreferrer">dealroom.co</a>'s data on investors and their investments and creates a comparative analysis of the technology intensity of the investment portfolios in Europe and the US.</p>
 <p>The EPO introduces the metric <strong>Technology Investor Score (TIS)</strong> designed to identify investors specialised in supporting high-tech companies. The TIS measures the percentage of companies with at least one patent within an investor’s portfolio. A high TIS indicates an investor’s engagement with innovation-driven companies.</p>
 <p>The analysis reveals <em>"significant funding gaps between Europe and the US for high-TIS private investors, particularly in critical technology sectors with high growth potential. These gaps are also most evident in the later-stage funding rounds essential for scaling up. Instead, we find a funding surplus for public investors."</em></p>
-<p>These gaps also hold true for Switzerland (vis-a-vis the US). But they are less pronounced than in other European countries, because Switzerland ranks at the top in most of the categories compared to other European countries (more mature VC-market, investors with high TIS-Scores, etc.)</p>
+<p>In other words, the US has more funding from high-TIS investors who are private, specialize in later-stage rounds (scale-up), and invest in high-tech sectors. This is only partially offset in Europe by greater funding from public investors.</p>
+<p>These funding gaps also apply to Switzerland. However, they are less pronounced than in other European countries because Switzerland ranks at the top in most categories compared to its European peers, including having a more mature VC market and investors with higher TIS scores. Innosuisse also appears as a public investor with a high TIS score, primarily because its support for the Swiss Accelerator and Start-up Innovation Projects is included in the dealroom.co data.</p>
 <h3 id="average-technology-investor-score-tis-by-country" tabindex="-1"><a class="observablehq-header-anchor" href="#average-technology-investor-score-tis-by-country">Average Technology Investor Score (TIS) by country</a></h3>
 <div><observablehq-loading></observablehq-loading><!--:aba09763:--></div>
 <h3 id="tis-score-of-top-swiss-investors" tabindex="-1"><a class="observablehq-header-anchor" href="#tis-score-of-top-swiss-investors">TIS-Score of top Swiss investors</a></h3>
@@ -337,7 +338,7 @@ display(arrow_unicorns(df_unicorns_ch))
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./a_rnd"><span>Research and Development</span></a><a rel="next" href="./c_inno"><span>Innovation Activities</span></a></nav>
-<div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>
+<div>Authors: <a href="mailto:adrianriser@innosuisse.ch" target="_blank" rel="noopener noreferrer">Adrian Riser</a> and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 25.06.2025 • <a href="https://observablehq.com/framework/" target="_blank" rel="noopener noreferrer">Built with Observable.</a></div>
 </footer>
 </div>
 </body>

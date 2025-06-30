@@ -15,9 +15,9 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.cb7e2383.js">
-<link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.11179a13.js">
-<link rel="modulepreload" href="./_import/components/plots/bar_stacked_x.554249df.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.6d7f4138.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.7446718b.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_stacked_x.fcd8d3e3.js">
 <link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
 <link rel="modulepreload" href="./_import/components/plots/sankey.f39e7441.js">
@@ -111,7 +111,7 @@
 <link rel="modulepreload" href="./_npm/delaunator@5.0.1/02d43215.js">
 <link rel="modulepreload" href="./_node/robust-predicates@3.0.2/index.bdc459cc.js">
 <link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/aa00730b.js">
-<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<link rel="icon" href="./_file/favicon-32x32.d06a8ecd.png" type="image/png" sizes="32x32">
 <script type="module">
 
 import {define} from "./_observablehq/client.19f413ec.js";
@@ -124,7 +124,7 @@ registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeT
 registerFile("./data/rnd_ch_2021.csv", {"name":"./data/rnd_ch_2021.csv","mimeType":"text/csv","path":"./_file/data/rnd_ch_2021.669c3bc4.csv","lastModified":1750074088261,"size":579});
 
 define({id: "8f0b3658", inputs: ["FileAttachment"], outputs: ["line_cis","line_oecd","line_oecd_gbard","bar_stacked_y_normalized","area_stacked_y_gerd_ch","bar_stacked_x","country_iso3","iso3_country","color_scale","colorLegend","countries","rnd_ch_sankey","aq","df_gtard","df_oecd_msti","df_rnd_ch","df_rnd_type","filter_oecd_msti","df_gerd","df_gerd_gov","df_berd_gov","df_rnd_personnel","df_gbard_tax","df_gerd_type","df_gerd_type1","domain1","order1","df_gerd_type3","df_gerd_type2","domain2","order2","rnd_type","df_ch_gerd"], body: async (FileAttachment) => {
-const [{line_cis, line_oecd, line_oecd_gbard}, {bar_stacked_y_normalized, area_stacked_y_gerd_ch}, {bar_stacked_x}, {country_iso3, iso3_country}, {color_scale, colorLegend, countries}, {rnd_ch_sankey}, aq] = await Promise.all([import("./_import/components/plots/line_plots.cb7e2383.js"), import("./_import/components/plots/bar_stacked_y.11179a13.js"), import("./_import/components/plots/bar_stacked_x.554249df.js"), import("./_import/components/utils/countries.10854bad.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/sankey.f39e7441.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
+const [{line_cis, line_oecd, line_oecd_gbard}, {bar_stacked_y_normalized, area_stacked_y_gerd_ch}, {bar_stacked_x}, {country_iso3, iso3_country}, {color_scale, colorLegend, countries}, {rnd_ch_sankey}, aq] = await Promise.all([import("./_import/components/plots/line_plots.6d7f4138.js"), import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/plots/bar_stacked_x.fcd8d3e3.js"), import("./_import/components/utils/countries.10854bad.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/sankey.f39e7441.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
 // Load components
 
 // Load data
@@ -227,8 +227,8 @@ colorLegend("USA")
 ))
 }});
 
-define({id: "23b49dbb", inputs: ["display","line_oecd","df_gerd"], body: (display,line_oecd,df_gerd) => {
-display(line_oecd(df_gerd))
+define({id: "0b997cff", inputs: ["display","line_oecd","df_gerd"], body: (display,line_oecd,df_gerd) => {
+display(line_oecd(df_gerd,"% of GDP",false,"OECD Main Science and Technology Indicators (MSTI)","https://oe.cd/msti", 1, true, true, "_file/images/gerd_line.png"))
 }});
 
 define({id: "e590ca54", inputs: ["Inputs","view"], outputs: ["normalizeInput","normalize"], body: (Inputs,view) => {
@@ -362,7 +362,7 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment",undefine
 <h2 id="funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2021">Funding and expenditure on R&amp;D in Switzerland by sector in 2021</a></h2>
 <p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;In Switzerland, as in almost all countries, the majority of R&amp;D funding originates from and flows to business entreprises. However, Switzerland has a comparatively high outflow of R&amp;D funding abroad and a comparatively low inflow. The federal government (as well as the cantons) primarely fund R&amp;D indirectly through universities and other higher education institutions. The main funding flows to the Swiss Federal Institutes of Technology (ETH and EPFL), the Swiss National Science Foundation as well as, to a smaller extent, Innosuisse's innovation project funding.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c0cb44f5:--></div>
-<figcaption><span>Source: <a href="https://www.bfs.admin.ch/asset/de/25045812" target="_blank" rel="noopener noreferrer">Federal Statistical Office</a></span></figcaption>
+<figcaption><span>Source: <a href="https://www.bfs.admin.ch/asset/de/25045812" target="_blank" rel="noopener noreferrer">Federal Statistical Office</a><br>Note: Private non-profit organizations (PNP) are included for comprehensiveness; however, they represent only a marginal portion of total funding (CHF 0.1 bn) and expenditure (CHF 0.6 bn).</span></figcaption>
 <p>In the following, we look in more detail at R&amp;D funding from two perspectives:</p>
 <ul>
 <li><a href="#r-and-d-expenditure">R&amp;D Expenditure: Who performs the R&amp;D?</a></li>
@@ -371,12 +371,12 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment",undefine
 <h2 id="r-and-d-expenditure" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-expenditure">R&amp;D Expenditure</a></h2>
 <h3 id="gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2022">Gross Domestic Expenditure on Research and Development (GERD) in % of GDP 2017–2022</a></h3>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is among the top five countries in R&amp;D spending as a percentage of GDP (3.3% or CHF 24.6 billion). Its GERD has grown slightly by 0.2 percentage points from 2017 to 2021. The R&amp;D expenditures of <observablehq-loading></observablehq-loading><!--:a05991af:-->, <observablehq-loading></observablehq-loading><!--:9a4da08b:-->, and the <observablehq-loading></observablehq-loading><!--:c55312a5:--> have increased more significantly, while others have stagnated on levels comparable to Switzerland. In the <a href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2021">graph above</a>, GERD corresponds to the R&amp;D expenditure in the column on the right without the expenditure abroad.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:23b49dbb:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:0b997cff:--></div>
 <h3 id="gerd-by-sector-in-of-gdp-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-by-sector-in-of-gdp-2021">GERD by sector in % of GDP 2021</a></h3>
 <p>Research and Development in Switzerland is mainly performed by <span style="border-bottom: solid 2px #0571b0">private businesses</span> or <span style="border-bottom: solid 2px #FCE300">higher education institutions</span> and rarely by the <span style="border-bottom: solid 2px #06F7DA">government</span> itself. Switzerland has one of the lowest share of R&amp;D performed by government institutions. Sweden and Denmark's pattern of research and development most closely mirrors that of Switzerland. The high proportion of R&amp;D carried out by the private sector in Israel is also striking.</p>
 <div class="observablehq observablehq--block"><!--:e590ca54:--></div>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:66610f4d:--></div>
-<h3 id="r-and-d-expenditure-by-type-of-research" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-expenditure-by-type-of-research">R&amp;D expenditure by type of research</a></h3>
+<h3 id="r-and-d-expenditure-by-type-of-research-in-of-gerd" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-expenditure-by-type-of-research-in-of-gerd">R&amp;D expenditure by type of research in % of GERD</a></h3>
 <p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;Compared to other innovation leaders, Switzerland has a relatively high share of R&amp;D expenditure in both <span style="border-bottom: solid 2px #0571b0">basic</span> and <span style="border-bottom: solid 2px #06F7DA">applied research</span>, which seek fundamental knowledge without immediate practical goals or target specific practical problems and directed towards application. Consequently, the share of expenditure for <span style="border-bottom: solid 2px #A2AFE9">experimental development</span>, which more clearly focuses on creating or improving products, processes, or services, is rather small.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e88db2f5:--></div>
 <h2 id="r-and-d-funding" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-funding">R&amp;D Funding</a></h2>
@@ -415,7 +415,7 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment",undefine
   </details>
 </div>
 <h2 id="r-and-d-personnel" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-personnel">R&amp;D Personnel</a></h2>
-<p>The share personnel employed in R&amp;D has increased over the years. <observablehq-loading></observablehq-loading><!--:4e058e15-3:--> is no exception.</p>
+<p>The share of personnel employed in R&amp;D has increased over the years. <observablehq-loading></observablehq-loading><!--:4e058e15-3:--> is no exception.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:a9ef31f6:--></div>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
@@ -424,7 +424,7 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment",undefine
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>Innovation Ecosystem</span></a><a rel="next" href="./b_ens"><span>Entrepreneurship and Start-ups</span></a></nav>
-<div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>
+<div>Authors: <a href="mailto:adrianriser@innosuisse.ch" target="_blank" rel="noopener noreferrer">Adrian Riser</a> and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 25.06.2025 • <a href="https://observablehq.com/framework/" target="_blank" rel="noopener noreferrer">Built with Observable.</a></div>
 </footer>
 </div>
 </body>

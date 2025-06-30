@@ -13,7 +13,7 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.cb7e2383.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.6d7f4138.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
 <link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
@@ -97,7 +97,7 @@
 <link rel="modulepreload" href="./_node/delaunator@5.0.1/index.70ae1478.js">
 <link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/aa00730b.js">
 <link rel="modulepreload" href="./_node/robust-predicates@3.0.2/index.bdc459cc.js">
-<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<link rel="icon" href="./_file/favicon-32x32.d06a8ecd.png" type="image/png" sizes="32x32">
 <script type="module">
 
 import {define} from "./_observablehq/client.19f413ec.js";
@@ -108,7 +108,7 @@ registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_valu
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 
 define({id: "09152368", inputs: ["FileAttachment","subtractYears"], outputs: ["line_oecd","color_range","color_scale","colorLegend","countries","df_ht","df_eis","df_ert","df_htex","df_mht"], body: async (FileAttachment,subtractYears) => {
-const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.cb7e2383.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
+const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.6d7f4138.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
 
 // OECD ENV Daten
 const df_ht = await FileAttachment("./data/df_ht.csv").csv({ typed: true });
@@ -248,7 +248,7 @@ return {subtractYears};
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./d_ktt"><span>Knowledge and Technology Transfer</span></a></nav>
-<div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>
+<div>Authors: <a href="mailto:adrianriser@innosuisse.ch" target="_blank" rel="noopener noreferrer">Adrian Riser</a> and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 25.06.2025 • <a href="https://observablehq.com/framework/" target="_blank" rel="noopener noreferrer">Built with Observable.</a></div>
 </footer>
 </div>
 </body>

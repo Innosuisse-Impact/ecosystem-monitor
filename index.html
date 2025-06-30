@@ -101,18 +101,18 @@
 <link rel="modulepreload" href="./_npm/delaunator@5.0.1/02d43215.js">
 <link rel="modulepreload" href="./_node/robust-predicates@3.0.2/index.bdc459cc.js">
 <link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/aa00730b.js">
-<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<link rel="icon" href="./_file/favicon-32x32.d06a8ecd.png" type="image/png" sizes="32x32">
 <script type="module">
 
 import {define} from "./_observablehq/client.19f413ec.js";
 import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 
-registerFile("./data/df_rank.csv", {"name":"./data/df_rank.csv","mimeType":"text/csv","path":"./_file/data/df_rank.74fa75be.csv","lastModified":1750259056682,"size":141925});
+registerFile("./data/df_rank.csv", {"name":"./data/df_rank.csv","mimeType":"text/csv","path":"./_file/data/df_rank.117d0b4e.csv","lastModified":1750843137065,"size":142056});
 registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 
-define({id: "fa3a5452", inputs: ["FileAttachment","aq"], outputs: ["plot_rank_bump","plot_eis","arrow_eis","color_scale","colorLegend","countries","df_eis","df_rank","df_ranking","df_eis_filtered","df_eis_pivoted","df_eis_sorted"], body: async (FileAttachment,aq) => {
-const [{plot_rank_bump, plot_eis}, {arrow_eis}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/rank.6ea4c073.js"), import("./_import/components/plots/arrow_y.c792346d.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
+define({id: "30f71b4b", inputs: ["FileAttachment","aq"], outputs: ["plot_eis","plot_rank_bump","arrow_eis","color_scale","colorLegend","countries","df_eis","df_rank","df_ranking","df_eis_filtered","df_eis_pivoted","df_eis_sorted"], body: async (FileAttachment,aq) => {
+const [{plot_eis, plot_rank_bump}, {arrow_eis}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/rank.6ea4c073.js"), import("./_import/components/plots/arrow_y.c792346d.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
 //import { iso3_country } from "./components/utils/countries.js"
 // // EU European Innovation Scoreboard Daten laden
 const df_eis = await FileAttachment("./data/eurostat_eis_values.csv").csv({typed: true});
@@ -144,7 +144,7 @@ const df_eis_pivoted = aq
   .orderby(aq.desc("2024"))
   .objects();
 const df_eis_sorted = df_eis_pivoted.map((d) => d.country);
-return {plot_rank_bump,plot_eis,arrow_eis,color_scale,colorLegend,countries,df_eis,df_rank,df_ranking,df_eis_filtered,df_eis_pivoted,df_eis_sorted};
+return {plot_eis,plot_rank_bump,arrow_eis,color_scale,colorLegend,countries,df_eis,df_rank,df_ranking,df_eis_filtered,df_eis_pivoted,df_eis_sorted};
 }});
 
 define({id: "4e058e15", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
@@ -165,8 +165,8 @@ colorLegend("SGP")
 ))
 }});
 
-define({id: "ba89a694", inputs: ["display","plot_rank_bump","df_ranking","html"], body: (display,plot_rank_bump,df_ranking,html) => {
-display(plot_rank_bump(df_ranking, ["EIS", "GII", "EIQ"], true, html`Source: Sources: WIPO (2024), European Commission (2024) & Economist Impact (2023)`))
+define({id: "30b2d9bc", inputs: ["display","plot_rank_bump","df_ranking","html"], body: (display,plot_rank_bump,df_ranking,html) => {
+display(plot_rank_bump(df_ranking, ["EIS", "GII", "EIQ"], true, html`Sources: WIPO (2024), European Commission (2024) & Economist Impact (2023)`))
 // display(plot_rank(df_ranking, domain_rank_gii, ["EIS", "GII", "EIQ"],"Sources: WIPO (2024), European Commission (2024) & Economist Impact (2023)", true))
 }});
 
@@ -296,7 +296,7 @@ define({id: "e7147e10", body: () => {
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:fa3a5452:--></div>
+<div class="observablehq observablehq--block"><!--:30f71b4b:--></div>
 <h1 id="innovation-ecosystem-monitor-2024" tabindex="-1"><a class="observablehq-header-anchor" href="#innovation-ecosystem-monitor-2024">Innovation Ecosystem Monitor 2024</a></h1>
 <h2 id="mapping-switzerlands-innovation-strengths-weaknesses-and-their-evolution-over-time" tabindex="-1"><a class="observablehq-header-anchor" href="#mapping-switzerlands-innovation-strengths-weaknesses-and-their-evolution-over-time">Mapping Switzerland's Innovation Strengths, Weaknesses and Their Evolution Over Time</a></h2>
 <h3 id="what-is-the-monitors-purpose" tabindex="-1"><a class="observablehq-header-anchor" href="#what-is-the-monitors-purpose">What is the monitors purpose?</a></h3>
@@ -309,7 +309,7 @@ This is a new version of a previously internal Innovation Ecosystem Monitor publ
 </div>
 <h2 id="switzerland-maintains-its-position-on-top" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerland-maintains-its-position-on-top">Switzerland maintains its position on top</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:-->'s top position in the two most prominent international innovation rankings is stable. Generally, there is not a lot of movement among the top 10 countries in both the GII and the EIS index. Only <observablehq-loading></observablehq-loading><!--:9a4da08b:--> and <observablehq-loading></observablehq-loading><!--:263d7e7c:--> have made significant progress in the rankings.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:ba89a694:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:30b2d9bc:--></div>
 <p>The Economist's Impact Unit's Innovation Quotient (EIQ) shows that not all innovation indices put Switzerland on top (and that ranking positions can be influenced by the selection of indicators: Compare e.g. the <observablehq-loading></observablehq-loading><!--:3e3682b0:-->, the <observablehq-loading></observablehq-loading><!--:c55312a5:--> or <observablehq-loading></observablehq-loading><!--:1a7588f8:--> across the three rankings).</p>
 <div class="note" label="Note"><details>
   <summary>Why is Switzerland not on top in the EIQ?</summary>
@@ -423,7 +423,7 @@ This is a new version of a previously internal Innovation Ecosystem Monitor publ
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./a_rnd"><span>Research and Development</span></a></nav>
-<div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>
+<div>Authors: <a href="mailto:adrianriser@innosuisse.ch" target="_blank" rel="noopener noreferrer">Adrian Riser</a> and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 25.06.2025 • <a href="https://observablehq.com/framework/" target="_blank" rel="noopener noreferrer">Built with Observable.</a></div>
 </footer>
 </div>
 </body>

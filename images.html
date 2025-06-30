@@ -13,23 +13,116 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<link rel="icon" href="./_file/favicon-32x32.d06a8ecd.png" type="image/png" sizes="32x32">
 <script type="module">
 
 import {define} from "./_observablehq/client.19f413ec.js";
 import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 
-registerFile("./images/rank_gii.png", {"name":"./images/rank_gii.png","mimeType":"image/png","path":"./_file/images/rank_gii.4b2aa74e.png","lastModified":1750456538237,"size":219579});
-registerFile("./images/rank_gii_final.png", {"name":"./images/rank_gii_final.png","mimeType":"image/png","path":"./_file/images/rank_gii_final.4b2aa74e.png","lastModified":1750673181966,"size":219579});
+registerFile("./images/berd_gov_line.png", {"name":"./images/berd_gov_line.png","mimeType":"image/png","path":"./_file/images/berd_gov_line.d101ab24.png","lastModified":1751272267694,"size":164090});
+registerFile("./images/competitiveness_rankings.png", {"name":"./images/competitiveness_rankings.png","mimeType":"image/png","path":"./_file/images/competitiveness_rankings.0d80dd43.png","lastModified":1751268925466,"size":263034});
+registerFile("./images/eis_arrow.png", {"name":"./images/eis_arrow.png","mimeType":"image/png","path":"./_file/images/eis_arrow.2fd75624.png","lastModified":1751268918661,"size":86503});
+registerFile("./images/ert_line.png", {"name":"./images/ert_line.png","mimeType":"image/png","path":"./_file/images/ert_line.c247b64a.png","lastModified":1751272310299,"size":148009});
+registerFile("./images/gerd_line.png", {"name":"./images/gerd_line.png","mimeType":"image/png","path":"./_file/images/gerd_line.1f71ff3f.png","lastModified":1751272256170,"size":129316});
+registerFile("./images/goverd_line.png", {"name":"./images/goverd_line.png","mimeType":"image/png","path":"./_file/images/goverd_line.24346d78.png","lastModified":1751272261925,"size":131501});
+registerFile("./images/htex_line.png", {"name":"./images/htex_line.png","mimeType":"image/png","path":"./_file/images/htex_line.7d7aa0d1.png","lastModified":1751272320712,"size":106389});
+registerFile("./images/innovation_rankings.png", {"name":"./images/innovation_rankings.png","mimeType":"image/png","path":"./_file/images/innovation_rankings.ead64da7.png","lastModified":1751268903401,"size":219406});
+registerFile("./images/mfp_line.png", {"name":"./images/mfp_line.png","mimeType":"image/png","path":"./_file/images/mfp_line.30a04fe0.png","lastModified":1751272292971,"size":257569});
+registerFile("./images/mht_line.png", {"name":"./images/mht_line.png","mimeType":"image/png","path":"./_file/images/mht_line.600e5a8b.png","lastModified":1751272325496,"size":143851});
+registerFile("./images/patents_line.png", {"name":"./images/patents_line.png","mimeType":"image/png","path":"./_file/images/patents_line.9111461a.png","lastModified":1751272297911,"size":120572});
+registerFile("./images/ppcp_line.png", {"name":"./images/ppcp_line.png","mimeType":"image/png","path":"./_file/images/ppcp_line.f5ea6bce.png","lastModified":1751272304078,"size":129588});
+registerFile("./images/rnd_personnel_line.png", {"name":"./images/rnd_personnel_line.png","mimeType":"image/png","path":"./_file/images/rnd_personnel_line.16b57cb9.png","lastModified":1751272275483,"size":143935});
+registerFile("./images/tea_line.png", {"name":"./images/tea_line.png","mimeType":"image/png","path":"./_file/images/tea_line.44f4b503.png","lastModified":1751272286477,"size":170855});
+registerFile("./images/vc_line.png", {"name":"./images/vc_line.png","mimeType":"image/png","path":"./_file/images/vc_line.fab170d4.png","lastModified":1751272281143,"size":218432});
 
-define({id: "cade0394", inputs: ["FileAttachment","display"], outputs: ["rank_gii","rank_gii_std"], body: async (FileAttachment,display) => {
-// import { FileAttachement }
-const rank_gii = await FileAttachment("./images/rank_gii.png").image({style: "max-width: 100%;"})
-display(rank_gii)
+define({id: "c86c3d80", inputs: ["FileAttachment","display"], outputs: ["innovation_rankings"], body: async (FileAttachment,display) => {
+const innovation_rankings = await FileAttachment("./images/innovation_rankings.png").image({style: "max-width: 100%;"})
+display(innovation_rankings)
+return {innovation_rankings};
+}});
 
-const rank_gii_std = await FileAttachment("./images/rank_gii_final.png").image({style: "max-width: 100%;"})
-display(rank_gii_std)
-return {rank_gii,rank_gii_std};
+define({id: "3cf73b61", inputs: ["FileAttachment","display"], outputs: ["eis_arrow"], body: async (FileAttachment,display) => {
+const eis_arrow = await FileAttachment("./images/eis_arrow.png").image({style: "max-width: 100%;"})
+display(eis_arrow)
+return {eis_arrow};
+}});
+
+define({id: "5df0cd27", inputs: ["FileAttachment","display"], outputs: ["competitiveness_rankings"], body: async (FileAttachment,display) => {
+const competitiveness_rankings = await FileAttachment("./images/competitiveness_rankings.png").image({style: "max-width: 100%;"})
+display(competitiveness_rankings)
+return {competitiveness_rankings};
+}});
+
+define({id: "603f9ef7", inputs: ["FileAttachment","display"], outputs: ["gerd_line"], body: async (FileAttachment,display) => {
+const gerd_line = await FileAttachment("./images/gerd_line.png").image({style: "max-width: 100%;"})
+display(gerd_line)
+return {gerd_line};
+}});
+
+define({id: "967c8d58", inputs: ["FileAttachment","display"], outputs: ["goverd_line"], body: async (FileAttachment,display) => {
+const goverd_line = await FileAttachment("./images/goverd_line.png").image({style: "max-width: 100%;"})
+display(goverd_line)
+return {goverd_line};
+}});
+
+define({id: "61eac5c4", inputs: ["FileAttachment","display"], outputs: ["berd_gov_line"], body: async (FileAttachment,display) => {
+const berd_gov_line = await FileAttachment("./images/berd_gov_line.png").image({style: "max-width: 100%;"})
+display(berd_gov_line)
+return {berd_gov_line};
+}});
+
+define({id: "fefd7446", inputs: ["FileAttachment","display"], outputs: ["rnd_personnel_line"], body: async (FileAttachment,display) => {
+const rnd_personnel_line = await FileAttachment("./images/rnd_personnel_line.png").image({style: "max-width: 100%;"})
+display(rnd_personnel_line)
+return {rnd_personnel_line};
+}});
+
+define({id: "3ada2538", inputs: ["FileAttachment","display"], outputs: ["vc_line"], body: async (FileAttachment,display) => {
+const vc_line = await FileAttachment("./images/vc_line.png").image({style: "max-width: 100%;"})
+display(vc_line)
+return {vc_line};
+}});
+
+define({id: "225c3bdf", inputs: ["FileAttachment","display"], outputs: ["tea_line"], body: async (FileAttachment,display) => {
+const tea_line = await FileAttachment("./images/tea_line.png").image({style: "max-width: 100%;"})
+display(tea_line)
+return {tea_line};
+}});
+
+define({id: "cd627215", inputs: ["FileAttachment","display"], outputs: ["mfp_line"], body: async (FileAttachment,display) => {
+const mfp_line = await FileAttachment("./images/mfp_line.png").image({style: "max-width: 100%;"})
+display(mfp_line)
+return {mfp_line};
+}});
+
+define({id: "b6952b49", inputs: ["FileAttachment","display"], outputs: ["patents_line"], body: async (FileAttachment,display) => {
+const patents_line = await FileAttachment("./images/patents_line.png").image({style: "max-width: 100%;"})
+display(patents_line)
+return {patents_line};
+}});
+
+define({id: "cf0b8c43", inputs: ["FileAttachment","display"], outputs: ["ppcp_line"], body: async (FileAttachment,display) => {
+const ppcp_line = await FileAttachment("./images/ppcp_line.png").image({style: "max-width: 100%;"})
+display(ppcp_line)
+return {ppcp_line};
+}});
+
+define({id: "20b46cf6", inputs: ["FileAttachment","display"], outputs: ["ert_line"], body: async (FileAttachment,display) => {
+const ert_line = await FileAttachment("./images/ert_line.png").image({style: "max-width: 100%;"})
+display(ert_line)
+return {ert_line};
+}});
+
+define({id: "665c5af6", inputs: ["FileAttachment","display"], outputs: ["htex_line"], body: async (FileAttachment,display) => {
+const htex_line = await FileAttachment("./images/htex_line.png").image({style: "max-width: 100%;"})
+display(htex_line)
+return {htex_line};
+}});
+
+define({id: "9708bbc8", inputs: ["FileAttachment","display"], outputs: ["mht_line"], body: async (FileAttachment,display) => {
+const mht_line = await FileAttachment("./images/mht_line.png").image({style: "max-width: 100%;"})
+display(mht_line)
+return {mht_line};
 }});
 
 </script>
@@ -52,18 +145,73 @@ return {rank_gii,rank_gii_std};
 </nav>
 <script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
-<header id="observablehq-header">
-Header
-</header>
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#research-and-development-a-rnd">Research &amp; Development (A_RND)</a></li>
+<li class="observablehq-secondary-link"><a href="#entrepreneurship-and-start-ups-b-ens">Entrepreneurship and Start-ups (B_ENS)</a></li>
+<li class="observablehq-secondary-link"><a href="#innovation-activities-c-inno">Innovation Activities (C_INNO)</a></li>
+<li class="observablehq-secondary-link"><a href="#knowledge-and-technology-transfer-d-ktt">Knowledge and Technology Transfer (D_KTT)</a></li>
+<li class="observablehq-secondary-link"><a href="#sustainability-and-high-tech-exports-e-snd">Sustainability and High-tech Exports (E_SND)</a></li>
+</ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:cade0394:--></div>
+<h1 id="png-images" tabindex="-1"><a class="observablehq-header-anchor" href="#png-images">PNG Images</a></h1>
+<h2 id="index" tabindex="-1"><a class="observablehq-header-anchor" href="#index">Index</a></h2>
+<h3 id="innovation-rankings-eis-gii-eiq" tabindex="-1"><a class="observablehq-header-anchor" href="#innovation-rankings-eis-gii-eiq">Innovation Rankings (EIS, GII, EIQ)</a></h3>
+<div class="observablehq observablehq--block"><!--:c86c3d80:--></div>
+<figcaption>Sources: WIPO (2024), European Commission (2024) &amp; Economist Impact (2023)</figcaption>
+<h3 id="eis-arrow-chart-2017-2024-progress" tabindex="-1"><a class="observablehq-header-anchor" href="#eis-arrow-chart-2017-2024-progress">EIS Arrow Chart (2017-2024 Progress)</a></h3>
+<div class="observablehq observablehq--block"><!--:3cf73b61:--></div>
+<figcaption>Source: European Commission (2024)</figcaption>
+<h3 id="competitiveness-rankings-wcr-wdcr" tabindex="-1"><a class="observablehq-header-anchor" href="#competitiveness-rankings-wcr-wdcr">Competitiveness Rankings (WCR, WDCR)</a></h3>
+<div class="observablehq observablehq--block"><!--:5df0cd27:--></div>
+<h2 id="research-and-development-a-rnd" tabindex="-1"><a class="observablehq-header-anchor" href="#research-and-development-a-rnd">Research &amp; Development (A_RND)</a></h2>
+<h3 id="gross-domestic-expenditure-on-r-and-d-gerd-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gross-domestic-expenditure-on-r-and-d-gerd-in-of-gdp-2017-2022">Gross Domestic Expenditure on R&amp;D (GERD) in % of GDP 2017–2022</a></h3>
+<div class="observablehq observablehq--block"><!--:603f9ef7:--></div>
+<figcaption>Source: OECD Main Science and Technology Indicators (MSTI)</figcaption>
+<h3 id="gerd-financed-by-government-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-financed-by-government-in-of-gdp-2017-2022">GERD Financed by Government in % of GDP 2017–2022</a></h3>
+<div class="observablehq observablehq--block"><!--:967c8d58:--></div>
+<figcaption>Source: OECD Main Science and Technology Indicators (MSTI)</figcaption>
+<h3 id="business-expenditure-on-r-and-d-berd-financed-by-government" tabindex="-1"><a class="observablehq-header-anchor" href="#business-expenditure-on-r-and-d-berd-financed-by-government">Business Expenditure on R&amp;D (BERD) Financed by Government</a></h3>
+<div class="observablehq observablehq--block"><!--:61eac5c4:--></div>
+<figcaption>Source: OECD Main Science and Technology Indicators (MSTI)</figcaption>
+<h3 id="r-and-d-personnel-per-1-000-employment-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-personnel-per-1-000-employment-2017-2022">R&amp;D Personnel per 1,000 Employment 2017–2022</a></h3>
+<div class="observablehq observablehq--block"><!--:fefd7446:--></div>
+<figcaption>Source: OECD Main Science and Technology Indicators (MSTI)</figcaption>
+<h2 id="entrepreneurship-and-start-ups-b-ens" tabindex="-1"><a class="observablehq-header-anchor" href="#entrepreneurship-and-start-ups-b-ens">Entrepreneurship and Start-ups (B_ENS)</a></h2>
+<h3 id="venture-capital-investments-in-of-gdp-2017-2024" tabindex="-1"><a class="observablehq-header-anchor" href="#venture-capital-investments-in-of-gdp-2017-2024">Venture Capital Investments in % of GDP 2017–2024</a></h3>
+<div class="observablehq observablehq--block"><!--:3ada2538:--></div>
+<figcaption>Source: OECD Venture Capital investments</figcaption>
+<h3 id="total-early-stage-entrepreneurial-activity-tea" tabindex="-1"><a class="observablehq-header-anchor" href="#total-early-stage-entrepreneurial-activity-tea">Total Early-stage Entrepreneurial Activity (TEA)</a></h3>
+<div class="observablehq observablehq--block"><!--:225c3bdf:--></div>
+<figcaption>Source: Global Entrepreneurship Monitor</figcaption>
+<h2 id="innovation-activities-c-inno" tabindex="-1"><a class="observablehq-header-anchor" href="#innovation-activities-c-inno">Innovation Activities (C_INNO)</a></h2>
+<h3 id="multifactor-productivity-index-2015-current-prices" tabindex="-1"><a class="observablehq-header-anchor" href="#multifactor-productivity-index-2015-current-prices">Multifactor Productivity (Index = 2015, Current prices)</a></h3>
+<div class="observablehq observablehq--block"><!--:cd627215:--></div>
+<figcaption>Source: OECD Productivity database</figcaption>
+<h2 id="knowledge-and-technology-transfer-d-ktt" tabindex="-1"><a class="observablehq-header-anchor" href="#knowledge-and-technology-transfer-d-ktt">Knowledge and Technology Transfer (D_KTT)</a></h2>
+<h3 id="pct-patent-applications-per-billion-gdp-in-pps" tabindex="-1"><a class="observablehq-header-anchor" href="#pct-patent-applications-per-billion-gdp-in-pps">PCT Patent Applications per Billion GDP (in PPS)</a></h3>
+<div class="observablehq observablehq--block"><!--:b6952b49:--></div>
+<figcaption>Source: European Commission / WIPO</figcaption>
+<h3 id="public-private-co-publications" tabindex="-1"><a class="observablehq-header-anchor" href="#public-private-co-publications">Public-private Co-publications</a></h3>
+<div class="observablehq observablehq--block"><!--:cf0b8c43:--></div>
+<figcaption>Source: European Commission</figcaption>
+<h2 id="sustainability-and-high-tech-exports-e-snd" tabindex="-1"><a class="observablehq-header-anchor" href="#sustainability-and-high-tech-exports-e-snd">Sustainability and High-tech Exports (E_SND)</a></h2>
+<h3 id="development-of-environment-related-technologies-percentage-of-all-technologies" tabindex="-1"><a class="observablehq-header-anchor" href="#development-of-environment-related-technologies-percentage-of-all-technologies">Development of Environment-related Technologies, Percentage of All Technologies</a></h3>
+<div class="observablehq observablehq--block"><!--:20b46cf6:--></div>
+<figcaption>Source: European Commission, OECD Green Growth database</figcaption>
+<h3 id="exports-of-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-high-technology-products-as-a-share-of-total-products-exports">Exports of High Technology Products as a Share of Total Products Exports</a></h3>
+<div class="observablehq observablehq--block"><!--:665c5af6:--></div>
+<figcaption>Source: European Commission</figcaption>
+<h3 id="exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports">Exports of Medium and High Technology Products as a Share of Total Products Exports</a></h3>
+<div class="observablehq observablehq--block"><!--:9708bbc8:--></div>
+<figcaption>Source: European Commission</figcaption>
 </main>
 <footer id="observablehq-footer">
-<div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>
+<div>Authors: <a href="mailto:adrianriser@innosuisse.ch" target="_blank" rel="noopener noreferrer">Adrian Riser</a> and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 25.06.2025 • <a href="https://observablehq.com/framework/" target="_blank" rel="noopener noreferrer">Built with Observable.</a></div>
 </footer>
 </div>
 </body>

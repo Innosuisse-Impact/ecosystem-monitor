@@ -13,9 +13,9 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.11179a13.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.7446718b.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.cb7e2383.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.6d7f4138.js">
 <link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
@@ -98,7 +98,7 @@
 <link rel="modulepreload" href="./_node/delaunator@5.0.1/index.70ae1478.js">
 <link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/aa00730b.js">
 <link rel="modulepreload" href="./_node/robust-predicates@3.0.2/index.bdc459cc.js">
-<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<link rel="icon" href="./_file/favicon-32x32.d06a8ecd.png" type="image/png" sizes="32x32">
 <script type="module">
 
 import {define} from "./_observablehq/client.19f413ec.js";
@@ -110,7 +110,7 @@ registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeT
 registerFile("./data/switt_startup_2024.csv", {"name":"./data/switt_startup_2024.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2024.69dc4a42.csv","lastModified":1749203568598,"size":1175});
 
 define({id: "f7c4dea9", inputs: ["FileAttachment","subtractYears"], outputs: ["bar_stacked_y","color_range","color_scale","colorLegend","countries","line_oecd","df","df_eis","df_switt","df_patents","df_ppcp"], body: async (FileAttachment,subtractYears) => {
-const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.11179a13.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.cb7e2383.js")]);
+const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.6d7f4138.js")]);
 
 // OECD MSTI Daten laden
 const df = await FileAttachment("./data/df.csv").csv({ typed: true });
@@ -241,7 +241,7 @@ return {subtractYears};
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./c_inno"><span>Innovation Activities</span></a><a rel="next" href="./e_snd"><span>Sustainability and High-tech Exports</span></a></nav>
-<div>Authors: Adrian Riser and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 11.06.2025 • Built with Observable.</div>
+<div>Authors: <a href="mailto:adrianriser@innosuisse.ch" target="_blank" rel="noopener noreferrer">Adrian Riser</a> and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 25.06.2025 • <a href="https://observablehq.com/framework/" target="_blank" rel="noopener noreferrer">Built with Observable.</a></div>
 </footer>
 </div>
 </body>
