@@ -112,6 +112,7 @@ registerFile("./data/df_oecd_mfp.csv", {"name":"./data/df_oecd_mfp.csv","mimeTyp
 registerFile("./data/eurostat_pct_rd.txt", {"name":"./data/eurostat_pct_rd.txt","mimeType":"text/plain","path":"./_file/data/eurostat_pct_rd.82571fe6.txt","lastModified":1749202398923,"size":44518});
 registerFile("./data/innovationserhebung.csv", {"name":"./data/innovationserhebung.csv","mimeType":"text/csv","path":"./_file/data/innovationserhebung.7807a355.csv","lastModified":1750845146846,"size":20634});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
+registerFile("./images/mfp_line.png", {"name":"./images/mfp_line.png","mimeType":"image/png","path":"./_file/images/mfp_line.30a04fe0.png","lastModified":1751272098491,"size":257569});
 
 define({id: "52693e24", inputs: ["FileAttachment"], outputs: ["aq","line_cis","line_oecd","line_oecd_mfp","line_rank","lin_reg","color_scale","colorLegend","countries","eurostat_pct_rd","domain_x","eurostat_pct_rd_filtered","ie","df_oecd_mfp","df_oecd_mfp_plot"], body: async (FileAttachment) => {
 const [aq, {line_cis, line_oecd, line_oecd_mfp, line_rank}, {lin_reg}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_npm/arquero@8.0.3/175c2cad.js"), import("./_import/components/plots/line_plots.6d7f4138.js"), import("./_import/components/plots/lin_reg.79e82931.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
@@ -230,9 +231,9 @@ display(line_cis(eurostat_pct_rd_filtered, "pct_sales_inno", domain_x, color_sca
 // The most cited obstacles to innovation are mostly concerning its economic viability: The cost of innovation projects, lack of equity and debt capital and long amortisation periods. The shortage of skilled labour and R&D-personnel comes in 4th and 5th.
 }});
 
-define({id: "b8433528", mode: "inline", inputs: ["line_oecd","df_oecd_mfp_plot","display"], body: async (line_oecd,df_oecd_mfp_plot,display) => {
+define({id: "f00d069f", mode: "inline", inputs: ["line_oecd","df_oecd_mfp_plot","FileAttachment","display"], body: async (line_oecd,df_oecd_mfp_plot,FileAttachment,display) => {
 display(await(
-line_oecd(df_oecd_mfp_plot, "Multifactor productivity (Index = 2015, Current prices)",false,"OECD Productivity database","https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_PDB@DF_PDB_GR,1.0/.A.MFPH..IX.V...?startPeriod=1998&format=csvfilewithlabels", 1, false, false)
+line_oecd(df_oecd_mfp_plot, "Multifactor productivity (Index = 2015, Current prices)",false,"OECD Productivity database","https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_PDB@DF_PDB_GR,1.0/.A.MFPH..IX.V...?startPeriod=1998&format=csvfilewithlabels", 1, false, false, FileAttachment("./images/mfp_line.png").href)
 ))
 }});
 
@@ -303,7 +304,7 @@ line_oecd(df_oecd_mfp_plot, "Multifactor productivity (Index = 2015, Current pri
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:554f63b9:--></div>
 <h3 id="productivity-is-increasing" tabindex="-1"><a class="observablehq-header-anchor" href="#productivity-is-increasing">Productivity is increasing</a></h3>
 <p>Survey results show that process innovations are leading to significant reductions in production costs, particularly among SMEs. This is reflected in the development of multifactor productivity (MFP), which points to positive productivity effects from innovation activities. MFP is a measure of economic efficiency that captures the portion of output growth that cannot be explained by increases in labor and capital inputs alone. It reflects how effectively an economy or firm combines its resources to produce goods and services, essentially measuring the "residual" productivity gains that stem from technological progress, improved processes, organizational changes, and other innovations.</p>
-<div><observablehq-loading></observablehq-loading><!--:b8433528:--></div>
+<div><observablehq-loading></observablehq-loading><!--:f00d069f:--></div>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
 <li>KOF (<a href="https://innovationserhebung.ch/innovationsbericht_2023/" target="_blank" rel="noopener noreferrer">2025</a>) Innovation report 2023</li>

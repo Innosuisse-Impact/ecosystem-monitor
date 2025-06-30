@@ -122,6 +122,10 @@ registerFile("./data/df_oecd_msti.csv", {"name":"./data/df_oecd_msti.csv","mimeT
 registerFile("./data/df_rnd_type.csv", {"name":"./data/df_rnd_type.csv","mimeType":"text/csv","path":"./_file/data/df_rnd_type.b2801318.csv","lastModified":1750325921331,"size":7595});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 registerFile("./data/rnd_ch_2021.csv", {"name":"./data/rnd_ch_2021.csv","mimeType":"text/csv","path":"./_file/data/rnd_ch_2021.669c3bc4.csv","lastModified":1750074088261,"size":579});
+registerFile("./images/berd_gov_line.png", {"name":"./images/berd_gov_line.png","mimeType":"image/png","path":"./_file/images/berd_gov_line.d101ab24.png","lastModified":1751283105664,"size":164090});
+registerFile("./images/gerd_line.png", {"name":"./images/gerd_line.png","mimeType":"image/png","path":"./_file/images/gerd_line.47e72601.png","lastModified":1751275677403,"size":119389});
+registerFile("./images/goverd_line.png", {"name":"./images/goverd_line.png","mimeType":"image/png","path":"./_file/images/goverd_line.24346d78.png","lastModified":1751032341841,"size":131501});
+registerFile("./images/rnd_personnel_line.png", {"name":"./images/rnd_personnel_line.png","mimeType":"image/png","path":"./_file/images/rnd_personnel_line.16b57cb9.png","lastModified":1751283106208,"size":143935});
 
 define({id: "8f0b3658", inputs: ["FileAttachment"], outputs: ["line_cis","line_oecd","line_oecd_gbard","bar_stacked_y_normalized","area_stacked_y_gerd_ch","bar_stacked_x","country_iso3","iso3_country","color_scale","colorLegend","countries","rnd_ch_sankey","aq","df_gtard","df_oecd_msti","df_rnd_ch","df_rnd_type","filter_oecd_msti","df_gerd","df_gerd_gov","df_berd_gov","df_rnd_personnel","df_gbard_tax","df_gerd_type","df_gerd_type1","domain1","order1","df_gerd_type3","df_gerd_type2","domain2","order2","rnd_type","df_ch_gerd"], body: async (FileAttachment) => {
 const [{line_cis, line_oecd, line_oecd_gbard}, {bar_stacked_y_normalized, area_stacked_y_gerd_ch}, {bar_stacked_x}, {country_iso3, iso3_country}, {color_scale, colorLegend, countries}, {rnd_ch_sankey}, aq] = await Promise.all([import("./_import/components/plots/line_plots.6d7f4138.js"), import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/plots/bar_stacked_x.fcd8d3e3.js"), import("./_import/components/utils/countries.10854bad.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/sankey.f39e7441.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
@@ -227,8 +231,8 @@ colorLegend("USA")
 ))
 }});
 
-define({id: "0b997cff", inputs: ["display","line_oecd","df_gerd"], body: (display,line_oecd,df_gerd) => {
-display(line_oecd(df_gerd,"% of GDP",false,"OECD Main Science and Technology Indicators (MSTI)","https://oe.cd/msti", 1, true, true, "_file/images/gerd_line.png"))
+define({id: "f0844776", inputs: ["display","line_oecd","df_gerd","FileAttachment"], body: (display,line_oecd,df_gerd,FileAttachment) => {
+display(line_oecd(df_gerd,"% of GDP",false,"OECD Main Science and Technology Indicators (MSTI)","https://oe.cd/msti", 1, true, true, FileAttachment("./images/gerd_line.png").href))
 }});
 
 define({id: "e590ca54", inputs: ["Inputs","view"], outputs: ["normalizeInput","normalize"], body: (Inputs,view) => {
@@ -296,8 +300,8 @@ colorLegend("ISR")
 ))
 }});
 
-define({id: "7abc8307", inputs: ["display","line_oecd","df_gerd_gov"], body: (display,line_oecd,df_gerd_gov) => {
-display(line_oecd(df_gerd_gov))
+define({id: "66931e20", inputs: ["display","line_oecd","df_gerd_gov","FileAttachment"], body: (display,line_oecd,df_gerd_gov,FileAttachment) => {
+display(line_oecd(df_gerd_gov, "% of GDP", false, "OECD Main Science and Technology Indicators (MSTI)", "https://oe.cd/msti", 1, true, true, FileAttachment("./images/goverd_line.png").href))
 }});
 
 define({id: "4e058e15-2", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
@@ -306,8 +310,8 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "e3799796", inputs: ["display","line_oecd","df_berd_gov"], body: (display,line_oecd,df_berd_gov) => {
-display(line_oecd(df_berd_gov, "% of business enterprise expenditure on R&D"))
+define({id: "6d3a81e9", inputs: ["display","line_oecd","df_berd_gov","FileAttachment"], body: (display,line_oecd,df_berd_gov,FileAttachment) => {
+display(line_oecd(df_berd_gov, "% of business enterprise expenditure on R&D", false, "OECD Main Science and Technology Indicators (MSTI)", "https://oe.cd/msti", 1, false, true, FileAttachment("./images/berd_gov_line.png").href))
 // title: 'Business expenditure on R&D (BERD) financed by government'
 }});
 
@@ -321,8 +325,8 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "a9ef31f6", inputs: ["display","line_oecd","df_rnd_personnel"], body: (display,line_oecd,df_rnd_personnel) => {
-display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment",undefined,undefined,undefined,undefined,false)) 
+define({id: "d5d79d3d", inputs: ["display","line_oecd","df_rnd_personnel","FileAttachment"], body: (display,line_oecd,df_rnd_personnel,FileAttachment) => {
+display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment", false, "OECD Main Science and Technology Indicators (MSTI)", "https://oe.cd/msti", 1, false, false, FileAttachment("./images/rnd_personnel_line.png").href)) 
 // title: 'R&D personnel per 1\'000 employment',
 }});
 
@@ -371,7 +375,7 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment",undefine
 <h2 id="r-and-d-expenditure" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-expenditure">R&amp;D Expenditure</a></h2>
 <h3 id="gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2022">Gross Domestic Expenditure on Research and Development (GERD) in % of GDP 2017–2022</a></h3>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is among the top five countries in R&amp;D spending as a percentage of GDP (3.3% or CHF 24.6 billion). Its GERD has grown slightly by 0.2 percentage points from 2017 to 2021. The R&amp;D expenditures of <observablehq-loading></observablehq-loading><!--:a05991af:-->, <observablehq-loading></observablehq-loading><!--:9a4da08b:-->, and the <observablehq-loading></observablehq-loading><!--:c55312a5:--> have increased more significantly, while others have stagnated on levels comparable to Switzerland. In the <a href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2021">graph above</a>, GERD corresponds to the R&amp;D expenditure in the column on the right without the expenditure abroad.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:0b997cff:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f0844776:--></div>
 <h3 id="gerd-by-sector-in-of-gdp-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-by-sector-in-of-gdp-2021">GERD by sector in % of GDP 2021</a></h3>
 <p>Research and Development in Switzerland is mainly performed by <span style="border-bottom: solid 2px #0571b0">private businesses</span> or <span style="border-bottom: solid 2px #FCE300">higher education institutions</span> and rarely by the <span style="border-bottom: solid 2px #06F7DA">government</span> itself. Switzerland has one of the lowest share of R&amp;D performed by government institutions. Sweden and Denmark's pattern of research and development most closely mirrors that of Switzerland. The high proportion of R&amp;D carried out by the private sector in Israel is also striking.</p>
 <div class="observablehq observablehq--block"><!--:e590ca54:--></div>
@@ -387,10 +391,10 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment",undefine
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:817244fa:--></div>
 <h3 id="gerd-financed-by-government-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-financed-by-government-in-of-gdp-2017-2022">GERD financed by government in % of GDP 2017–2022</a></h3>
 <p>While <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s government-financed R&amp;D remained stable in the last 5 years, <observablehq-loading></observablehq-loading><!--:294697dd:--> and <observablehq-loading></observablehq-loading><!--:9a4da08b-1:--> have increased their financing ratio to GDP. Interestingly, <observablehq-loading></observablehq-loading><!--:a05991af-1:--> has a comparatively low share of government-financed GERD. Its R&amp;D is mainly driven by private funding, especially from abroad (cf. also <a href="./b_ens#venture-capital-investments-in-of-gdp-2017-2024">venture capital investments</a>).</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:7abc8307:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:66931e20:--></div>
 <h3 id="business-expenditure-on-r-and-d-berd-financed-by-government" tabindex="-1"><a class="observablehq-header-anchor" href="#business-expenditure-on-r-and-d-berd-financed-by-government">Business expenditure on R&amp;D (BERD) financed by government</a></h3>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15-2:-->'s restrained approach to direct funding of BERD stands out clearly in an international comparison. Compared to other countries there has been very little direct financial support for business R&amp;D. The statement still holds if tax incentives for R&amp;D are included, see note.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e3799796:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:6d3a81e9:--></div>
 <div class="note" label="Note">
   <details>
     <summary>
@@ -416,7 +420,7 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment",undefine
 </div>
 <h2 id="r-and-d-personnel" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-personnel">R&amp;D Personnel</a></h2>
 <p>The share of personnel employed in R&amp;D has increased over the years. <observablehq-loading></observablehq-loading><!--:4e058e15-3:--> is no exception.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:a9ef31f6:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d5d79d3d:--></div>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
 <li>For more detail, see chapter 4 of the Research and Innovation in Switzerland 2022 Interim Report: SBFI (<a href="https://www.sbfi.admin.ch/sbfi/de/home/forschung-und-innovation/forschung-und-innovation-in-der-schweiz/f-und-i-bericht.html" target="_blank" rel="noopener noreferrer">2022</a>) Forschung und Innovation in der Schweiz – Zwischenbericht 2022</li>

@@ -13,7 +13,7 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/rank.6ea4c073.js">
+<link rel="modulepreload" href="./_import/components/plots/rank.84e8a3c2.js">
 <link rel="modulepreload" href="./_import/components/plots/arrow_y.c792346d.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
 <link rel="modulepreload" href="./_npm/arquero@8.0.3/175c2cad.js">
@@ -110,9 +110,11 @@ import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 registerFile("./data/df_rank.csv", {"name":"./data/df_rank.csv","mimeType":"text/csv","path":"./_file/data/df_rank.117d0b4e.csv","lastModified":1750843137065,"size":142056});
 registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
+registerFile("./images/competitiveness_rankings.png", {"name":"./images/competitiveness_rankings.png","mimeType":"image/png","path":"./_file/images/competitiveness_rankings.0d80dd43.png","lastModified":1751032488750,"size":263034});
+registerFile("./images/innovation_rankings.png", {"name":"./images/innovation_rankings.png","mimeType":"image/png","path":"./_file/images/innovation_rankings.ead64da7.png","lastModified":1751032546661,"size":219406});
 
 define({id: "30f71b4b", inputs: ["FileAttachment","aq"], outputs: ["plot_eis","plot_rank_bump","arrow_eis","color_scale","colorLegend","countries","df_eis","df_rank","df_ranking","df_eis_filtered","df_eis_pivoted","df_eis_sorted"], body: async (FileAttachment,aq) => {
-const [{plot_eis, plot_rank_bump}, {arrow_eis}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/rank.6ea4c073.js"), import("./_import/components/plots/arrow_y.c792346d.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
+const [{plot_eis, plot_rank_bump}, {arrow_eis}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/rank.84e8a3c2.js"), import("./_import/components/plots/arrow_y.c792346d.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
 //import { iso3_country } from "./components/utils/countries.js"
 // // EU European Innovation Scoreboard Daten laden
 const df_eis = await FileAttachment("./data/eurostat_eis_values.csv").csv({typed: true});
@@ -165,8 +167,8 @@ colorLegend("SGP")
 ))
 }});
 
-define({id: "30b2d9bc", inputs: ["display","plot_rank_bump","df_ranking","html"], body: (display,plot_rank_bump,df_ranking,html) => {
-display(plot_rank_bump(df_ranking, ["EIS", "GII", "EIQ"], true, html`Sources: WIPO (2024), European Commission (2024) & Economist Impact (2023)`))
+define({id: "9badb3b3", inputs: ["display","plot_rank_bump","df_ranking","html","FileAttachment"], body: (display,plot_rank_bump,df_ranking,html,FileAttachment) => {
+display(plot_rank_bump(df_ranking, ["EIS", "GII", "EIQ"], true, html`Sources: WIPO (2024), European Commission (2024) & Economist Impact (2023)`, FileAttachment("./images/innovation_rankings.png").href))
 // display(plot_rank(df_ranking, domain_rank_gii, ["EIS", "GII", "EIQ"],"Sources: WIPO (2024), European Commission (2024) & Economist Impact (2023)", true))
 }});
 
@@ -222,8 +224,8 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "6482a121", inputs: ["display","plot_rank_bump","df_ranking"], body: (display,plot_rank_bump,df_ranking) => {
-display(plot_rank_bump(df_ranking, ["WCR", "WDCR"], false,"Source: IMD World Competitiveness Center"))
+define({id: "b1f236c4", inputs: ["display","plot_rank_bump","df_ranking","FileAttachment"], body: (display,plot_rank_bump,df_ranking,FileAttachment) => {
+display(plot_rank_bump(df_ranking, ["WCR", "WDCR"], false,"Source: IMD World Competitiveness Center", FileAttachment("./images/competitiveness_rankings.png").href))
 }});
 
 define({id: "e7147e10", body: () => {
@@ -309,7 +311,7 @@ This is a new version of a previously internal Innovation Ecosystem Monitor publ
 </div>
 <h2 id="switzerland-maintains-its-position-on-top" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerland-maintains-its-position-on-top">Switzerland maintains its position on top</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:-->'s top position in the two most prominent international innovation rankings is stable. Generally, there is not a lot of movement among the top 10 countries in both the GII and the EIS index. Only <observablehq-loading></observablehq-loading><!--:9a4da08b:--> and <observablehq-loading></observablehq-loading><!--:263d7e7c:--> have made significant progress in the rankings.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:30b2d9bc:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:9badb3b3:--></div>
 <p>The Economist's Impact Unit's Innovation Quotient (EIQ) shows that not all innovation indices put Switzerland on top (and that ranking positions can be influenced by the selection of indicators: Compare e.g. the <observablehq-loading></observablehq-loading><!--:3e3682b0:-->, the <observablehq-loading></observablehq-loading><!--:c55312a5:--> or <observablehq-loading></observablehq-loading><!--:1a7588f8:--> across the three rankings).</p>
 <div class="note" label="Note"><details>
   <summary>Why is Switzerland not on top in the EIQ?</summary>
@@ -405,7 +407,7 @@ This is a new version of a previously internal Innovation Ecosystem Monitor publ
 </table>
 <h2 id="switzerland-is-one-of-the-most-competitive-countries" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerland-is-one-of-the-most-competitive-countries">Switzerland is one of the most competitive countries</a></h2>
 <p><mark>New:</mark>&nbsp;&nbsp;&nbsp;<observablehq-loading></observablehq-loading><!--:4e058e15-2:--> is also well positioned in other, less innovation focused rankings, such as IMD's competitiveness rankings, where it has recently made significant progress in both the competitiveness and the digital competitiveness ranking.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:6482a121:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:b1f236c4:--></div>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
 <li>Wipo (<a href="https://www.wipo.int/web-publications/global-innovation-index-2024/en/" target="_blank" rel="noopener noreferrer">2024</a>) Global Innovation Index</li>

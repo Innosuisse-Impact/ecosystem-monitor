@@ -108,6 +108,8 @@ registerFile("./data/df.csv", {"name":"./data/df.csv","mimeType":"text/csv","pat
 registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 registerFile("./data/switt_startup_2024.csv", {"name":"./data/switt_startup_2024.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2024.69dc4a42.csv","lastModified":1749203568598,"size":1175});
+registerFile("./images/patents_line.png", {"name":"./images/patents_line.png","mimeType":"image/png","path":"./_file/images/patents_line.9111461a.png","lastModified":1751270028340,"size":120572});
+registerFile("./images/ppcp_line.png", {"name":"./images/ppcp_line.png","mimeType":"image/png","path":"./_file/images/ppcp_line.f5ea6bce.png","lastModified":1751270028340,"size":129588});
 
 define({id: "f7c4dea9", inputs: ["FileAttachment","subtractYears"], outputs: ["bar_stacked_y","color_range","color_scale","colorLegend","countries","line_oecd","df","df_eis","df_switt","df_patents","df_ppcp"], body: async (FileAttachment,subtractYears) => {
 const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.6d7f4138.js")]);
@@ -152,8 +154,8 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "8cffd5d4", inputs: ["display","line_oecd","df_patents"], body: (display,line_oecd,df_patents) => {
-display(line_oecd(df_patents, "PCT patent applications per billion GDP (in PPS)",false, "European Commission / WIPO","", 1, false))
+define({id: "d5f74c7c", inputs: ["display","line_oecd","df_patents","FileAttachment"], body: (display,line_oecd,df_patents,FileAttachment) => {
+display(line_oecd(df_patents, "PCT patent applications per billion GDP (in PPS)",false, "European Commission / WIPO","", 1, false, true, FileAttachment("./images/patents_line.png").href))
 }});
 
 define({id: "4e058e15-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
@@ -168,8 +170,8 @@ colorLegend("DNK")
 ))
 }});
 
-define({id: "9b9d8a33", inputs: ["display","line_oecd","df_ppcp"], body: (display,line_oecd,df_ppcp) => {
-display(line_oecd(df_ppcp,"Public-private publications per million population", false, "European Commission", "", 0, false))
+define({id: "53f9232c", inputs: ["display","line_oecd","df_ppcp","FileAttachment"], body: (display,line_oecd,df_ppcp,FileAttachment) => {
+display(line_oecd(df_ppcp,"Public-private publications per million population", false, "European Commission", "", 0, false, true, FileAttachment("./images/ppcp_line.png").href))
 }});
 
 define({id: "dbe1c9ae", inputs: ["display","bar_stacked_y","df_switt"], body: (display,bar_stacked_y,df_switt) => {
@@ -221,10 +223,10 @@ return {subtractYears};
 <h2 id="pct-patent-applications-per-billion-gdp-in-pps" tabindex="-1"><a class="observablehq-header-anchor" href="#pct-patent-applications-per-billion-gdp-in-pps">PCT patent applications per billion GDP (in PPS)</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is well-positioned and its PCT patent applications per billion GDP have grown steadliy with the exceptions of 2019. This holds true as well if we look at patents per capita.</p>
 <p>PCT patents are international patents filed through the WIPO-administered Patent Cooperation Treaty. It makes it possible to seek patent protection for an invention simultaneously in a number of countries by filing a single application.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:8cffd5d4:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d5f74c7c:--></div>
 <h2 id="public-private-co-publications" tabindex="-1"><a class="observablehq-header-anchor" href="#public-private-co-publications">Public-private co-publications</a></h2>
 <p>One of the strengths in the international comparison are <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s public-private co-publications. Only <observablehq-loading></observablehq-loading><!--:1a7588f8:--> can keep pace. The Innosuisse monitoring data shows that Innovation Projects with Implementation Partner make their contribution to this knowldege transfer between research and business (54 % report a co-publicaton as one result of their Innovation Project).</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:9b9d8a33:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:53f9232c:--></div>
 <h2 id="start-ups-from-swiss-public-research-organisations" tabindex="-1"><a class="observablehq-header-anchor" href="#start-ups-from-swiss-public-research-organisations">Start-ups from Swiss public research organisations</a></h2>
 <p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;Universities and other public research organisations have become an important driver of start-up growth in Switzerland. The decline in recent years both in total <span style="border-bottom: solid 2px #0571b0;">start-ups</span> and more pronounced in <span style="border-bottom: solid 2px #06F7DA;">spin-offs (start-ups with a formal licence of IP)</span> has been halted in 2023 with a new record of founded start-ups and slightly higher number of spin-offs.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:dbe1c9ae:--></div>

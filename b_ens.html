@@ -122,6 +122,8 @@ registerFile("./data/df_unicorns_ch.csv", {"name":"./data/df_unicorns_ch.csv","m
 registerFile("./data/df_unicorns_country.csv", {"name":"./data/df_unicorns_country.csv","mimeType":"text/csv","path":"./_file/data/df_unicorns_country.74964139.csv","lastModified":1749115345173,"size":929});
 registerFile("./data/gem_tea_2018-2024.csv", {"name":"./data/gem_tea_2018-2024.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2024.13589a2d.csv","lastModified":1749219487650,"size":1301});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
+registerFile("./images/tea_line.png", {"name":"./images/tea_line.png","mimeType":"image/png","path":"./_file/images/tea_line.44f4b503.png","lastModified":1751270028347,"size":170855});
+registerFile("./images/vc_line.png", {"name":"./images/vc_line.png","mimeType":"image/png","path":"./_file/images/vc_line.fab170d4.png","lastModified":1751272043534,"size":218432});
 
 define({id: "47f4dc99", inputs: ["FileAttachment","isr"], outputs: ["color_scale","color_range","colorLegend","countries","line_oecd","bar_x","bar_x_unicorn","bar_vc_ch","arrow_unicorns","aq","df_oecd_vc","df_vc_gdp","df_gem_tea","df_vc_ch","countries_filtered","df_vc","df_tea","df_vc_ch_rounds","df_vc_ch_fin","df_epo","df_oecd_msti","df_unicorns_country","df_unicorns_ch","gdp","df_ug"], body: async (FileAttachment,isr) => {
 const [{color_scale, color_range, colorLegend, countries}, {line_oecd}, {bar_x, bar_x_unicorn}, {bar_vc_ch}, {arrow_unicorns}, aq] = await Promise.all([import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.6d7f4138.js"), import("./_import/components/plots/bar_x.18bdc39d.js"), import("./_import/components/plots/bar_y.5a8da785.js"), import("./_import/components/plots/arrow_y.c792346d.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
@@ -231,8 +233,8 @@ const isr = view(
 return {isr};
 }});
 
-define({id: "e51190c9", inputs: ["display","line_oecd","df_vc"], body: (display,line_oecd,df_vc) => {
-display(line_oecd(df_vc,"VC investments in % of GDP",false,"OECD Venture Capital investments","https://data-explorer.oecd.org/vis?lc=en&tm=invest&pg=0&snb=107&vw=tb&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_VC%40DF_VC_INV&df[ag]=OECD.SDD.TPS&df[vs]=1.0&pd=2007%2C&dq=...PT_B1GQ.A&ly[rw]=BUSINESS_DEVELOPMENT_STAGE&ly[cl]=TIME_PERIOD&ly[rs]=REF_AREA&to[TIME_PERIOD]=false"))
+define({id: "49978783", inputs: ["display","line_oecd","df_vc","FileAttachment"], body: (display,line_oecd,df_vc,FileAttachment) => {
+display(line_oecd(df_vc,"VC investments in % of GDP",false,"OECD Venture Capital investments","https://data-explorer.oecd.org/vis?lc=en&tm=invest&pg=0&snb=107&vw=tb&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_VC%40DF_VC_INV&df[ag]=OECD.SDD.TPS&df[vs]=1.0&pd=2007%2C&dq=...PT_B1GQ.A&ly[rw]=BUSINESS_DEVELOPMENT_STAGE&ly[cl]=TIME_PERIOD&ly[rs]=REF_AREA&to[TIME_PERIOD]=false", 1, false, true, FileAttachment("./images/vc_line.png").href))
 }});
 
 define({id: "4e058e15-2", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
@@ -241,8 +243,8 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "f7eb15ef", inputs: ["display","line_oecd","df_tea"], body: (display,line_oecd,df_tea) => {
-display(line_oecd(df_tea, "Share of 18-64 population who are either a nascent entrepreneur or owner-manager of a new business in %", true,"Global Entrepreneurship Monitor","https://gemconsortium.org/reports/latest-global-report" ))
+define({id: "cf35759b", inputs: ["display","line_oecd","df_tea","FileAttachment"], body: (display,line_oecd,df_tea,FileAttachment) => {
+display(line_oecd(df_tea, "Share of 18-64 population who are either a nascent entrepreneur or owner-manager of a new business in %", true,"Global Entrepreneurship Monitor","https://gemconsortium.org/reports/latest-global-report", 1, false, true, FileAttachment("./images/tea_line.png").href))
 }});
 
 define({id: "aba09763", mode: "inline", inputs: ["display","bar_x","df_epo"], body: (display,bar_x,df_epo) => {
@@ -304,11 +306,11 @@ display(arrow_unicorns(df_unicorns_ch))
 <h2 id="venture-capital-investments-in-of-gdp-2017-2024" tabindex="-1"><a class="observablehq-header-anchor" href="#venture-capital-investments-in-of-gdp-2017-2024">Venture capital investments in % of GDP 2017–2024</a></h2>
 <p>According to the report «Fast-growing start-ups in Switzerland» (<a href="https://www.seco.admin.ch/dam/seco/en/dokumente/Standortfoerderung/KMU-Politik/Finanzierung%20der%20KMU/Bericht%20Postulat%20Derder%20-%20Rasch%20wachsende%20Jungunternehmen%20in%20der%20Schweiz.pdf.download.pdf/EN_Bericht_PO_Derder_Fast_growing_start_ups_in_Switzerland.pdf" target="_blank" rel="noopener noreferrer">SECO, 2017</a>) the venture capital market in <observablehq-loading></observablehq-loading><!--:4e058e15-1:--> was not as mature as the markets in more advanced countries (such as <observablehq-loading></observablehq-loading><!--:a05991af:-->, the <observablehq-loading></observablehq-loading><!--:c55312a5:-->). The VC market has since expanded, but there is still room for improvement.</p>
 <div class="observablehq observablehq--block"><!--:a5947043:--></div>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e51190c9:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:49978783:--></div>
 <div class="warning" label="Note">The OECD data should be taken with a grain of salt. There is no standard for data collection for VC investement data and there is no single source. The <a href="https://www.investeurope.eu/media/aywhjtsp/20250508_invest-europe_pe-activity-data-2024-report.pdf" target="_blank" rel="noopener noreferrer">Invest Europe data</a> (p.56), which is most likely the source for the OECD data for Switzerland, does not show an uptick for Switzerland in 2024, but confirms the downward trend in the startupticker.ch data.</div>
 <h2 id="total-early-stage-entrepreneurial-activity-tea" tabindex="-1"><a class="observablehq-header-anchor" href="#total-early-stage-entrepreneurial-activity-tea">Total early-stage entrepreneurial activity (TEA)</a></h2>
 <p><mark>New:</mark>&nbsp;&nbsp;&nbsp;The share of 18-64 population who are either a nascent entrepreneur or owner-manager of a new business in <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> has been hovering between 8 and 10 percent. This is a low- to mid-table position among innovation peers.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f7eb15ef:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:cf35759b:--></div>
 <h2 id="technology-intensity-of-investment-portfolios" tabindex="-1"><a class="observablehq-header-anchor" href="#technology-intensity-of-investment-portfolios">Technology Intensity of Investment Portfolios</a></h2>
 <p><mark>New:</mark>&nbsp;&nbsp;&nbsp;The European Patent Office (EPO) links its own patent data to <a href="https://dealroom.co" target="_blank" rel="noopener noreferrer">dealroom.co</a>'s data on investors and their investments and creates a comparative analysis of the technology intensity of the investment portfolios in Europe and the US.</p>
 <p>The EPO introduces the metric <strong>Technology Investor Score (TIS)</strong> designed to identify investors specialised in supporting high-tech companies. The TIS measures the percentage of companies with at least one patent within an investor’s portfolio. A high TIS indicates an investor’s engagement with innovation-driven companies.</p>
