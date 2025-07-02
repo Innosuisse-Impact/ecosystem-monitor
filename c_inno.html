@@ -200,12 +200,12 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "45c547d0", inputs: ["display","line_cis","eurostat_pct_rd_filtered","domain_x","color_scale"], body: (display,line_cis,eurostat_pct_rd_filtered,domain_x,color_scale) => {
+define({id: "817292c7", inputs: ["display","line_cis","eurostat_pct_rd_filtered","domain_x","color_scale"], body: (display,line_cis,eurostat_pct_rd_filtered,domain_x,color_scale) => {
 display(line_cis(eurostat_pct_rd_filtered, "pct_inno", domain_x, color_scale))
 
 // <div class="note" label="Note"><details>
 //  <summary>Different results by company size and sector</summary>
-// <p>Both the proportion of R&D-active companies and the proportion of companies with product innovations have stabilised or increased compared to the last survey. When analyzed by company size and sector, the indicators show more distinct patterns:
+// <p>Both the proportion of R&D-active companies and the proportion of companies with product innovations have stabilised or increased compared to the last survey. When analysed by company size and sector, the indicators show more distinct patterns:
 
 // - It is interesting to note that the proportion of R&D-active companies has increased particularly among small companies (< 50 FTEs), while the proportion among larger companies is either stable (50-100 FTEs and > 250 FTEs) or even declining (100-250 FTEs) (<a href="https://doi.org/10.3929/ethz-b-000583885">Spescha & Wörther, 2022</a>, p. 30).
 // - If we look at the figures by sector, we see that the proportion of R&D-active companies in the high-tech sector has continued to fall (at a high level) and that, on the other hand, activity in the low-tech industry, modern and traditional services sectors has increased (<a href="https://doi.org/10.3929/ethz-b-000583885">Spescha & Wörther, 2022</a>, p. 20).
@@ -231,9 +231,9 @@ display(line_cis(eurostat_pct_rd_filtered, "pct_sales_inno", domain_x, color_sca
 // The most cited obstacles to innovation are mostly concerning its economic viability: The cost of innovation projects, lack of equity and debt capital and long amortisation periods. The shortage of skilled labour and R&D-personnel comes in 4th and 5th.
 }});
 
-define({id: "f00d069f", mode: "inline", inputs: ["line_oecd","df_oecd_mfp_plot","FileAttachment","display"], body: async (line_oecd,df_oecd_mfp_plot,FileAttachment,display) => {
+define({id: "09e2381b", mode: "inline", inputs: ["line_oecd","df_oecd_mfp_plot","FileAttachment","display"], body: async (line_oecd,df_oecd_mfp_plot,FileAttachment,display) => {
 display(await(
-line_oecd(df_oecd_mfp_plot, "Multifactor productivity (Index = 2015, Current prices)",false,"OECD Productivity database","https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_PDB@DF_PDB_GR,1.0/.A.MFPH..IX.V...?startPeriod=1998&format=csvfilewithlabels", 1, false, false, FileAttachment("./images/mfp_line.png").href)
+line_oecd(df_oecd_mfp_plot, "Multi-factor productivity (Index = 2015, Current prices)",false,"OECD Productivity database","https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_PDB@DF_PDB_GR,1.0/.A.MFPH..IX.V...?startPeriod=1998&format=csvfilewithlabels", 1, false, false, FileAttachment("./images/mfp_line.png").href)
 ))
 }});
 
@@ -290,7 +290,7 @@ line_oecd(df_oecd_mfp_plot, "Multifactor productivity (Index = 2015, Current pri
 <p>The high cost of innovation is still the major obstacle to innovation, but hast lost relevance compared to skills shortages and building regulations/spatial planning.</p>
 <div><observablehq-loading></observablehq-loading><!--:61958339:--></div>
 <h3 id="more-companies-receive-innovation-support-mainly-driven-by-subnational-agencies" tabindex="-1"><a class="observablehq-header-anchor" href="#more-companies-receive-innovation-support-mainly-driven-by-subnational-agencies">More companies receive innovation support, mainly driven by subnational agencies</a></h3>
-<p>The share of surveyed Swiss companies that have received support from Innosuisse has remained steady around 5% in the observations periods from 2012 to 2022. Meanwhile the share of companies that have received any innovation support has risen from 7% in 2010–2012 to around 12% in 2020–2022, mainly driven by the rise in regional and cantonal support since 2014–16. The offers from these agencies have generally a lower treshhold and are more coaching-oriented than the support offers of Innosuisse.</p>
+<p>The share of surveyed Swiss companies that have received support from Innosuisse has remained steady around 5% in the observations periods from 2012 to 2022. Meanwhile the share of companies that have received any innovation support has risen from 7% in 2010–2012 to around 12% in 2020–2022, mainly driven by the rise in regional and cantonal support since 2014–16. The offers from these agencies have generally a lower threshold and are more coaching-oriented than the support offers of Innosuisse.</p>
 <div><observablehq-loading></observablehq-loading><!--:89ddffe5:--></div>
 <h2 id="the-international-innovation-landscape-divergence-in-r-and-d-convergence-in-product-innovations" tabindex="-1"><a class="observablehq-header-anchor" href="#the-international-innovation-landscape-divergence-in-r-and-d-convergence-in-product-innovations">The international innovation landscape: Divergence in R&amp;D, convergence in product innovations</a></h2>
 <h3 id="share-of-firms-with-r-and-d-activities" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-r-and-d-activities">Share of firms with R&amp;D activities</a></h3>
@@ -298,13 +298,13 @@ line_oecd(df_oecd_mfp_plot, "Multifactor productivity (Index = 2015, Current pri
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c1f1545b:--></div>
 <h3 id="share-of-firms-with-product-innovations" tabindex="-1"><a class="observablehq-header-anchor" href="#share-of-firms-with-product-innovations">Share of firms with product innovations</a></h3>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s share of firms with product innovations had, after a long decline, increased significantly as well in 2018–2020. However, the latest observation period seems to confirm the general downward trend. Among European innovation leaders, the range in the share of companies with product innovations narrowed from 25%–55% to 27%–38% in twenty years.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:45c547d0:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:817292c7:--></div>
 <h3 id="sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover" tabindex="-1"><a class="observablehq-header-anchor" href="#sales-of-new-to-market-and-new-to-enterprise-innovations-as-a-percentage-of-turnover">Sales of new-to-market and new-to-enterprise innovations as a percentage of turnover</a></h3>
-<p>The recent up- and than downwardtick in innovative acitivity in <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> is also mirrored in the sales of new innovations in percent of total turnover.</p>
+<p>The recent up- and than downward trend in innovative activity in <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> is also mirrored in the sales of new innovations in percent of total turnover.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:554f63b9:--></div>
 <h3 id="productivity-is-increasing" tabindex="-1"><a class="observablehq-header-anchor" href="#productivity-is-increasing">Productivity is increasing</a></h3>
-<p>Survey results show that process innovations are leading to significant reductions in production costs, particularly among SMEs. This is reflected in the development of multifactor productivity (MFP), which points to positive productivity effects from innovation activities. MFP is a measure of economic efficiency that captures the portion of output growth that cannot be explained by increases in labor and capital inputs alone. It reflects how effectively an economy or firm combines its resources to produce goods and services, essentially measuring the "residual" productivity gains that stem from technological progress, improved processes, organizational changes, and other innovations.</p>
-<div><observablehq-loading></observablehq-loading><!--:f00d069f:--></div>
+<p>Survey results show that process innovations are leading to significant reductions in production costs, particularly among SMEs. This is reflected in the development of multi-factor productivity (MFP), which points to positive productivity effects from innovation activities. MFP is a measure of economic efficiency that captures the portion of output growth that cannot be explained by increases in labour and capital inputs alone. It reflects how effectively an economy or firm combines its resources to produce goods and services, essentially measuring the "residual" productivity gains that stem from technological progress, improved processes, organizational changes, and other innovations.</p>
+<div><observablehq-loading></observablehq-loading><!--:09e2381b:--></div>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
 <li>KOF (<a href="https://innovationserhebung.ch/innovationsbericht_2023/" target="_blank" rel="noopener noreferrer">2025</a>) Innovation report 2023</li>

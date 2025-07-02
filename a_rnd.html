@@ -121,20 +121,20 @@ registerFile("./data/df_gtard.csv", {"name":"./data/df_gtard.csv","mimeType":"te
 registerFile("./data/df_oecd_msti.csv", {"name":"./data/df_oecd_msti.csv","mimeType":"text/csv","path":"./_file/data/df_oecd_msti.b09f8d54.csv","lastModified":1750325916319,"size":3644208});
 registerFile("./data/df_rnd_type.csv", {"name":"./data/df_rnd_type.csv","mimeType":"text/csv","path":"./_file/data/df_rnd_type.b2801318.csv","lastModified":1750325921331,"size":7595});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
-registerFile("./data/rnd_ch_2021.csv", {"name":"./data/rnd_ch_2021.csv","mimeType":"text/csv","path":"./_file/data/rnd_ch_2021.669c3bc4.csv","lastModified":1750074088261,"size":579});
+registerFile("./data/rnd_ch_2023.csv", {"name":"./data/rnd_ch_2023.csv","mimeType":"text/csv","path":"./_file/data/rnd_ch_2023.0bf10830.csv","lastModified":1751463281132,"size":604});
 registerFile("./images/berd_gov_line.png", {"name":"./images/berd_gov_line.png","mimeType":"image/png","path":"./_file/images/berd_gov_line.d101ab24.png","lastModified":1751283105664,"size":164090});
 registerFile("./images/gerd_line.png", {"name":"./images/gerd_line.png","mimeType":"image/png","path":"./_file/images/gerd_line.47e72601.png","lastModified":1751275677403,"size":119389});
 registerFile("./images/goverd_line.png", {"name":"./images/goverd_line.png","mimeType":"image/png","path":"./_file/images/goverd_line.24346d78.png","lastModified":1751032341841,"size":131501});
 registerFile("./images/rnd_personnel_line.png", {"name":"./images/rnd_personnel_line.png","mimeType":"image/png","path":"./_file/images/rnd_personnel_line.16b57cb9.png","lastModified":1751283106208,"size":143935});
 
-define({id: "8f0b3658", inputs: ["FileAttachment"], outputs: ["line_cis","line_oecd","line_oecd_gbard","bar_stacked_y_normalized","area_stacked_y_gerd_ch","bar_stacked_x","country_iso3","iso3_country","color_scale","colorLegend","countries","rnd_ch_sankey","aq","df_gtard","df_oecd_msti","df_rnd_ch","df_rnd_type","filter_oecd_msti","df_gerd","df_gerd_gov","df_berd_gov","df_rnd_personnel","df_gbard_tax","df_gerd_type","df_gerd_type1","domain1","order1","df_gerd_type3","df_gerd_type2","domain2","order2","rnd_type","df_ch_gerd"], body: async (FileAttachment) => {
+define({id: "4636e0ad", inputs: ["FileAttachment"], outputs: ["line_cis","line_oecd","line_oecd_gbard","bar_stacked_y_normalized","area_stacked_y_gerd_ch","bar_stacked_x","country_iso3","iso3_country","color_scale","colorLegend","countries","rnd_ch_sankey","aq","df_gtard","df_oecd_msti","df_rnd_ch","df_rnd_type","filter_oecd_msti","df_gerd","df_gerd_gov","df_berd_gov","df_rnd_personnel","df_gbard_tax","df_gerd_type","df_gerd_type1","domain1","order1","df_gerd_type3","df_gerd_type2","domain2","order2","rnd_type","rnd_type2023","df_ch_gerd"], body: async (FileAttachment) => {
 const [{line_cis, line_oecd, line_oecd_gbard}, {bar_stacked_y_normalized, area_stacked_y_gerd_ch}, {bar_stacked_x}, {country_iso3, iso3_country}, {color_scale, colorLegend, countries}, {rnd_ch_sankey}, aq] = await Promise.all([import("./_import/components/plots/line_plots.6d7f4138.js"), import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/plots/bar_stacked_x.fcd8d3e3.js"), import("./_import/components/utils/countries.10854bad.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/sankey.f39e7441.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
 // Load components
 
 // Load data
 const df_gtard = await FileAttachment("./data/df_gtard.csv").csv({ typed: true });
 const df_oecd_msti = await FileAttachment("./data/df_oecd_msti.csv").csv({ typed: true });
-const df_rnd_ch = await FileAttachment("./data/rnd_ch_2021.csv").csv({ typed: true });
+const df_rnd_ch = await FileAttachment("./data/rnd_ch_2023.csv").csv({ typed: true });
 const df_rnd_type = await FileAttachment("./data/df_rnd_type.csv").csv({ typed: true });
 
 // Manipulate data
@@ -151,6 +151,7 @@ function filter_oecd_msti(data, unit = "PT_B1GQ", measure = "G", countries = ["C
     });
 }
 const df_gerd = filter_oecd_msti(df_oecd_msti, "PT_B1GQ", "G", countries)
+df_gerd.push({iso3: "CHE", country: "Switzerland", measure: "G", measure_name: "Gross Domestic Expenditure on R&D (GERD)", unit: "PT_B1GQ", year: 2021, obs_value: 3.2, year_date: new Date("2023-01-01")})
 const df_gerd_gov = filter_oecd_msti(df_oecd_msti, "PT_B1GQ","G_FG", countries)
 const df_berd_gov = filter_oecd_msti(df_oecd_msti, "PT_BERD","B_FG", countries);
 const df_rnd_personnel = filter_oecd_msti(df_oecd_msti, "10P3EMP","T_TT", countries)
@@ -195,12 +196,17 @@ const domain2 = df_gerd_type3.filter(d=> d.measure === "G_FB").orderby('measure_
     .array("country")
 const order2 = df_gerd_type3.groupby('measure_name').count().orderby(aq.desc('measure_name')).array('measure_name')
 const rnd_type = df_rnd_type.filter(d => countries.includes(d.iso3))
+const rnd_type2023 = rnd_type.map((d) => ({
+  ...d,
+share: (d.iso3 === "CHE" && d.type === "Applied research") ? 37.9 : 
+(d.iso3 === "CHE" && d.type === "Basic research") ? 27.2 : (d.iso3 === "CHE" && d.type === "Experimental development") ? 34.9 : d.share
+    }))
 const df_ch_gerd = df_oecd_msti.filter(
   (d) => ["B", "GV", "H"].includes(d.measure) &&
   d.unit === "PT_B1GQ" &&
   ["CHE"].includes(d.iso3) &&
   [2021, 2019, 2017].includes(d.year));
-return {line_cis,line_oecd,line_oecd_gbard,bar_stacked_y_normalized,area_stacked_y_gerd_ch,bar_stacked_x,country_iso3,iso3_country,color_scale,colorLegend,countries,rnd_ch_sankey,aq,df_gtard,df_oecd_msti,df_rnd_ch,df_rnd_type,filter_oecd_msti,df_gerd,df_gerd_gov,df_berd_gov,df_rnd_personnel,df_gbard_tax,df_gerd_type,df_gerd_type1,domain1,order1,df_gerd_type3,df_gerd_type2,domain2,order2,rnd_type,df_ch_gerd};
+return {line_cis,line_oecd,line_oecd_gbard,bar_stacked_y_normalized,area_stacked_y_gerd_ch,bar_stacked_x,country_iso3,iso3_country,color_scale,colorLegend,countries,rnd_ch_sankey,aq,df_gtard,df_oecd_msti,df_rnd_ch,df_rnd_type,filter_oecd_msti,df_gerd,df_gerd_gov,df_berd_gov,df_rnd_personnel,df_gbard_tax,df_gerd_type,df_gerd_type1,domain1,order1,df_gerd_type3,df_gerd_type2,domain2,order2,rnd_type,rnd_type2023,df_ch_gerd};
 }});
 
 define({id: "c0cb44f5", inputs: ["display","rnd_ch_sankey","df_rnd_ch"], body: (display,rnd_ch_sankey,df_rnd_ch) => {
@@ -225,14 +231,8 @@ colorLegend("KOR")
 ))
 }});
 
-define({id: "c55312a5", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
-display(await(
-colorLegend("USA")
-))
-}});
-
-define({id: "f0844776", inputs: ["display","line_oecd","df_gerd","FileAttachment"], body: (display,line_oecd,df_gerd,FileAttachment) => {
-display(line_oecd(df_gerd,"% of GDP",false,"OECD Main Science and Technology Indicators (MSTI)","https://oe.cd/msti", 1, true, true, FileAttachment("./images/gerd_line.png").href))
+define({id: "0c9d9984", inputs: ["display","line_oecd","df_gerd","FileAttachment"], body: (display,line_oecd,df_gerd,FileAttachment) => {
+display(line_oecd(df_gerd,"GERD in % of GDP",false,"OECD Main Science and Technology Indicators (MSTI)","https://oe.cd/msti", 1, true, true, FileAttachment("./images/gerd_line.png").href))
 }});
 
 define({id: "e590ca54", inputs: ["Inputs","view"], outputs: ["normalizeInput","normalize"], body: (Inputs,view) => {
@@ -246,17 +246,17 @@ const normalize = view(normalizeInput);
 return {normalizeInput,normalize};
 }});
 
-define({id: "66610f4d", inputs: ["display","bar_stacked_y_normalized","df_gerd_type1","normalize","domain1","order1"], body: (display,bar_stacked_y_normalized,df_gerd_type1,normalize,domain1,order1) => {
+define({id: "baedfd88", inputs: ["display","bar_stacked_y_normalized","df_gerd_type1","normalize","domain1","order1"], body: (display,bar_stacked_y_normalized,df_gerd_type1,normalize,domain1,order1) => {
 display(bar_stacked_y_normalized(df_gerd_type1, normalize, domain1, order1))
 
-// <div class="note" label="Note">Innosuisse's primary instrument – Innovation Projects – contributes to the <span style="border-bottom: solid 2px #4269d0">Higher Education Expenditure on R&D (HERD)</span> since it only covers the research partner's costs while requiring companies to self-fund their portion of the project. In contrast, the newer funding instruments – Swiss Accelerator and Start-up Innovation Projects – would contribute to <span style="border-bottom: solid 2px #ff725c">Business Enterprise Expenditure on R&D (BERD)</span> as they provide direct financial support to companies. However, these programs fall outside the relevant timeframe since they were only recently introduced.</div>
+// <div class="note" label="Note">Innosuisse's primary instrument – Innovation Projects – contributes to the <span style="border-bottom: solid 2px #4269d0">Higher Education Expenditure on R&D (HERD)</span> since it only covers the research partner's costs while requiring companies to self-fund their portion of the project. In contrast, the newer funding instruments – Swiss Accelerator and Start-up Innovation Projects – would contribute to <span style="border-bottom: solid 2px #ff725c">Business Enterprise Expenditure on R&D (BERD)</span> as they provide direct financial support to companies. However, these programs fall outside the relevant time frame since they were only recently introduced.</div>
 
 //### Switzerland's Gross Domestic Expenditure on Research and Development (R&D) in % of GDP 2017–2021)
 //display(area_stacked_y_gerd_ch(df_ch_gerd))
 }});
 
-define({id: "e88db2f5", inputs: ["display","bar_stacked_x","rnd_type"], body: (display,bar_stacked_x,rnd_type) => {
-display(bar_stacked_x(rnd_type))
+define({id: "9b7ce0b4", inputs: ["display","bar_stacked_x","rnd_type2023"], body: (display,bar_stacked_x,rnd_type2023) => {
+display(bar_stacked_x(rnd_type2023))
 }});
 
 define({id: "9c67671e", inputs: ["view","Inputs","normalizeInput"], outputs: ["normalizeSecond"], body: (view,Inputs,normalizeInput) => {
@@ -310,8 +310,14 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "6d3a81e9", inputs: ["display","line_oecd","df_berd_gov","FileAttachment"], body: (display,line_oecd,df_berd_gov,FileAttachment) => {
-display(line_oecd(df_berd_gov, "% of business enterprise expenditure on R&D", false, "OECD Main Science and Technology Indicators (MSTI)", "https://oe.cd/msti", 1, false, true, FileAttachment("./images/berd_gov_line.png").href))
+define({id: "4e058e15-3", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+display(await(
+colorLegend("CHE")
+))
+}});
+
+define({id: "81c54683", inputs: ["display","line_oecd","df_berd_gov","FileAttachment"], body: (display,line_oecd,df_berd_gov,FileAttachment) => {
+display(line_oecd(df_berd_gov, "% of business enterprise expenditure on R&D", false, "OECD Main Science and Technology Indicators (MSTI)", "https://oe.cd/msti", 1, true, true, FileAttachment("./images/berd_gov_line.png").href))
 // title: 'Business expenditure on R&D (BERD) financed by government'
 }});
 
@@ -319,14 +325,14 @@ define({id: "5557d2bd", mode: "inline", inputs: ["display","line_oecd","df_gbard
 display(line_oecd(df_gbard_tax,"% of GDP", false, "OECD R&D Tax Incentives database","https://data-explorer.oecd.org/vis?lc=en&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_RDTAX%40DF_RDTAX&df[ag]=OECD.STI.STP&df[vs]=1.0&dq=.A.DF_GTARD.PT_B1GQ..&pd=2015%2C&to[TIME_PERIOD]=false&vw=tb",2))
 }});
 
-define({id: "4e058e15-3", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
+define({id: "4e058e15-4", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
 display(await(
 colorLegend("CHE")
 ))
 }});
 
-define({id: "d5d79d3d", inputs: ["display","line_oecd","df_rnd_personnel","FileAttachment"], body: (display,line_oecd,df_rnd_personnel,FileAttachment) => {
-display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment", false, "OECD Main Science and Technology Indicators (MSTI)", "https://oe.cd/msti", 1, false, false, FileAttachment("./images/rnd_personnel_line.png").href)) 
+define({id: "c207ae38", inputs: ["display","line_oecd","df_rnd_personnel","FileAttachment"], body: (display,line_oecd,df_rnd_personnel,FileAttachment) => {
+display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 employment", false, "OECD Main Science and Technology Indicators (MSTI)", "https://oe.cd/msti", 1, false, false, FileAttachment("./images/rnd_personnel_line.png").href)) 
 // title: 'R&D personnel per 1\'000 employment',
 }});
 
@@ -361,28 +367,32 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment", false, 
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:8f0b3658:--></div>
+<div class="observablehq observablehq--block"><!--:4636e0ad:--></div>
 <h1 id="research-and-development-r-and-d" tabindex="-1"><a class="observablehq-header-anchor" href="#research-and-development-r-and-d">Research &amp; Development (R&amp;D)</a></h1>
-<h2 id="funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2021">Funding and expenditure on R&amp;D in Switzerland by sector in 2021</a></h2>
-<p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;In Switzerland, as in almost all countries, the majority of R&amp;D funding originates from and flows to business entreprises. However, Switzerland has a comparatively high outflow of R&amp;D funding abroad and a comparatively low inflow. The federal government (as well as the cantons) primarely fund R&amp;D indirectly through universities and other higher education institutions. The main funding flows to the Swiss Federal Institutes of Technology (ETH and EPFL), the Swiss National Science Foundation as well as, to a smaller extent, Innosuisse's innovation project funding.</p>
+<h2 id="funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2023">Funding and expenditure on R&amp;D in Switzerland by sector in 2023</a></h2>
+<p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;In Switzerland, as in almost all countries, the majority of R&amp;D funding originates from and flows to business enterprises. However, Switzerland has a comparatively high outflow of R&amp;D funding abroad and a comparatively low inflow. The high outflow of R&amp;D funding is likely due to the strong presence of multinational firms, and among them the very R&amp;D-active pharmaceutical companies.</p>
+<p>The federal government primarily funds R&amp;D via the higher education sector, directly via universities (mainly the Swiss Federal Institutes of Technology ETH and EPFL) and indirectly via its national agencies, the Swiss National Science Foundation and Innosuisse. See new FSO graph for more detail: <a href="https://www.bfs.admin.ch/bfs/en/home/news/whats-new.assetdetail.33948459.html" target="_blank" rel="noopener noreferrer">DE</a> / <a href="https://www.bfs.admin.ch/bfs/fr/home/actualites/quoi-de-neuf.assetdetail.33948457.html" target="_blank" rel="noopener noreferrer">FR</a>.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c0cb44f5:--></div>
-<figcaption><span>Source: <a href="https://www.bfs.admin.ch/asset/de/25045812" target="_blank" rel="noopener noreferrer">Federal Statistical Office</a><br>Note: Private non-profit organizations (PNP) are included for comprehensiveness; however, they represent only a marginal portion of total funding (CHF 0.1 bn) and expenditure (CHF 0.6 bn).</span></figcaption>
+<figcaption><span>Source: <a href="https://www.bfs.admin.ch/bfs/de/home/aktuell/neue-veroeffentlichungen.assetdetail.33948456.html" target="_blank" rel="noopener noreferrer">Federal Statistical Office</a><br>Note: Private non-profit organizations (PNP) are included for comprehensiveness; however, they represent only a marginal portion of total funding (CHF 0.1 bn) and expenditure (CHF 0.3 bn).</span></figcaption>
 <p>In the following, we look in more detail at R&amp;D funding from two perspectives:</p>
 <ul>
 <li><a href="#r-and-d-expenditure">R&amp;D Expenditure: Who performs the R&amp;D?</a></li>
 <li><a href="#r-and-d-funding">R&amp;D Funding: Who finances the R&amp;D?</a></li>
 </ul>
+<div class="note" label="Note">
+The Federal Statistical Office (FSO) has just published its data for 2023. However, the OECD's data that allows for international comparison has not been updated yet. We've added data and comments for the year 2023 for Switzerland where we thought it was important and where we could do it with confidence.
+</div>
 <h2 id="r-and-d-expenditure" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-expenditure">R&amp;D Expenditure</a></h2>
-<h3 id="gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2022">Gross Domestic Expenditure on Research and Development (GERD) in % of GDP 2017–2022</a></h3>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is among the top five countries in R&amp;D spending as a percentage of GDP (3.3% or CHF 24.6 billion). Its GERD has grown slightly by 0.2 percentage points from 2017 to 2021. The R&amp;D expenditures of <observablehq-loading></observablehq-loading><!--:a05991af:-->, <observablehq-loading></observablehq-loading><!--:9a4da08b:-->, and the <observablehq-loading></observablehq-loading><!--:c55312a5:--> have increased more significantly, while others have stagnated on levels comparable to Switzerland. In the <a href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2021">graph above</a>, GERD corresponds to the R&amp;D expenditure in the column on the right without the expenditure abroad.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f0844776:--></div>
+<h3 id="gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2023">Gross Domestic Expenditure on Research and Development (GERD) in % of GDP 2017–2023</a></h3>
+<p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;<observablehq-loading></observablehq-loading><!--:4e058e15:--> is among the top five of the most innovative countries in R&amp;D spending as a percentage of GDP (3.2% or CHF 25.9 billion). Its GERD has slightly declined by 0.1 percentage point from 2021 to 2023, because the GDP grew faster than the spending on R&amp;D. The R&amp;D expenditures of <observablehq-loading></observablehq-loading><!--:a05991af:--> and <observablehq-loading></observablehq-loading><!--:9a4da08b:--> have increased significantly, while others stagnate on levels comparable to Switzerland. In the <a href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2023">graph above</a>, GERD corresponds to the R&amp;D expenditure in the column on the right minus the expenditure that flows abroad.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:0c9d9984:--></div>
 <h3 id="gerd-by-sector-in-of-gdp-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-by-sector-in-of-gdp-2021">GERD by sector in % of GDP 2021</a></h3>
 <p>Research and Development in Switzerland is mainly performed by <span style="border-bottom: solid 2px #0571b0">private businesses</span> or <span style="border-bottom: solid 2px #FCE300">higher education institutions</span> and rarely by the <span style="border-bottom: solid 2px #06F7DA">government</span> itself. Switzerland has one of the lowest share of R&amp;D performed by government institutions. Sweden and Denmark's pattern of research and development most closely mirrors that of Switzerland. The high proportion of R&amp;D carried out by the private sector in Israel is also striking.</p>
 <div class="observablehq observablehq--block"><!--:e590ca54:--></div>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:66610f4d:--></div>
-<h3 id="r-and-d-expenditure-by-type-of-research-in-of-gerd" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-expenditure-by-type-of-research-in-of-gerd">R&amp;D expenditure by type of research in % of GERD</a></h3>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:baedfd88:--></div>
+<h3 id="r-and-d-expenditure-by-type-of-research-in-of-gerd-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-expenditure-by-type-of-research-in-of-gerd-2023">R&amp;D expenditure by type of research in % of GERD 2023</a></h3>
 <p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;Compared to other innovation leaders, Switzerland has a relatively high share of R&amp;D expenditure in both <span style="border-bottom: solid 2px #0571b0">basic</span> and <span style="border-bottom: solid 2px #06F7DA">applied research</span>, which seek fundamental knowledge without immediate practical goals or target specific practical problems and directed towards application. Consequently, the share of expenditure for <span style="border-bottom: solid 2px #A2AFE9">experimental development</span>, which more clearly focuses on creating or improving products, processes, or services, is rather small.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e88db2f5:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:9b7ce0b4:--></div>
 <h2 id="r-and-d-funding" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-funding">R&amp;D Funding</a></h2>
 <h3 id="gerd-financed-by-sector-in-of-gdp-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-financed-by-sector-in-of-gdp-2021">GERD financed by sector in % of GDP 2021</a></h3>
 <p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;The main source of R&amp;D funding is the business sector itself. Switzerland's domestic <span style="border-bottom: solid 2px #0571b0">business sector</span> share is among the top 3 of its innovation leader peers. The same holds true for <span style="border-bottom: solid 2px #06F7DA">government spending</span> on R&amp;D (see <a href="#gerd-financed-by-government-in-of-gdp-2017-2022">next graph</a> as well). <span style="border-bottom: solid 2px #FCE300">Higher education institutions</span> contribute an average and the <span style="border-bottom: solid 2px #FF8774">rest of the world</span> a below average share to the Swiss R&amp;D funding.</p>
@@ -390,20 +400,13 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment", false, 
 <div class="observablehq observablehq--block"><!--:9c67671e:--></div>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:817244fa:--></div>
 <h3 id="gerd-financed-by-government-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-financed-by-government-in-of-gdp-2017-2022">GERD financed by government in % of GDP 2017–2022</a></h3>
-<p>While <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s government-financed R&amp;D remained stable in the last 5 years, <observablehq-loading></observablehq-loading><!--:294697dd:--> and <observablehq-loading></observablehq-loading><!--:9a4da08b-1:--> have increased their financing ratio to GDP. Interestingly, <observablehq-loading></observablehq-loading><!--:a05991af-1:--> has a comparatively low share of government-financed GERD. Its R&amp;D is mainly driven by private funding, especially from abroad (cf. also <a href="./b_ens#venture-capital-investments-in-of-gdp-2017-2024">venture capital investments</a>).</p>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s government-financed R&amp;D remained stable in the last 5 years, but will likely decrease to 0.83 % in 2023 (official OECD data is not published yet). Meanwhile, <observablehq-loading></observablehq-loading><!--:294697dd:--> and <observablehq-loading></observablehq-loading><!--:9a4da08b-1:--> have increased their financing ratio to GDP. Interestingly, <observablehq-loading></observablehq-loading><!--:a05991af-1:--> has a comparatively low share of government-financed GERD. Its R&amp;D is mainly driven by private funding, especially from abroad (cf. also <a href="./b_ens#venture-capital-investments-in-of-gdp-2017-2024">venture capital investments</a>).</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:66931e20:--></div>
 <h3 id="business-expenditure-on-r-and-d-berd-financed-by-government" tabindex="-1"><a class="observablehq-header-anchor" href="#business-expenditure-on-r-and-d-berd-financed-by-government">Business expenditure on R&amp;D (BERD) financed by government</a></h3>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15-2:-->'s restrained approach to direct funding of BERD stands out clearly in an international comparison. Compared to other countries there has been very little direct financial support for business R&amp;D. The statement still holds if tax incentives for R&amp;D are included, see note.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:6d3a81e9:--></div>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15-2:-->'s restrained approach to direct funding of BERD stands out clearly in an international comparison. Compared to other countries there has been very little direct financial support for business R&amp;D. The statement still holds if tax incentives for R&amp;D are included, see note below.</p>
+<p>The official OECD statistics are not out yet, but in 2023 the value for <observablehq-loading></observablehq-loading><!--:4e058e15-3:-->'s government financed business enterprise expenditure on R&amp;D is likely to rise to 1.7%, probably due to the new Innosuisse instruments Swiss Accelerator and the start-up innovation projects. However, this has very little effect on Switzerland's position.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:81c54683:--></div>
 <div class="note" label="Note">
-  <details>
-    <summary>
-      Swiss Accelerator and Start-up Innovation Projects are not yet included
-    </summary>
-    The 2022/2023 data will reflect new contributions from the Swiss Accelerator
-    and Start-up Innovation Projects, though these additions are unlikely to
-    significantly change the overall ranking among the top 10 innovators.
-  </details>
   <details>
     <summary>
       The picture is similar, if tax incentives for R&amp;D are included and set in
@@ -419,8 +422,8 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 emloyment", false, 
   </details>
 </div>
 <h2 id="r-and-d-personnel" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-personnel">R&amp;D Personnel</a></h2>
-<p>The share of personnel employed in R&amp;D has increased over the years. <observablehq-loading></observablehq-loading><!--:4e058e15-3:--> is no exception.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d5d79d3d:--></div>
+<p>The share of personnel employed in R&amp;D has increased over the years. <observablehq-loading></observablehq-loading><!--:4e058e15-4:--> is no exception and its trend will continue as well in 2023 with 18.2 R&amp;D personnel per 1'000 employment.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c207ae38:--></div>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
 <li>For more detail, see chapter 4 of the Research and Innovation in Switzerland 2022 Interim Report: SBFI (<a href="https://www.sbfi.admin.ch/sbfi/de/home/forschung-und-innovation/forschung-und-innovation-in-der-schweiz/f-und-i-bericht.html" target="_blank" rel="noopener noreferrer">2022</a>) Forschung und Innovation in der Schweiz – Zwischenbericht 2022</li>
