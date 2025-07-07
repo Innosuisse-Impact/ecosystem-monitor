@@ -13,7 +13,7 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.6d7f4138.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.07f52a00.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
 <link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
@@ -111,7 +111,7 @@ registerFile("./images/htex_line.png", {"name":"./images/htex_line.png","mimeTyp
 registerFile("./images/mht_line.png", {"name":"./images/mht_line.png","mimeType":"image/png","path":"./_file/images/mht_line.600e5a8b.png","lastModified":1751270028346,"size":143851});
 
 define({id: "09152368", inputs: ["FileAttachment","subtractYears"], outputs: ["line_oecd","color_range","color_scale","colorLegend","countries","df_ht","df_eis","df_ert","df_htex","df_mht"], body: async (FileAttachment,subtractYears) => {
-const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.6d7f4138.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
+const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.07f52a00.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
 
 // OECD ENV Daten
 const df_ht = await FileAttachment("./data/df_ht.csv").csv({ typed: true });
