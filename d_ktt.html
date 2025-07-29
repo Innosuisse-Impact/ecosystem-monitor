@@ -7,15 +7,16 @@
 <title>Knowledge and Technology Transfer | Innovation Ecosystem</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_import/styles.f3db8c0e.css">
+<link rel="preload" as="style" href="./_import/styles.53c0ad84.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_import/styles.f3db8c0e.css">
+<link rel="stylesheet" type="text/css" href="./_import/styles.53c0ad84.css">
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
 <link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.7446718b.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
 <link rel="modulepreload" href="./_import/components/plots/line_plots.07f52a00.js">
+<link rel="modulepreload" href="./_import/components/utils/subtractYears.6c06f425.js">
 <link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
@@ -108,11 +109,9 @@ registerFile("./data/df.csv", {"name":"./data/df.csv","mimeType":"text/csv","pat
 registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 registerFile("./data/switt_startup_2024.csv", {"name":"./data/switt_startup_2024.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2024.69dc4a42.csv","lastModified":1749203568598,"size":1175});
-registerFile("./images/patents_line.png", {"name":"./images/patents_line.png","mimeType":"image/png","path":"./_file/images/patents_line.1f417cf2.png","lastModified":1751880493056,"size":121736});
-registerFile("./images/ppcp_line.png", {"name":"./images/ppcp_line.png","mimeType":"image/png","path":"./_file/images/ppcp_line.f5ea6bce.png","lastModified":1751270028340,"size":129588});
 
-define({id: "f7c4dea9", inputs: ["FileAttachment","subtractYears"], outputs: ["bar_stacked_y","color_range","color_scale","colorLegend","countries","line_oecd","df","df_eis","df_switt","df_patents","df_ppcp"], body: async (FileAttachment,subtractYears) => {
-const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.07f52a00.js")]);
+define({id: "26123976", inputs: ["FileAttachment"], outputs: ["bar_stacked_y","color_range","color_scale","colorLegend","countries","line_oecd","subtractYears","df","df_eis","df_switt","df_patents","df_ppcp"], body: async (FileAttachment) => {
+const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}, {subtractYears}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.07f52a00.js"), import("./_import/components/utils/subtractYears.6c06f425.js")]);
 
 // OECD MSTI Daten laden
 const df = await FileAttachment("./data/df.csv").csv({ typed: true });
@@ -145,7 +144,7 @@ const df_ppcp = df_eis.filter(
       ...d,
         year_date: subtractYears(d.year_date, 1)
       }))
-return {bar_stacked_y,color_range,color_scale,colorLegend,countries,line_oecd,df,df_eis,df_switt,df_patents,df_ppcp};
+return {bar_stacked_y,color_range,color_scale,colorLegend,countries,line_oecd,subtractYears,df,df_eis,df_switt,df_patents,df_ppcp};
 }});
 
 define({id: "4e058e15", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
@@ -154,8 +153,8 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "d5f74c7c", inputs: ["display","line_oecd","df_patents","FileAttachment"], body: (display,line_oecd,df_patents,FileAttachment) => {
-display(line_oecd(df_patents, "PCT patent applications per billion GDP (in PPS)",false, "European Commission / WIPO","", 1, false, true, FileAttachment("./images/patents_line.png").href))
+define({id: "1d007095", inputs: ["display","line_oecd","df_patents"], body: (display,line_oecd,df_patents) => {
+display(line_oecd(df_patents, "PCT patent applications per billion GDP (in PPS)",false, "European Commission / WIPO","", 1, false, true))
 }});
 
 define({id: "4e058e15-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
@@ -170,22 +169,17 @@ colorLegend("DNK")
 ))
 }});
 
-define({id: "53f9232c", inputs: ["display","line_oecd","df_ppcp","FileAttachment"], body: (display,line_oecd,df_ppcp,FileAttachment) => {
-display(line_oecd(df_ppcp,"Public-private publications per million population", false, "European Commission", "", 0, false, true, FileAttachment("./images/ppcp_line.png").href))
+define({id: "02edd282", inputs: ["display","line_oecd","df_ppcp"], body: (display,line_oecd,df_ppcp) => {
+display(line_oecd(df_ppcp,"Public-private publications per million population", false, "European Commission", "", 0, false, true))
 }});
 
 define({id: "dbe1c9ae", inputs: ["display","bar_stacked_y","df_switt"], body: (display,bar_stacked_y,df_switt) => {
 display(bar_stacked_y(df_switt, "swiTT","https://switt.ch/switt-reports"))
 }});
 
-define({id: "ef1e01b8", outputs: ["subtractYears"], body: () => {
+define({id: "01fac253", body: () => {
 // Funktion, um die Jahresskala neu zu definieren. Die den rawdata angegebenen Daten des EIS beziehen sich auf das Jahr des SII nicht auf das letzte Jahr der Erhebung.
-function subtractYears(date, years) {
-  const newDate = new Date(date);
-  newDate.setFullYear(newDate.getFullYear() - years);
-  return newDate;
-}
-return {subtractYears};
+
 }});
 
 </script>
@@ -218,18 +212,21 @@ return {subtractYears};
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:f7c4dea9:--></div>
+<div class="observablehq observablehq--block"><!--:26123976:--></div>
 <h1 id="knowledge-and-technology-transfer" tabindex="-1"><a class="observablehq-header-anchor" href="#knowledge-and-technology-transfer">Knowledge and Technology Transfer</a></h1>
 <h2 id="pct-patent-applications-per-billion-gdp-in-pps" tabindex="-1"><a class="observablehq-header-anchor" href="#pct-patent-applications-per-billion-gdp-in-pps">PCT patent applications per billion GDP (in PPS)</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is well-positioned and its PCT patent applications per billion GDP have grown steadily with the exceptions of 2019. This holds true as well if we look at patents per capita.</p>
 <p>PCT patents are international patents filed through the WIPO-administered Patent Cooperation Treaty. It makes it possible to seek patent protection for an invention simultaneously in a number of countries by filing a single application.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d5f74c7c:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:1d007095:--></div>
+<p><a href="./_file/images/pct-patents-live.7b201526.png" download="pct-patents.png">⤓ Download image</a></p>
 <h2 id="public-private-co-publications" tabindex="-1"><a class="observablehq-header-anchor" href="#public-private-co-publications">Public-private co-publications</a></h2>
 <p>One of the strengths in the international comparison are <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s public-private co-publications. Only <observablehq-loading></observablehq-loading><!--:1a7588f8:--> can keep pace. The Innosuisse monitoring data shows that Innovation Projects with Implementation Partner make their contribution to this knowledge transfer between research and business (54 % report a co-publication as one result of their Innovation Project).</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:53f9232c:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:02edd282:--></div>
+<p><a href="./_file/images/public-private-copubs-live.c8615294.png" download="public-private-copubs.png">⤓ Download image</a></p>
 <h2 id="start-ups-from-swiss-public-research-organisations" tabindex="-1"><a class="observablehq-header-anchor" href="#start-ups-from-swiss-public-research-organisations">Start-ups from Swiss public research organisations</a></h2>
 <p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;Universities and other public research organisations have become an important driver of start-up growth in Switzerland. The decline in recent years both in total <span style="border-bottom: solid 2px #0571b0;">start-ups</span> and more pronounced in <span style="border-bottom: solid 2px #06F7DA;">spin-offs (start-ups with a formal licence of IP)</span> has been halted in 2023 with a new record of founded start-ups and slightly higher number of spin-offs.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:dbe1c9ae:--></div>
+<p><a href="./_file/images/swiss-research-startups-live.db2f1aad.png" download="swiss-research-startups.png">⤓ Download image</a></p>
 <div class="note" label="Note">The swiTT report gives a relatively complete picture for start-ups and spin-offs from ETH Zürich, EPFL and universities; universities of applied sciences are less thoroughly represented.</div>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
@@ -239,7 +236,7 @@ return {subtractYears};
 <li>Innosuisse (<a href="https://discover-innosuisse.ch/" target="_blank" rel="noopener noreferrer">2025</a>) Discover&nbsp;&nbsp;&nbsp;<mark>New</mark></li>
 <li>Innosuisse (<a href="https://www.innosuisse.admin.ch/en/figures-funding-data-portal" target="_blank" rel="noopener noreferrer">2025</a>) Figures: funding data portal&nbsp;&nbsp;&nbsp;<mark>New</mark></li>
 </ul>
-<div class="observablehq observablehq--block"><!--:ef1e01b8:--></div>
+<div class="observablehq observablehq--block"><!--:01fac253:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./c_inno"><span>Innovation Activities</span></a><a rel="next" href="./e_snd"><span>Sustainability and High-tech Exports</span></a></nav>

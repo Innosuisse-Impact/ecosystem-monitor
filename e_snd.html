@@ -7,9 +7,9 @@
 <title>Sustainability and High-tech Exports | Innovation Ecosystem</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_import/styles.f3db8c0e.css">
+<link rel="preload" as="style" href="./_import/styles.53c0ad84.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_import/styles.f3db8c0e.css">
+<link rel="stylesheet" type="text/css" href="./_import/styles.53c0ad84.css">
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
@@ -106,9 +106,6 @@ import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 registerFile("./data/df_ht.csv", {"name":"./data/df_ht.csv","mimeType":"text/csv","path":"./_file/data/df_ht.9794f53c.csv","lastModified":1750325928323,"size":18173});
 registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_values.csv","mimeType":"text/csv","path":"./_file/data/eurostat_eis_values.daf48e9b.csv","lastModified":1725968143223,"size":1436003});
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
-registerFile("./images/ert_line.png", {"name":"./images/ert_line.png","mimeType":"image/png","path":"./_file/images/ert_line.c247b64a.png","lastModified":1751270028346,"size":148009});
-registerFile("./images/htex_line.png", {"name":"./images/htex_line.png","mimeType":"image/png","path":"./_file/images/htex_line.7d7aa0d1.png","lastModified":1751272213263,"size":106389});
-registerFile("./images/mht_line.png", {"name":"./images/mht_line.png","mimeType":"image/png","path":"./_file/images/mht_line.600e5a8b.png","lastModified":1751270028346,"size":143851});
 
 define({id: "09152368", inputs: ["FileAttachment","subtractYears"], outputs: ["line_oecd","color_range","color_scale","colorLegend","countries","df_ht","df_eis","df_ert","df_htex","df_mht"], body: async (FileAttachment,subtractYears) => {
 const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.07f52a00.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
@@ -155,8 +152,8 @@ colorLegend("DNK")
 ))
 }});
 
-define({id: "ce79c7bc", inputs: ["display","line_oecd","df_ert","FileAttachment"], body: (display,line_oecd,df_ert,FileAttachment) => {
-display(line_oecd(df_ert,"Development of environment-related technologies, percentage of all technologies",false,"European Commission, OECD Green Growth database","https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en", 1, false, true, FileAttachment("./images/ert_line.png").href))
+define({id: "d50515c0", inputs: ["display","line_oecd","df_ert"], body: (display,line_oecd,df_ert) => {
+display(line_oecd(df_ert,"Development of environment-related technologies, percentage of all technologies",false,"European Commission, OECD Green Growth database","https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en", 1, false, true))
 }});
 
 define({id: "4e058e15-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
@@ -165,8 +162,8 @@ colorLegend("CHE")
 ))
 }});
 
-define({id: "10f2066d", inputs: ["display","line_oecd","df_htex","FileAttachment"], body: (display,line_oecd,df_htex,FileAttachment) => {
-display(line_oecd(df_htex,"Exports of high technology products as a share of total products exports",false,"European Commission","https://data.europa.eu/data/datasets/vfajyjoirq3icsstf1zw?locale=en", 1, false, true, FileAttachment("./images/htex_line.png").href))
+define({id: "53a56a4d", inputs: ["display","line_oecd","df_htex"], body: (display,line_oecd,df_htex) => {
+display(line_oecd(df_htex,"Exports of high technology products as a share of total products exports",false,"European Commission","https://data.europa.eu/data/datasets/vfajyjoirq3icsstf1zw?locale=en", 1, false, true))
 }});
 
 define({id: "4e058e15-2", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
@@ -187,8 +184,8 @@ colorLegend("DEU")
 ))
 }});
 
-define({id: "d7e51bd0", inputs: ["display","line_oecd","df_mht","FileAttachment"], body: (display,line_oecd,df_mht,FileAttachment) => {
-display(line_oecd(df_mht, "Exports of medium and high technology products as a share of total products exports", false, "European Commission","https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en", 1, false, true, FileAttachment("./images/mht_line.png").href))
+define({id: "7a2f0a68", inputs: ["display","line_oecd","df_mht"], body: (display,line_oecd,df_mht) => {
+display(line_oecd(df_mht, "Exports of medium and high technology products as a share of total products exports", false, "European Commission","https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en", 1, false, true))
 }});
 
 define({id: "ef1e01b8", outputs: ["subtractYears"], body: () => {
@@ -235,14 +232,17 @@ return {subtractYears};
 <h1 id="sustainability-and-high-tech-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#sustainability-and-high-tech-exports">Sustainability and High-tech Exports</a></h1>
 <h2 id="development-of-environment-related-technologies-percentage-of-all-technologies" tabindex="-1"><a class="observablehq-header-anchor" href="#development-of-environment-related-technologies-percentage-of-all-technologies">Development of environment-related technologies, percentage of all technologies</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> has a comparably low share of green technologies in percent of all patents and the share has been declining. Of the top innovators, <observablehq-loading></observablehq-loading><!--:1a7588f8:--> has a clear focus on environment-related technologies and its importance has grown over time.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:ce79c7bc:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d50515c0:--></div>
+<p><a href="./_file/images/green-technology-patents-live.2b96794d.png" download="green-technology-patents.png">⤓ Download image</a></p>
 <h2 id="exports-of-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-high-technology-products-as-a-share-of-total-products-exports">Exports of high technology products as a share of total products exports</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15-1:--> has very high share of high-tech exports. The pharmaceuticals industry is likely the most important factor for Switzerland's top position, next to the other sub-sectors ("computer, electronic and optical products" and "air and spacecraft and related machinery").</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:10f2066d:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:53a56a4d:--></div>
+<p><a href="./_file/images/hightech-exports-live.c8466cb0.png" download="hightech-exports.png">⤓ Download image</a></p>
 <h2 id="exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports">Exports of medium and high technology products as a share of total products exports</a></h2>
 <p>Interestingly enough, if we widen the scope to medium and high-tech exports, <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> fares not nearly as well, compared to countries such as <observablehq-loading></observablehq-loading><!--:9a4da08b:--> or <observablehq-loading></observablehq-loading><!--:294697dd:-->. Additionally, there has been a steady decline since 2019.</p>
 <p>Medium-tech exports are – among others – chemical products, machinery, medical and dental instruments, etc.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d7e51bd0:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:7a2f0a68:--></div>
+<p><a href="./_file/images/medium-hightech-exports-live.6909fbb9.png" download="medium-hightech-exports.png">⤓ Download image</a></p>
 <div class="observablehq observablehq--block"><!--:ef1e01b8:--></div>
 <h4 id="source" tabindex="-1"><a class="observablehq-header-anchor" href="#source">Source</a></h4>
 <ul>
