@@ -15,15 +15,15 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.07f52a00.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.d2f42dde.js">
 <link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.7446718b.js">
 <link rel="modulepreload" href="./_import/components/plots/bar_stacked_x.fcd8d3e3.js">
 <link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
-<link rel="modulepreload" href="./_import/components/plots/sankey.f39e7441.js">
+<link rel="modulepreload" href="./_import/components/plots/sankey.be7265c4.js">
 <link rel="modulepreload" href="./_npm/arquero@8.0.3/175c2cad.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.ab00648a.js">
-<link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
+<link rel="modulepreload" href="./_import/components/utils/occlusionY.2b6f1d9b.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
 <link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
@@ -123,8 +123,8 @@ registerFile("./data/df_rnd_type.csv", {"name":"./data/df_rnd_type.csv","mimeTyp
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 registerFile("./data/rnd_ch_2023.csv", {"name":"./data/rnd_ch_2023.csv","mimeType":"text/csv","path":"./_file/data/rnd_ch_2023.0bf10830.csv","lastModified":1751463281132,"size":604});
 
-define({id: "4636e0ad", inputs: ["FileAttachment"], outputs: ["line_cis","line_oecd","line_oecd_gbard","bar_stacked_y_normalized","area_stacked_y_gerd_ch","bar_stacked_x","country_iso3","iso3_country","color_scale","colorLegend","countries","rnd_ch_sankey","aq","df_gtard","df_oecd_msti","df_rnd_ch","df_rnd_type","filter_oecd_msti","df_gerd","df_gerd_gov","df_berd_gov","df_rnd_personnel","df_gbard_tax","df_gerd_type","df_gerd_type1","domain1","order1","df_gerd_type3","df_gerd_type2","domain2","order2","rnd_type","rnd_type2023","df_ch_gerd"], body: async (FileAttachment) => {
-const [{line_cis, line_oecd, line_oecd_gbard}, {bar_stacked_y_normalized, area_stacked_y_gerd_ch}, {bar_stacked_x}, {country_iso3, iso3_country}, {color_scale, colorLegend, countries}, {rnd_ch_sankey}, aq] = await Promise.all([import("./_import/components/plots/line_plots.07f52a00.js"), import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/plots/bar_stacked_x.fcd8d3e3.js"), import("./_import/components/utils/countries.10854bad.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/sankey.f39e7441.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
+define({id: "b70c7119", inputs: ["FileAttachment"], outputs: ["line_cis","line_oecd","line_oecd_gbard","bar_stacked_y_normalized","area_stacked_y_gerd_ch","bar_stacked_x","country_iso3","iso3_country","color_scale","colorLegend","countries","rnd_ch_sankey","aq","df_gtard","df_oecd_msti","df_rnd_ch","df_rnd_type","filter_oecd_msti","df_gerd","df_gerd_gov","df_berd_gov","df_rnd_personnel","df_gbard_tax","df_gerd_type","df_gerd_type1","domain1","order1","df_gerd_type3","df_gerd_type2","domain2","order2","rnd_type","rnd_type2023","df_ch_gerd"], body: async (FileAttachment) => {
+const [{line_cis, line_oecd, line_oecd_gbard}, {bar_stacked_y_normalized, area_stacked_y_gerd_ch}, {bar_stacked_x}, {country_iso3, iso3_country}, {color_scale, colorLegend, countries}, {rnd_ch_sankey}, aq] = await Promise.all([import("./_import/components/plots/line_plots.d2f42dde.js"), import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/plots/bar_stacked_x.fcd8d3e3.js"), import("./_import/components/utils/countries.10854bad.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/sankey.be7265c4.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
 // Load components
 
 // Load data
@@ -146,7 +146,7 @@ function filter_oecd_msti(data, unit = "PT_B1GQ", measure = "G", countries = ["C
       return a.year - b.year;
     });
 }
-const df_gerd = filter_oecd_msti(df_oecd_msti, "PT_B1GQ", "G", countries)
+const df_gerd = filter_oecd_msti(df_oecd_msti, "PT_B1GQ", "G", countries).filter(d => d.iso3 !== "GBR")
 df_gerd.push({iso3: "CHE", country: "Switzerland", measure: "G", measure_name: "Gross Domestic Expenditure on R&D (GERD)", unit: "PT_B1GQ", year: 2021, obs_value: 3.2, year_date: new Date("2023-01-01")})
 const df_gerd_gov = filter_oecd_msti(df_oecd_msti, "PT_B1GQ","G_FG", countries)
 const df_berd_gov = filter_oecd_msti(df_oecd_msti, "PT_BERD","B_FG", countries);
@@ -363,14 +363,14 @@ display(line_oecd(df_rnd_personnel, "R&D personnel per 1'000 employment", false,
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:4636e0ad:--></div>
+<div class="observablehq observablehq--block"><!--:b70c7119:--></div>
 <h1 id="research-and-development-r-and-d" tabindex="-1"><a class="observablehq-header-anchor" href="#research-and-development-r-and-d">Research &amp; Development (R&amp;D)</a></h1>
 <h2 id="funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2023">Funding and expenditure on R&amp;D in Switzerland by sector in 2023</a></h2>
 <p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;In Switzerland, as in almost all countries, the majority of R&amp;D funding originates from and flows to business enterprises. However, Switzerland has a comparatively high outflow of R&amp;D funding abroad and a comparatively low inflow. The high outflow of R&amp;D funding is likely due to the strong presence of multinational firms, and among them the very R&amp;D-active pharmaceutical companies.</p>
 <p>The federal government primarily funds R&amp;D via the higher education sector, directly via universities (mainly the Swiss Federal Institutes of Technology ETH and EPFL) and indirectly via its national agencies, the Swiss National Science Foundation and Innosuisse. See new FSO graph for more detail: <a href="https://www.bfs.admin.ch/bfs/en/home/news/whats-new.assetdetail.33948459.html" target="_blank" rel="noopener noreferrer">DE</a> / <a href="https://www.bfs.admin.ch/bfs/fr/home/actualites/quoi-de-neuf.assetdetail.33948457.html" target="_blank" rel="noopener noreferrer">FR</a>.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c0cb44f5:--></div>
 <figcaption><span>Source: <a href="https://www.bfs.admin.ch/bfs/de/home/aktuell/neue-veroeffentlichungen.assetdetail.33948456.html" target="_blank" rel="noopener noreferrer">Federal Statistical Office</a><br>Note: Private non-profit organizations (PNP) are included for comprehensiveness; however, they represent only a marginal portion of total funding (CHF 0.1 bn) and expenditure (CHF 0.3 bn).</span></figcaption>
-<a href="./_file/images/swiss-rnd-sankey-live.671705fe.png" download="swiss-rnd-sankey.png">⤓ Download image</a>
+<a href="./_file/images/swiss-rnd-sankey-live.6edff03c.png" download="swiss-rnd-sankey.png">⤓ Download image</a>
 <p>In the following, we look in more detail at R&amp;D funding from two perspectives:</p>
 <ul>
 <li><a href="#r-and-d-expenditure">R&amp;D Expenditure: Who performs the R&amp;D?</a></li>
@@ -383,7 +383,7 @@ The Federal Statistical Office (FSO) has just published its data for 2023. Howev
 <h3 id="gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#gross-domestic-expenditure-on-research-and-development-gerd-in-of-gdp-2017-2023">Gross Domestic Expenditure on Research and Development (GERD) in % of GDP 2017–2023</a></h3>
 <p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;<observablehq-loading></observablehq-loading><!--:4e058e15:--> is among the top five of the most innovative countries in R&amp;D spending as a percentage of GDP (3.2% or CHF 25.9 billion). Its GERD has slightly declined by 0.1 percentage point from 2021 to 2023, because the GDP grew faster than the spending on R&amp;D. The R&amp;D expenditures of <observablehq-loading></observablehq-loading><!--:a05991af:--> and <observablehq-loading></observablehq-loading><!--:9a4da08b:--> have increased significantly, while others stagnate on levels comparable to Switzerland. In the <a href="#funding-and-expenditure-on-r-and-d-in-switzerland-by-sector-in-2023">graph above</a>, GERD corresponds to the R&amp;D expenditure in the column on the right minus the expenditure that flows abroad.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:be40b85e:--></div>
-<p><a href="./_file/images/gerd-gdp-comparison-live.92f50925.png" download="gerd-gdp-comparison.png">⤓ Download image</a></p>
+<p><a href="./_file/images/gerd-gdp-comparison-live.0c2d5d64.png" download="gerd-gdp-comparison.png">⤓ Download image</a></p>
 <h3 id="gerd-by-sector-in-of-gdp-2021" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-by-sector-in-of-gdp-2021">GERD by sector in % of GDP 2021</a></h3>
 <p>Research and Development in Switzerland is mainly performed by <span style="border-bottom: solid 2px #0571b0">private businesses</span> or <span style="border-bottom: solid 2px #FCE300">higher education institutions</span> and rarely by the <span style="border-bottom: solid 2px #06F7DA">government</span> itself. Switzerland has one of the lowest share of R&amp;D performed by government institutions. Sweden and Denmark's pattern of research and development most closely mirrors that of Switzerland. The high proportion of R&amp;D carried out by the private sector in Israel is also striking.</p>
 <div class="observablehq observablehq--block"><!--:e590ca54:--></div>
@@ -403,12 +403,12 @@ The Federal Statistical Office (FSO) has just published its data for 2023. Howev
 <h3 id="gerd-financed-by-government-in-of-gdp-2017-2022" tabindex="-1"><a class="observablehq-header-anchor" href="#gerd-financed-by-government-in-of-gdp-2017-2022">GERD financed by government in % of GDP 2017–2022</a></h3>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s government-financed R&amp;D remained stable in the last 5 years, but will likely decrease to 0.83 % in 2023 (official OECD data is not published yet). Meanwhile, <observablehq-loading></observablehq-loading><!--:294697dd:--> and <observablehq-loading></observablehq-loading><!--:9a4da08b-1:--> have increased their financing ratio to GDP. Interestingly, <observablehq-loading></observablehq-loading><!--:a05991af-1:--> has a comparatively low share of government-financed GERD. Its R&amp;D is mainly driven by private funding, especially from abroad (cf. also <a href="./b_ens#venture-capital-investments-in-of-gdp-2017-2024">venture capital investments</a>).</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:8d99075d:--></div>
-<p><a href="./_file/images/government-rnd-funding-live.344678d2.png" download="government-rnd-funding.png">⤓ Download image</a></p>
+<p><a href="./_file/images/government-rnd-funding-live.ac074c04.png" download="government-rnd-funding.png">⤓ Download image</a></p>
 <h3 id="business-expenditure-on-r-and-d-berd-financed-by-government" tabindex="-1"><a class="observablehq-header-anchor" href="#business-expenditure-on-r-and-d-berd-financed-by-government">Business expenditure on R&amp;D (BERD) financed by government</a></h3>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15-2:-->'s restrained approach to direct funding of BERD stands out clearly in an international comparison. Compared to other countries there has been very little direct financial support for business R&amp;D. The statement still holds if tax incentives for R&amp;D are included, see note below.</p>
 <p>The official OECD statistics are not out yet, but in 2023 the value for <observablehq-loading></observablehq-loading><!--:4e058e15-3:-->'s government financed business enterprise expenditure on R&amp;D is likely to rise to 1.7%, probably due to the new Innosuisse instruments Swiss Accelerator and the start-up innovation projects. However, this has very little effect on Switzerland's position.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:4bc25cf7:--></div>
-<p><a href="./_file/images/government-business-rnd-live.4a8b84cb.png" download="government-business-rnd.png">⤓ Download image</a></p>
+<p><a href="./_file/images/government-business-rnd-live.aaa100a7.png" download="government-business-rnd.png">⤓ Download image</a></p>
 <div class="note" label="Note">
   <details>
     <summary>
@@ -427,7 +427,7 @@ The Federal Statistical Office (FSO) has just published its data for 2023. Howev
 <h2 id="r-and-d-personnel" tabindex="-1"><a class="observablehq-header-anchor" href="#r-and-d-personnel">R&amp;D Personnel</a></h2>
 <p>The share of personnel employed in R&amp;D has increased over the years. <observablehq-loading></observablehq-loading><!--:4e058e15-4:--> is no exception and its trend will continue as well in 2023 with 18.2 R&amp;D personnel per 1'000 employment.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:2aaacb33:--></div>
-<p><a href="./_file/images/rnd-personnel-intensity-live.98f2a1bb.png" download="rnd-personnel-intensity.png">⤓ Download image</a></p>
+<p><a href="./_file/images/rnd-personnel-intensity-live.6126f6ef.png" download="rnd-personnel-intensity.png">⤓ Download image</a></p>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
 <li>For more detail, see chapter 4 of the Research and Innovation in Switzerland 2022 Interim Report: SBFI (<a href="https://www.sbfi.admin.ch/sbfi/de/home/forschung-und-innovation/forschung-und-innovation-in-der-schweiz/f-und-i-bericht.html" target="_blank" rel="noopener noreferrer">2022</a>) Forschung und Innovation in der Schweiz – Zwischenbericht 2022</li>

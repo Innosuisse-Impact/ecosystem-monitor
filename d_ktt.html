@@ -15,13 +15,13 @@
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
 <link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.7446718b.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.07f52a00.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.d2f42dde.js">
 <link rel="modulepreload" href="./_import/components/utils/subtractYears.6c06f425.js">
 <link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/d761ef9b.js">
-<link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
+<link rel="modulepreload" href="./_import/components/utils/occlusionY.2b6f1d9b.js">
 <link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/e780feca.js">
 <link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
@@ -111,7 +111,7 @@ registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeT
 registerFile("./data/switt_startup_2024.csv", {"name":"./data/switt_startup_2024.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2024.69dc4a42.csv","lastModified":1749203568598,"size":1175});
 
 define({id: "26123976", inputs: ["FileAttachment"], outputs: ["bar_stacked_y","color_range","color_scale","colorLegend","countries","line_oecd","subtractYears","df","df_eis","df_switt","df_patents","df_ppcp"], body: async (FileAttachment) => {
-const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}, {subtractYears}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.07f52a00.js"), import("./_import/components/utils/subtractYears.6c06f425.js")]);
+const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}, {subtractYears}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/plots/line_plots.d2f42dde.js"), import("./_import/components/utils/subtractYears.6c06f425.js")]);
 
 // OECD MSTI Daten laden
 const df = await FileAttachment("./data/df.csv").csv({ typed: true });
@@ -218,11 +218,11 @@ define({id: "01fac253", body: () => {
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is well-positioned and its PCT patent applications per billion GDP have grown steadily with the exceptions of 2019. This holds true as well if we look at patents per capita.</p>
 <p>PCT patents are international patents filed through the WIPO-administered Patent Cooperation Treaty. It makes it possible to seek patent protection for an invention simultaneously in a number of countries by filing a single application.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:1d007095:--></div>
-<p><a href="./_file/images/pct-patents-live.7b201526.png" download="pct-patents.png">⤓ Download image</a></p>
+<p><a href="./_file/images/pct-patents-live.51bc3b09.png" download="pct-patents.png">⤓ Download image</a></p>
 <h2 id="public-private-co-publications" tabindex="-1"><a class="observablehq-header-anchor" href="#public-private-co-publications">Public-private co-publications</a></h2>
 <p>One of the strengths in the international comparison are <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s public-private co-publications. Only <observablehq-loading></observablehq-loading><!--:1a7588f8:--> can keep pace. The Innosuisse monitoring data shows that Innovation Projects with Implementation Partner make their contribution to this knowledge transfer between research and business (54 % report a co-publication as one result of their Innovation Project).</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:02edd282:--></div>
-<p><a href="./_file/images/public-private-copubs-live.c8615294.png" download="public-private-copubs.png">⤓ Download image</a></p>
+<p><a href="./_file/images/public-private-copubs-live.83cb1b2a.png" download="public-private-copubs.png">⤓ Download image</a></p>
 <h2 id="start-ups-from-swiss-public-research-organisations" tabindex="-1"><a class="observablehq-header-anchor" href="#start-ups-from-swiss-public-research-organisations">Start-ups from Swiss public research organisations</a></h2>
 <p>&nbsp;&nbsp;&nbsp;<mark>New:</mark>&nbsp;&nbsp;&nbsp;Universities and other public research organisations have become an important driver of start-up growth in Switzerland. The decline in recent years both in total <span style="border-bottom: solid 2px #0571b0;">start-ups</span> and more pronounced in <span style="border-bottom: solid 2px #06F7DA;">spin-offs (start-ups with a formal licence of IP)</span> has been halted in 2023 with a new record of founded start-ups and slightly higher number of spin-offs.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:dbe1c9ae:--></div>

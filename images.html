@@ -13,13 +13,13 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/rank.35433a9c.js">
-<link rel="modulepreload" href="./_import/components/plots/arrow_y.893fadd7.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.07f52a00.js">
+<link rel="modulepreload" href="./_import/components/plots/rank.1bc1ea86.js">
+<link rel="modulepreload" href="./_import/components/plots/arrow_y.d0429efb.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.d2f42dde.js">
 <link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.7446718b.js">
 <link rel="modulepreload" href="./_import/components/plots/bar_stacked_x.fcd8d3e3.js">
-<link rel="modulepreload" href="./_import/components/plots/sankey.f39e7441.js">
-<link rel="modulepreload" href="./_import/components/plots/bar_x.18bdc39d.js">
+<link rel="modulepreload" href="./_import/components/plots/sankey.be7265c4.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_x.3681e844.js">
 <link rel="modulepreload" href="./_import/components/utils/countries.10854bad.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
 <link rel="modulepreload" href="./_import/components/utils/subtractYears.6c06f425.js">
@@ -28,7 +28,7 @@
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
 <link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
-<link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
+<link rel="modulepreload" href="./_import/components/utils/occlusionY.2b6f1d9b.js">
 <link rel="modulepreload" href="./_node/d3@7.9.0/index.e21134d2.js">
 <link rel="modulepreload" href="./_npm/d3-sankey@0.12.3/4d634262.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/d761ef9b.js">
@@ -136,7 +136,7 @@ registerFile("./data/rnd_ch_2023.csv", {"name":"./data/rnd_ch_2023.csv","mimeTyp
 registerFile("./data/switt_startup_2024.csv", {"name":"./data/switt_startup_2024.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2024.69dc4a42.csv","lastModified":1749203568598,"size":1175});
 
 define({id: "13f8bb67", inputs: ["FileAttachment"], outputs: ["plot_eis","plot_rank_bump","arrow_eis","line_cis","line_oecd","line_oecd_gbard","bar_stacked_y","bar_stacked_y_normalized","area_stacked_y_gerd_ch","bar_stacked_x","rnd_ch_sankey","bar_x","bar_x_unicorn","arrow_unicorns","country_iso3","iso3_country","color_scale","colorLegend","countries","subtractYears","aq","df_rank","df_ranking","df_eis","df_eis_filtered","df_eis_pivoted","df_eis_sorted","df_gtard","df_oecd_msti","df_rnd_ch","df_rnd_type","filter_oecd_msti","df_gerd","df_gerd_gov","df_berd_gov","df_rnd_personnel","df_gbard_tax","df_gerd_type","df_gerd_type1","domain1","order1","df_gerd_type3","df_gerd_type2","domain2","order2","rnd_type","rnd_type2023","df_ch_gerd","df_oecd_vc","df_gem_tea","df_tea","df_epo","df_unicorns_country","df_unicorns_ch","countries_filtered","df_vc","gdp","df_ug","df_oecd_mfp","df_oecd_mfp_plot","df_switt","df_patents","df_ppcp","df_ht","df_ert","df_htex","df_mht"], body: async (FileAttachment) => {
-const [{plot_eis, plot_rank_bump}, {arrow_eis}, {line_cis, line_oecd, line_oecd_gbard}, {bar_stacked_y, bar_stacked_y_normalized, area_stacked_y_gerd_ch}, {bar_stacked_x}, {rnd_ch_sankey}, {bar_x, bar_x_unicorn}, {arrow_unicorns}, {country_iso3, iso3_country}, {color_scale, colorLegend, countries}, {subtractYears}, aq] = await Promise.all([import("./_import/components/plots/rank.35433a9c.js"), import("./_import/components/plots/arrow_y.893fadd7.js"), import("./_import/components/plots/line_plots.07f52a00.js"), import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/plots/bar_stacked_x.fcd8d3e3.js"), import("./_import/components/plots/sankey.f39e7441.js"), import("./_import/components/plots/bar_x.18bdc39d.js"), import("./_import/components/plots/arrow_y.893fadd7.js"), import("./_import/components/utils/countries.10854bad.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/utils/subtractYears.6c06f425.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
+const [{plot_eis, plot_rank_bump}, {arrow_eis}, {line_cis, line_oecd, line_oecd_gbard}, {bar_stacked_y, bar_stacked_y_normalized, area_stacked_y_gerd_ch}, {bar_stacked_x}, {rnd_ch_sankey}, {bar_x, bar_x_unicorn}, {arrow_unicorns}, {country_iso3, iso3_country}, {color_scale, colorLegend, countries}, {subtractYears}, aq] = await Promise.all([import("./_import/components/plots/rank.1bc1ea86.js"), import("./_import/components/plots/arrow_y.d0429efb.js"), import("./_import/components/plots/line_plots.d2f42dde.js"), import("./_import/components/plots/bar_stacked_y.7446718b.js"), import("./_import/components/plots/bar_stacked_x.fcd8d3e3.js"), import("./_import/components/plots/sankey.be7265c4.js"), import("./_import/components/plots/bar_x.3681e844.js"), import("./_import/components/plots/arrow_y.d0429efb.js"), import("./_import/components/utils/countries.10854bad.js"), import("./_import/components/utils/colors.c15b65cb.js"), import("./_import/components/utils/subtractYears.6c06f425.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
 // Component imports
 
 // Data loading for all charts
@@ -473,6 +473,12 @@ display(line_oecd(df_mht, "Exports of medium and high technology products as a s
 <div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#c-innovation-activities">C. Innovation Activities</a></li>
+<li class="observablehq-secondary-link"><a href="#d-knowledge-and-technology-transfer">D. Knowledge and Technology Transfer</a></li>
+<li class="observablehq-secondary-link"><a href="#e-sustainability-and-high-tech-exports">E. Sustainability and High-tech Exports</a></li>
+</ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
@@ -482,17 +488,17 @@ display(line_oecd(df_mht, "Exports of medium and high technology products as a s
 <h2>Comparative Innovation Index Ranking, 2022–24</h2>
 <observablehq-loading></observablehq-loading><!--:d9a29c49:-->
 </figure>
-<figcaption><a href="./_file/images/innovation-rankings-live.2bb70b72.png" download="innovation-rankings.png">⤓ Download image</a><p></p>
+<figcaption><a href="./_file/images/innovation-rankings-live.da1a75ca.png" download="innovation-rankings.png">⤓ Download image</a><p></p>
 <figure id="eis-progress-arrow-figure">
 <h2>European Innovation Index Score Development, 2017–2024</h2>
 <observablehq-loading></observablehq-loading><!--:1de46353:-->
 </figure>
-<figcaption><a href="./_file/images/eis-progress-arrow-live.522acc45.png" download="eis-progress-arrow.png">⤓ Download image</a><p></p>
+<figcaption><a href="./_file/images/eis-progress-arrow-live.4f29568f.png" download="eis-progress-arrow.png">⤓ Download image</a><p></p>
 <figure id="competitiveness-rankings-figure">
 <h2>International Competitiveness Rankings, 2022–25</h2>
 <observablehq-loading></observablehq-loading><!--:3ceb84af:-->
 </figure>
-<figcaption><a href="./_file/images/competitiveness-rankings-live.16a777b6.png" download="competitiveness-rankings.png">⤓ Download image</a><p></p>
+<figcaption><a href="./_file/images/competitiveness-rankings-live.3d8aa29e.png" download="competitiveness-rankings.png">⤓ Download image</a><p></p>
 <h1 id="a-research-and-development" tabindex="-1"><a class="observablehq-header-anchor" href="#a-research-and-development">A. Research &amp; Development</a></h1>
 <figure id="swiss-rnd-sankey-figure">
 <h2>Swiss R&amp;D Financial Flows by Sector, 2023</h2>
@@ -500,13 +506,13 @@ display(line_oecd(df_mht, "Exports of medium and high technology products as a s
 <figcaption><span>Source: Federal Statistical Office<br>Note: Private non-profit organizations (PNP) are included for comprehensiveness; however, they represent only a marginal portion of total funding (CHF 0.1 bn) and expenditure (CHF 0.3 bn).</span></figcaption>
 </figure>
 <div>test
-<a href="./_file/images/swiss-rnd-sankey-live.671705fe.png" download="swiss-rnd-sankey.png">⤓ Download image</a>
+<a href="./_file/images/swiss-rnd-sankey-live.6edff03c.png" download="swiss-rnd-sankey.png">⤓ Download image</a>
 </div>
 <figure id="gerd-gdp-comparison-figure">
 <h2>Gross Domestic Expenditure on R&amp;D (GERD) as Percentage of GDP, 2017–2023</h2>
 <observablehq-loading></observablehq-loading><!--:0c891739:-->
 </figure>
-<small><a href="./_file/images/gerd-gdp-comparison-live.92f50925.png" download="gerd-gdp-comparison.png">⤓ Download image</a></small>
+<small><a href="./_file/images/gerd-gdp-comparison-live.0c2d5d64.png" download="gerd-gdp-comparison.png">⤓ Download image</a></small>
 <figure id="rnd-expenditure-by-sector-figure">
 <h2>R&amp;D Expenditure by Sector as Percentage of GERD</h2>
 <observablehq-loading></observablehq-loading><!--:ccb86dba:-->
@@ -526,86 +532,86 @@ display(line_oecd(df_mht, "Exports of medium and high technology products as a s
 <h2>Government-Financed R&amp;D Expenditure as Percentage of GDP, 2017–2023</h2>
 <observablehq-loading></observablehq-loading><!--:49b23839:-->
 </figure>
-<figcaption><a href="./_file/images/government-rnd-funding-live.344678d2.png" download="government-rnd-funding.png">⤓ Download image</a><p></p>
+<figcaption><a href="./_file/images/government-rnd-funding-live.ac074c04.png" download="government-rnd-funding.png">⤓ Download image</a><p></p>
 <figure id="government-business-rnd-figure">
 <h2>Government Financing of Business R&amp;D Expenditure (BERD) as Percentage of BERD, 2017–2023</h2>
 <observablehq-loading></observablehq-loading><!--:86beedd1:-->
 </figure>
-<figcaption><a href="./_file/images/government-business-rnd-live.4a8b84cb.png" download="government-business-rnd.png">⤓ Download image</a><p></p>
+<figcaption><a href="./_file/images/government-business-rnd-live.aaa100a7.png" download="government-business-rnd.png">⤓ Download image</a><p></p>
 <figure id="rnd-personnel-intensity-figure">
 <h2>R&amp;D Personnel Intensity, 2017–2023</h2>
 <observablehq-loading></observablehq-loading><!--:21c03c6b:-->
 </figure>
-<figcaption><a href="./_file/images/rnd-personnel-intensity-live.98f2a1bb.png" download="rnd-personnel-intensity.png">⤓ Download image</a><p></p>
+<figcaption><a href="./_file/images/rnd-personnel-intensity-live.6126f6ef.png" download="rnd-personnel-intensity.png">⤓ Download image</a><p></p>
 <h1 id="b-entrepreneurship-and-start-ups" tabindex="-1"><a class="observablehq-header-anchor" href="#b-entrepreneurship-and-start-ups">B. Entrepreneurship and Start-ups</a></h1>
 <figure id="venture-capital-gdp-figure">
 <h2>Venture Capital Investments as Percentage of GDP, 2017–2024</h2>
 <observablehq-loading></observablehq-loading><!--:bc0bdb17:-->
 </figure>
-<a href="./_file/images/venture-capital-gdp-live.bc982dd2.png" download="venture-capital-gdp.png">⤓ Download image</a>
+<a href="./_file/images/venture-capital-gdp-live.4143dd76.png" download="venture-capital-gdp.png">⤓ Download image</a>
 <figure id="entrepreneurial-activity-tea-figure">
 <h2>Total Entrepreneurial Activity Rate (TEA) among 18-64 Population, 2018–2024</h2>
 <observablehq-loading></observablehq-loading><!--:a4151ac8:-->
 </figure>
-<a href="./_file/images/entrepreneurial-activity-tea-live.7a122bc2.png" download="entrepreneurial-activity-tea.png">⤓ Download image</a>
+<a href="./_file/images/entrepreneurial-activity-tea-live.468ad081.png" download="entrepreneurial-activity-tea.png">⤓ Download image</a>
 <figure id="technology-investor-score-country-figure">
 <h2>Technology Investor Score: Patent Portfolio Intensity of Investment Firms</h2>
 <observablehq-loading></observablehq-loading><!--:aba09763:-->
 </figure>
-<p><a href="./_file/images/technology-investor-score-country-live.8c1fc825.png" download="technology-investor-score-country.png">⤓ Download image</a></p>
+<p><a href="./_file/images/technology-investor-score-country-live.8d4f3a84.png" download="technology-investor-score-country.png">⤓ Download image</a></p>
 <figure id="swiss-investor-scores-figure">
 <h2>Technology Investor Scores of Leading Swiss Investment Firms</h2>
 <observablehq-loading></observablehq-loading><!--:a7adde53:-->
 </figure>
-<figcaption><a href="./_file/images/swiss-investor-scores-live.c135b206.png" download="swiss-investor-scores.png">⤓ Download image</a><p></p>
+<a href="./_file/images/swiss-investor-scores-live.59edab64.png" download="swiss-investor-scores.png">⤓ Download image</a>
 <figure id="unicorn-density-figure">
 <h2>Unicorn Company Density, 2025</h2>
 <observablehq-loading></observablehq-loading><!--:592fcfc2:-->
 </figure>
-<a href="./_file/images/unicorn-density-live.55602e1c.png" download="unicorn-density.png">⤓ Download image</a>
+<a href="./_file/images/unicorn-density-live.cc15a792.png" download="unicorn-density.png">⤓ Download image</a>
 <figure id="swiss-unicorns-figure">
 <h2>Swiss Unicorn Companies: Current and Former Unicorn Enterprises, 2025</h2>
 <observablehq-loading></observablehq-loading><!--:2134d829:-->
 </figure>
-<a href="./_file/images/swiss-unicorns-live.c03e5b46.png" download="swiss-unicorns.png">⤓ Download image</a>
+<a href="./_file/images/swiss-unicorns-live.4dad0571.png" download="swiss-unicorns.png">⤓ Download image</a>
 <h1 id="c-innovation-activities" tabindex="-1"><a class="observablehq-header-anchor" href="#c-innovation-activities">C. Innovation Activities</a></h1>
 <figure id="multifactor-productivity-figure">
 <h2>Multi-Factor Productivity, 1998–2022</h2>
 <observablehq-loading></observablehq-loading><!--:608aeecd:-->
 </figure>
-<figcaption><a href="./_file/images/multifactor-productivity-live.ff06c584.png" download="multifactor-productivity.png">⤓ Download image</a><p></p>
+<a href="./_file/images/multifactor-productivity-live.92f2d0a6.png" download="multifactor-productivity.png">⤓ Download image</a>
 <h1 id="d-knowledge-and-technology-transfer" tabindex="-1"><a class="observablehq-header-anchor" href="#d-knowledge-and-technology-transfer">D. Knowledge and Technology Transfer</a></h1>
 <figure id="pct-patents-figure">
 <h2>International Patent Applications per Billion GDP (PPS), 2015–2020</h2>
 <observablehq-loading></observablehq-loading><!--:81041099:-->
 </figure>
-<figcaption><a href="./_file/images/pct-patents-live.7b201526.png" download="pct-patents.png">⤓ Download image</a><p></p>
+<a href="./_file/images/pct-patents-live.51bc3b09.png" download="pct-patents.png">⤓ Download image</a>
 <figure id="public-private-copubs-figure">
 <h2>Public-Private Research Collaboration, 2017–2023</h2>
 <observablehq-loading></observablehq-loading><!--:c1e66239:-->
 </figure>
-<figcaption><a href="./_file/images/public-private-copubs-live.c8615294.png" download="public-private-copubs.png">⤓ Download image</a><p></p>
+<a href="./_file/images/public-private-copubs-live.83cb1b2a.png" download="public-private-copubs.png">⤓ Download image</a>
 <figure id="swiss-research-startups-figure">
 <h2>Start-ups and Spin-offs from Swiss Universities, 2017–2023</h2>
 <observablehq-loading></observablehq-loading><!--:2e77f50d:-->
 </figure>
-<figcaption><a href="./_file/images/swiss-research-startups-live.db2f1aad.png" download="swiss-research-startups.png">⤓ Download image</a><p></p>
+<a href="./_file/images/swiss-research-startups-live.db2f1aad.png" download="swiss-research-startups.png">⤓ Download image</a>
 <h1 id="e-sustainability-and-high-tech-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#e-sustainability-and-high-tech-exports">E. Sustainability and High-tech Exports</a></h1>
 <figure id="green-technology-patents-figure">
 <h2>Green Technology Patent Share, 2012–19</h2>
 <observablehq-loading></observablehq-loading><!--:9b7d58e9:-->
 </figure>
-<a href="./_file/images/green-technology-patents-live.2b96794d.png" download="green-technology-patents.png">⤓ Download image</a>
+<a href="./_file/images/green-technology-patents-live.647c11b2.png" download="green-technology-patents.png">⤓ Download image</a>
 <figure id="hightech-exports-figure">
 <h2>High-Technology Export Share, 2017–2022</h2>
 <observablehq-loading></observablehq-loading><!--:2895869f:-->
 </figure>
-<a href="./_file/images/hightech-exports-live.c8466cb0.png" download="hightech-exports.png">⤓ Download image</a>
+<a href="./_file/images/hightech-exports-live.241149ea.png" download="hightech-exports.png">⤓ Download image</a>
 <figure id="medium-hightech-exports-figure">
 <h2>Medium and High-Technology Export Share, 2016–2023</h2>
 <observablehq-loading></observablehq-loading><!--:380129c3:-->
 </figure>
-<a href="./_file/images/medium-hightech-exports-live.6909fbb9.png" download="medium-hightech-exports.png">⤓ Download image</a></figcaption></figcaption></figcaption></figcaption></figcaption></figcaption></figcaption></figcaption></figcaption></figcaption></figcaption></main>
+<a href="./_file/images/medium-hightech-exports-live.85cac60b.png" download="medium-hightech-exports.png">⤓ Download image</a></figcaption></figcaption></figcaption></figcaption></figcaption></figcaption></main>
 <footer id="observablehq-footer">
 <div>Authors: <a href="mailto:adrianriser@innosuisse.ch" target="_blank" rel="noopener noreferrer">Adrian Riser</a> and Adrian Berwert, Impact Analysis, Innosuisse • Last changes: 25.06.2025 • <a href="https://observablehq.com/framework/" target="_blank" rel="noopener noreferrer">Built with Observable.</a></div>
 </footer>

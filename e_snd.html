@@ -13,9 +13,9 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.07f52a00.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.d2f42dde.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
-<link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
+<link rel="modulepreload" href="./_import/components/utils/occlusionY.2b6f1d9b.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
 <link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
@@ -108,7 +108,7 @@ registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_valu
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 
 define({id: "09152368", inputs: ["FileAttachment","subtractYears"], outputs: ["line_oecd","color_range","color_scale","colorLegend","countries","df_ht","df_eis","df_ert","df_htex","df_mht"], body: async (FileAttachment,subtractYears) => {
-const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.07f52a00.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
+const [{line_oecd}, {color_range, color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/line_plots.d2f42dde.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
 
 // OECD ENV Daten
 const df_ht = await FileAttachment("./data/df_ht.csv").csv({ typed: true });
@@ -233,16 +233,16 @@ return {subtractYears};
 <h2 id="development-of-environment-related-technologies-percentage-of-all-technologies" tabindex="-1"><a class="observablehq-header-anchor" href="#development-of-environment-related-technologies-percentage-of-all-technologies">Development of environment-related technologies, percentage of all technologies</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> has a comparably low share of green technologies in percent of all patents and the share has been declining. Of the top innovators, <observablehq-loading></observablehq-loading><!--:1a7588f8:--> has a clear focus on environment-related technologies and its importance has grown over time.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d50515c0:--></div>
-<p><a href="./_file/images/green-technology-patents-live.2b96794d.png" download="green-technology-patents.png">⤓ Download image</a></p>
+<p><a href="./_file/images/green-technology-patents-live.647c11b2.png" download="green-technology-patents.png">⤓ Download image</a></p>
 <h2 id="exports-of-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-high-technology-products-as-a-share-of-total-products-exports">Exports of high technology products as a share of total products exports</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15-1:--> has very high share of high-tech exports. The pharmaceuticals industry is likely the most important factor for Switzerland's top position, next to the other sub-sectors ("computer, electronic and optical products" and "air and spacecraft and related machinery").</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:53a56a4d:--></div>
-<p><a href="./_file/images/hightech-exports-live.c8466cb0.png" download="hightech-exports.png">⤓ Download image</a></p>
+<p><a href="./_file/images/hightech-exports-live.241149ea.png" download="hightech-exports.png">⤓ Download image</a></p>
 <h2 id="exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports" tabindex="-1"><a class="observablehq-header-anchor" href="#exports-of-medium-and-high-technology-products-as-a-share-of-total-products-exports">Exports of medium and high technology products as a share of total products exports</a></h2>
 <p>Interestingly enough, if we widen the scope to medium and high-tech exports, <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> fares not nearly as well, compared to countries such as <observablehq-loading></observablehq-loading><!--:9a4da08b:--> or <observablehq-loading></observablehq-loading><!--:294697dd:-->. Additionally, there has been a steady decline since 2019.</p>
 <p>Medium-tech exports are – among others – chemical products, machinery, medical and dental instruments, etc.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:7a2f0a68:--></div>
-<p><a href="./_file/images/medium-hightech-exports-live.6909fbb9.png" download="medium-hightech-exports.png">⤓ Download image</a></p>
+<p><a href="./_file/images/medium-hightech-exports-live.85cac60b.png" download="medium-hightech-exports.png">⤓ Download image</a></p>
 <div class="observablehq observablehq--block"><!--:ef1e01b8:--></div>
 <h4 id="source" tabindex="-1"><a class="observablehq-header-anchor" href="#source">Source</a></h4>
 <ul>

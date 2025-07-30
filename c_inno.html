@@ -14,10 +14,10 @@
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
 <link rel="modulepreload" href="./_npm/arquero@8.0.3/175c2cad.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.07f52a00.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.d2f42dde.js">
 <link rel="modulepreload" href="./_import/components/plots/lin_reg.79e82931.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
-<link rel="modulepreload" href="./_import/components/utils/occlusionY.19d354b2.js">
+<link rel="modulepreload" href="./_import/components/utils/occlusionY.2b6f1d9b.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
 <link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
@@ -114,7 +114,7 @@ registerFile("./data/innovationserhebung.csv", {"name":"./data/innovationserhebu
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 
 define({id: "52693e24", inputs: ["FileAttachment"], outputs: ["aq","line_cis","line_oecd","line_oecd_mfp","line_rank","lin_reg","color_scale","colorLegend","countries","eurostat_pct_rd","domain_x","eurostat_pct_rd_filtered","ie","df_oecd_mfp","df_oecd_mfp_plot"], body: async (FileAttachment) => {
-const [aq, {line_cis, line_oecd, line_oecd_mfp, line_rank}, {lin_reg}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_npm/arquero@8.0.3/175c2cad.js"), import("./_import/components/plots/line_plots.07f52a00.js"), import("./_import/components/plots/lin_reg.79e82931.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
+const [aq, {line_cis, line_oecd, line_oecd_mfp, line_rank}, {lin_reg}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_npm/arquero@8.0.3/175c2cad.js"), import("./_import/components/plots/line_plots.d2f42dde.js"), import("./_import/components/plots/lin_reg.79e82931.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
 
 const eurostat_pct_rd = await FileAttachment("./data/eurostat_pct_rd.txt").tsv({
   typed: true,
@@ -304,7 +304,7 @@ line_oecd(df_oecd_mfp_plot, "Multi-factor productivity (Index = 2015, Current pr
 <h3 id="productivity-is-increasing" tabindex="-1"><a class="observablehq-header-anchor" href="#productivity-is-increasing">Productivity is increasing</a></h3>
 <p>Survey results show that process innovations are leading to significant reductions in production costs, particularly among SMEs. This is reflected in the development of multi-factor productivity (MFP), which points to positive productivity effects from innovation activities. MFP is a measure of economic efficiency that captures the portion of output growth that cannot be explained by increases in labour and capital inputs alone. It reflects how effectively an economy or firm combines its resources to produce goods and services, essentially measuring the "residual" productivity gains that stem from technological progress, improved processes, organizational changes, and other innovations.</p>
 <div><observablehq-loading></observablehq-loading><!--:3f4ca94c:--></div>
-<a href="./_file/images/multifactor-productivity-live.ff06c584.png" download="multifactor-productivity.png">⤓ Download image</a>
+<a href="./_file/images/multifactor-productivity-live.92f2d0a6.png" download="multifactor-productivity.png">⤓ Download image</a>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
 <li>KOF (<a href="https://innovationserhebung.ch/innovationsbericht_2023/" target="_blank" rel="noopener noreferrer">2025</a>) Innovation report 2023</li>

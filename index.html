@@ -13,8 +13,8 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/rank.35433a9c.js">
-<link rel="modulepreload" href="./_import/components/plots/arrow_y.893fadd7.js">
+<link rel="modulepreload" href="./_import/components/plots/rank.1bc1ea86.js">
+<link rel="modulepreload" href="./_import/components/plots/arrow_y.d0429efb.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.c15b65cb.js">
 <link rel="modulepreload" href="./_npm/arquero@8.0.3/175c2cad.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
@@ -112,7 +112,7 @@ registerFile("./data/eurostat_eis_values.csv", {"name":"./data/eurostat_eis_valu
 registerFile("./data/iso3_country.csv", {"name":"./data/iso3_country.csv","mimeType":"text/csv","path":"./_file/data/iso3_country.72d5f011.csv","lastModified":1750259056093,"size":1873});
 
 define({id: "30f71b4b", inputs: ["FileAttachment","aq"], outputs: ["plot_eis","plot_rank_bump","arrow_eis","color_scale","colorLegend","countries","df_eis","df_rank","df_ranking","df_eis_filtered","df_eis_pivoted","df_eis_sorted"], body: async (FileAttachment,aq) => {
-const [{plot_eis, plot_rank_bump}, {arrow_eis}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/rank.35433a9c.js"), import("./_import/components/plots/arrow_y.893fadd7.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
+const [{plot_eis, plot_rank_bump}, {arrow_eis}, {color_scale, colorLegend, countries}] = await Promise.all([import("./_import/components/plots/rank.1bc1ea86.js"), import("./_import/components/plots/arrow_y.d0429efb.js"), import("./_import/components/utils/colors.c15b65cb.js")]);
 //import { iso3_country } from "./components/utils/countries.js"
 // // EU European Innovation Scoreboard Daten laden
 const df_eis = await FileAttachment("./data/eurostat_eis_values.csv").csv({typed: true});
@@ -310,7 +310,7 @@ This is a new version of a previously internal Innovation Ecosystem Monitor publ
 <h2 id="switzerland-maintains-its-position-on-top" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerland-maintains-its-position-on-top">Switzerland maintains its position on top</a></h2>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:-->'s top position in the two most prominent international innovation rankings is stable. Generally, there is not a lot of movement among the top 10 countries in both the GII and the EIS index. Only <observablehq-loading></observablehq-loading><!--:9a4da08b:--> and <observablehq-loading></observablehq-loading><!--:263d7e7c:--> have made significant progress in the rankings.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:30b2d9bc:--></div>
-<p><a href="./_file/images/innovation-rankings-live.2bb70b72.png" download="innovation-rankings.png">⤓ Download image</a></p>
+<p><a href="./_file/images/innovation-rankings-live.da1a75ca.png" download="innovation-rankings.png">⤓ Download image</a></p>
 <p>The Economist's Impact Unit's Innovation Quotient (EIQ) shows that not all innovation indices put Switzerland on top (and that ranking positions can be influenced by the selection of indicators: Compare e.g. the <observablehq-loading></observablehq-loading><!--:3e3682b0:-->, the <observablehq-loading></observablehq-loading><!--:c55312a5:--> or <observablehq-loading></observablehq-loading><!--:1a7588f8:--> across the three rankings).</p>
 <div class="note" label="Note"><details>
   <summary>Why is Switzerland not on top in the EIQ?</summary>
@@ -330,7 +330,7 @@ This is a new version of a previously internal Innovation Ecosystem Monitor publ
 <h3 id="european-innovation-scoreboard-index-score-2017-2023" tabindex="-1"><a class="observablehq-header-anchor" href="#european-innovation-scoreboard-index-score-2017-2023">European Innovation Scoreboard Index Score 2017–2023</a></h3>
 <p>Its closest competitors in the European Innovation Scoreboard – <observablehq-loading></observablehq-loading><!--:1a7588f8-1:-->, <observablehq-loading></observablehq-loading><!--:e662b923:--> and <observablehq-loading></observablehq-loading><!--:fc642e84:--> – have made up substantial ground and are closing the gap. <observablehq-loading></observablehq-loading><!--:4e058e15-1:--> on the other hand has made only modest gains.</p>
 <div class="observablehq observablehq--block"><!--:0e5acd9c:--></div>
-<p><a href="./_file/images/eis-progress-arrow-live.522acc45.png" download="eis-progress-arrow.png">⤓ Download image</a></p>
+<p><a href="./_file/images/eis-progress-arrow-live.4f29568f.png" download="eis-progress-arrow.png">⤓ Download image</a></p>
 <h3 id="switzerlands-strengths-and-weaknesses" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerlands-strengths-and-weaknesses">Switzerland's strengths and weaknesses</a></h3>
 <p>The European Innovation Scoreboard (EIS) highlights Switzerland's greatest strengths in innovation as its universities' research output and the international composition of their student bodies / academic staff. Switzerland has recently shown significant progress in two crucial areas: venture capital availability and product innovation by SMEs. Notably, the long-declining trend in SME product innovation has reversed, showing positive momentum.</p>
 <table>
@@ -408,7 +408,7 @@ This is a new version of a previously internal Innovation Ecosystem Monitor publ
 <h2 id="switzerland-is-one-of-the-most-competitive-countries" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerland-is-one-of-the-most-competitive-countries">Switzerland is one of the most competitive countries</a></h2>
 <p><mark>New:</mark>&nbsp;&nbsp;&nbsp;<observablehq-loading></observablehq-loading><!--:4e058e15-2:--> is also well positioned in other, less innovation focused rankings, such as IMD's competitiveness rankings, where it has recently made significant progress in both the competitiveness and the digital competitiveness ranking.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:6482a121:--></div>
-<p><a href="./_file/images/competitiveness-rankings-live.16a777b6.png" download="competitiveness-rankings.png">⤓ Download image</a></p>
+<p><a href="./_file/images/competitiveness-rankings-live.3d8aa29e.png" download="competitiveness-rankings.png">⤓ Download image</a></p>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
 <ul>
 <li>Wipo (<a href="https://www.wipo.int/web-publications/global-innovation-index-2024/en/" target="_blank" rel="noopener noreferrer">2024</a>) Global Innovation Index</li>
