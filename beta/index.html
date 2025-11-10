@@ -14,7 +14,7 @@
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
 <link rel="modulepreload" href="./_import/components/plots/rank.d0be4010.js">
-<link rel="modulepreload" href="./_import/components/plots/arrow_y.24d21757.js">
+<link rel="modulepreload" href="./_import/components/plots/arrow_y.244706bb.js">
 <link rel="modulepreload" href="./_import/components/utils/colors.8262fe81.js">
 <link rel="modulepreload" href="./_npm/arquero@8.0.3/175c2cad.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
@@ -110,10 +110,10 @@ import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 registerFile("./data/eis_raw_data_2025.csv", {"name":"./data/eis_raw_data_2025.csv","mimeType":"text/csv","path":"./_file/data/eis_raw_data_2025.5faa86b5.csv","lastModified":1758543254485,"size":2009454});
 registerFile("./data/gii_2021_2025_score.csv", {"name":"./data/gii_2021_2025_score.csv","mimeType":"text/csv","path":"./_file/data/gii_2021_2025_score.f205fb8b.csv","lastModified":1762180160238,"size":14408});
 registerFile("./data/iso3_country_csv.csv", {"name":"./data/iso3_country_csv.csv","mimeType":"text/csv","path":"./_file/data/iso3_country_csv.c215df9d.csv","lastModified":1758553457374,"size":1848});
-registerFile("./data/rankings_2025.csv", {"name":"./data/rankings_2025.csv","mimeType":"text/csv","path":"./_file/data/rankings_2025.22b48537.csv","lastModified":1758554615225,"size":124488});
+registerFile("./data/rankings_2025.csv", {"name":"./data/rankings_2025.csv","mimeType":"text/csv","path":"./_file/data/rankings_2025.97d67bf6.csv","lastModified":1762443865300,"size":131705});
 
-define({id: "ace5a0fb", inputs: ["FileAttachment"], outputs: ["plot_eis","plot_rank_bump","arrow_eis","color_scale","colorLegend","countries","aq","df_rank","df_ranking","df_eis","df_eis_filtered","df_eis_pivoted","df_eis_sorted","df_gii","df_gii_filtered","df_gii_pivoted","df_gii_sorted"], body: async (FileAttachment) => {
-const [{plot_eis, plot_rank_bump}, {arrow_eis}, {color_scale, colorLegend, countries}, aq] = await Promise.all([import("./_import/components/plots/rank.d0be4010.js"), import("./_import/components/plots/arrow_y.24d21757.js"), import("./_import/components/utils/colors.8262fe81.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
+define({id: "e7d92949", inputs: ["FileAttachment"], outputs: ["plot_eis","plot_rank_bump","arrow_eis","color_scale","colorLegend","countries","aq","df_rank","df_ranking","df_eis","df_eis_filtered","df_gii","df_gii_filtered"], body: async (FileAttachment) => {
+const [{plot_eis, plot_rank_bump}, {arrow_eis}, {color_scale, colorLegend, countries}, aq] = await Promise.all([import("./_import/components/plots/rank.d0be4010.js"), import("./_import/components/plots/arrow_y.244706bb.js"), import("./_import/components/utils/colors.8262fe81.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
 
 const df_rank = await FileAttachment("./data/rankings_2025.csv").csv({
   typed: true,
@@ -133,34 +133,17 @@ const df_ranking = df_rank
       countries.includes(d.iso3) &&
       (d.year_date > new Date("2021-12-31") || d.year_date === "NA")
   );
-
 const df_eis = await FileAttachment("./data/eis_raw_data_2025.csv").csv({
   typed: true,
 });
 const df_eis_filtered = df_eis.filter(
   (d) => countries.includes(d.iso3) && d.var === "SII"
 );
-const df_eis_pivoted = aq
-  .from(df_eis_filtered)
-  .filter((d) => d.year === 2025 || d.year === 2021)
-  .groupby("country", "iso3")
-  .pivot("year", "obs_value")
-  .orderby(aq.desc("2025"))
-  .objects();
-const df_eis_sorted = df_eis_pivoted.map((d) => d.country);
-
 const df_gii = await FileAttachment("./data/gii_2021_2025_score.csv").csv({
   typed: true,
 });
 const df_gii_filtered = df_gii.filter((d) => countries.includes(d.iso3));
-const df_gii_pivoted = aq
-  .from(df_gii_filtered)
-  .groupby("country", "iso3")
-  .pivot("year", "obs_value")
-  .orderby(aq.desc("2025"))
-  .objects();
-const df_gii_sorted = df_gii_pivoted.map((d) => d.country);
-return {plot_eis,plot_rank_bump,arrow_eis,color_scale,colorLegend,countries,aq,df_rank,df_ranking,df_eis,df_eis_filtered,df_eis_pivoted,df_eis_sorted,df_gii,df_gii_filtered,df_gii_pivoted,df_gii_sorted};
+return {plot_eis,plot_rank_bump,arrow_eis,color_scale,colorLegend,countries,aq,df_rank,df_ranking,df_eis,df_eis_filtered,df_gii,df_gii_filtered};
 }});
 
 define({id: "4e058e15", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
@@ -229,47 +212,17 @@ colorLegend("DNK")
 ))
 }});
 
-define({id: "95229249", inputs: ["display","arrow_eis","df_eis_pivoted","df_eis_filtered","df_eis_sorted"], body: (display,arrow_eis,df_eis_pivoted,df_eis_filtered,df_eis_sorted) => {
-display(
-  arrow_eis(
-    df_eis_pivoted,
-    df_eis_filtered,
-    df_eis_sorted,
-    "2021",
-    "2025",
-    false
-  )
-);
+define({id: "e98c580e", inputs: ["display","arrow_eis","df_eis_filtered"], body: (display,arrow_eis,df_eis_filtered) => {
+display(arrow_eis(df_eis_filtered, "2021", "2025", false));
 }});
 
-define({id: "8595e018", inputs: ["display","arrow_eis","df_gii_pivoted","df_gii_filtered","df_gii_sorted"], body: (display,arrow_eis,df_gii_pivoted,df_gii_filtered,df_gii_sorted) => {
-display(
-  arrow_eis(
-    df_gii_pivoted,
-    df_gii_filtered,
-    df_gii_sorted,
-    "2021",
-    "2025",
-    true
-  )
-);
+define({id: "3b16a506", inputs: ["display","arrow_eis","df_gii_filtered"], body: (display,arrow_eis,df_gii_filtered) => {
+display(arrow_eis(df_gii_filtered, "2021", "2025", true));
 }});
 
 define({id: "4e058e15-2", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
 display(await(
 colorLegend("CHE")
-))
-}});
-
-define({id: "263d7e7c", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
-display(await(
-colorLegend("SGP")
-))
-}});
-
-define({id: "1a7588f8-1", mode: "inline", inputs: ["colorLegend","display"], body: async (colorLegend,display) => {
-display(await(
-colorLegend("DNK")
 ))
 }});
 
@@ -355,10 +308,10 @@ define({id: "e7147e10", body: () => {
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:ace5a0fb:--></div>
+<div class="observablehq observablehq--block"><!--:e7d92949:--></div>
 <div style="background: transparent linear-gradient(284deg, #AFBDFA 0%, #FE8776 100%) no-repeat padding-box; height: 60px; width: 650px; padding-left: 48px; padding-top: 1px; padding-bottom: 60px;  margin-left: -48px; margin-top: -31px;">
 <h1 id="innovation-ecosystem-monitor" tabindex="-1"><a class="observablehq-header-anchor" href="#innovation-ecosystem-monitor">Innovation Ecosystem Monitor</a></h1>
-<p><small style="display: block; text-align: right;">Last changes: 05.11.2025</small></p>
+<p><small><small style="display: block; text-align: right;">Last changes: 10. November 2025</small></small></p>
 </div>
 <h2 id="mapping-switzerlands-innovation-strengths-weaknesses-and-their-evolution-over-time" tabindex="-1"><a class="observablehq-header-anchor" href="#mapping-switzerlands-innovation-strengths-weaknesses-and-their-evolution-over-time">Mapping Switzerland's Innovation Strengths, Weaknesses and Their Evolution Over Time</a></h2>
 <h3 id="what-is-the-monitors-purpose" tabindex="-1"><a class="observablehq-header-anchor" href="#what-is-the-monitors-purpose">What is the monitors purpose?</a></h3>
@@ -383,10 +336,10 @@ define({id: "e7147e10", body: () => {
 <h2 id="however-followers-may-be-catching-up" tabindex="-1"><a class="observablehq-header-anchor" href="#however-followers-may-be-catching-up">However, followers may be catching up</a></h2>
 <h3 id="comparison-of-the-score-evolution-for-gii-and-eis-2021-2025" tabindex="-1"><a class="observablehq-header-anchor" href="#comparison-of-the-score-evolution-for-gii-and-eis-2021-2025">Comparison of the score evolution for GII and EIS 2021–2025</a></h3>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15-1:--> has slipped slightly in the latest European Innovation Scoreboard (EIS). <observablehq-loading></observablehq-loading><!--:e662b923-1:-->, <observablehq-loading></observablehq-loading><!--:9a4da08b-1:--> and <observablehq-loading></observablehq-loading><!--:1a7588f8:--> have gained ground and narrowed the gap. This is partly due to changes in the index's methodology. The EIS now includes, for example, measures of supply-chain vulnerability, which penalises Switzerland: its complex products depend on high-tech imports from outside the EU.</p>
-<div class="observablehq observablehq--block"><!--:95229249:--></div>
+<div class="observablehq observablehq--block"><!--:e98c580e:--></div>
 <p><a href="./_file/images/eis-progress-arrow-live.23ad5cbd.png" download="eis-progress-arrow.png">⤓ Download image</a></p>
 <p>The Global Innovation Index, which uses a broader set of indicators, shows no such convergence and no decline in Swiss innovative power.</p>
-<div class="observablehq observablehq--block"><!--:8595e018:--></div>
+<div class="observablehq observablehq--block"><!--:3b16a506:--></div>
 <p><a href="./_file/images/gii-progress-arrow-live.9c4a53f8.png" download="gii-progress-arrow.png">⤓ Download image</a></p>
 <h3 id="switzerlands-strengths-and-weaknesses" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerlands-strengths-and-weaknesses">Switzerland's strengths and weaknesses</a></h3>
 <p>Both indices highlight similar strengths: exceptional scientific output and exceptionally close links between industry and academia, evident in public-private co-publications and university-industry R&amp;D collaboration.</p>
@@ -477,7 +430,7 @@ define({id: "e7147e10", body: () => {
 </table>
 </details>
 <h2 id="switzerland-is-one-of-the-most-competitive-countries" tabindex="-1"><a class="observablehq-header-anchor" href="#switzerland-is-one-of-the-most-competitive-countries">Switzerland is one of the most competitive countries</a></h2>
-<p><observablehq-loading></observablehq-loading><!--:4e058e15-2:--> also ranks highly in broader measures of competitiveness, as do <observablehq-loading></observablehq-loading><!--:263d7e7c:--> and <observablehq-loading></observablehq-loading><!--:1a7588f8-1:-->. It has climbed IMD's rankings for both overall and digital competitiveness.</p>
+<p><observablehq-loading></observablehq-loading><!--:4e058e15-2:--> also ranks highly in broader measures of competitiveness. It has climbed on top of IMD's rankings for both overall and digital competitiveness.</p>
 <div class="observablehq observablehq--block"><!--:d6894269:--></div>
 <p><a href="./_file/images/competitiveness-rankings-live.48fdf662.png" download="competitiveness-rankings.png">⤓ Download image</a></p>
 <h4 id="sources" tabindex="-1"><a class="observablehq-header-anchor" href="#sources">Sources</a></h4>
@@ -485,13 +438,13 @@ define({id: "e7147e10", body: () => {
 <li>Wipo (<a href="https://www.wipo.int/en/web/global-innovation-index" target="_blank" rel="noopener noreferrer">2025</a>) Global Innovation Index</li>
 <li>European Commission (<a href="https://research-and-innovation.ec.europa.eu/statistics/performance-indicators/european-innovation-scoreboard_en" target="_blank" rel="noopener noreferrer">2025</a>) European Innovation Scoreboard</li>
 <li>IMD (<a href="https://www.imd.org/centers/wcc/world-competitiveness-center/rankings/world-competitiveness-ranking/" target="_blank" rel="noopener noreferrer">2025</a>) World Competitiveness Ranking</li>
-<li>IMD (<a href="https://www.imd.org/centers/wcc/world-competitiveness-center/rankings/world-digital-competitiveness-ranking/" target="_blank" rel="noopener noreferrer">2024</a>) World Digital Competitiveness Ranking</li>
+<li>IMD (<a href="https://www.imd.org/centers/wcc/world-competitiveness-center/rankings/world-digital-competitiveness-ranking/" target="_blank" rel="noopener noreferrer">2025</a>) World Digital Competitiveness Ranking</li>
 </ul>
 <h4 id="other-indices" tabindex="-1"><a class="observablehq-header-anchor" href="#other-indices">Other indices</a></h4>
 <ul>
-<li>Economist (<a href="https://web.archive.org/web/20240922204922/https://impact.economist.com/new-globalisation/innovation-quotient" target="_blank" rel="noopener noreferrer">2024</a>) The Innovation Quotient. The index has been discontinued and is no longer included.</li>
+<li>Economist (<a href="https://web.archive.org/web/20240922204922/https://impact.economist.com/new-globalisation/innovation-quotient" target="_blank" rel="noopener noreferrer">2024</a>) The Innovation Quotient has been discontinued and is no longer included.</li>
 <li>GEM (<a href="https://gemconsortium.org/reports/latest-global-report" target="_blank" rel="noopener noreferrer">2025</a>) Global Entrepreneurship Monitor</li>
-<li>The EU made a <a href="https://op.europa.eu/en/publication-detail/-/publication/70fe2318-fb72-11ed-a05c-01aa75ed71a1/language-en" target="_blank" rel="noopener noreferrer">study</a> on the development of an European startup scoreboard (comparable to the EIS). The scoreboard is <a href="https://4front.fi/proving-valuable-insights-on-europes-startup-and-scaleup-landscape/" target="_blank" rel="noopener noreferrer">in development</a>.</li>
+<li>The EU made a <a href="https://op.europa.eu/en/publication-detail/-/publication/70fe2318-fb72-11ed-a05c-01aa75ed71a1/language-en" target="_blank" rel="noopener noreferrer">study</a> on the development of an European startup scoreboard. The scoreboard is <a href="https://4front.fi/proving-valuable-insights-on-europes-startup-and-scaleup-landscape/" target="_blank" rel="noopener noreferrer">in development</a>.</li>
 </ul>
 <div class="observablehq observablehq--block"><!--:e7147e10:--></div>
 </main>
