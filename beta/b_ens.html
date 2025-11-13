@@ -15,14 +15,14 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/utils/colors.8262fe81.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.c261ed98.js">
-<link rel="modulepreload" href="./_import/components/plots/bar_x.69db306a.js">
-<link rel="modulepreload" href="./_import/components/plots/bar_y.d688bc57.js">
-<link rel="modulepreload" href="./_import/components/plots/arrow_y.24d21757.js">
+<link rel="modulepreload" href="./_import/components/utils/colors.069c64c0.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.92fb4b0b.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_x.19de214f.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_y.2ba3f9a0.js">
+<link rel="modulepreload" href="./_import/components/plots/arrow_y.aef9be44.js">
 <link rel="modulepreload" href="./_npm/arquero@8.0.3/175c2cad.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.ab00648a.js">
-<link rel="modulepreload" href="./_import/components/utils/countries.8b3404cd.js">
+<link rel="modulepreload" href="./_import/components/utils/countries.da511c71.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/d761ef9b.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
 <link rel="modulepreload" href="./_import/components/utils/occlusionY.2b6f1d9b.js">
@@ -115,16 +115,16 @@ import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 
 registerFile("./data/20241024_vc.txt", {"name":"./data/20241024_vc.txt","mimeType":"text/plain","path":"./_file/data/20241024_vc.9f54b694.txt","lastModified":1730842497480,"size":76013});
 registerFile("./data/df_epo.csv", {"name":"./data/df_epo.csv","mimeType":"text/csv","path":"./_file/data/df_epo.e93054be.csv","lastModified":1749112876214,"size":2215});
-registerFile("./data/df_oecd_msti.csv", {"name":"./data/df_oecd_msti.csv","mimeType":"text/csv","path":"./_file/data/df_oecd_msti.c3c7f5c4.csv","lastModified":1762174740104,"size":5109625});
-registerFile("./data/df_oecd_vc.csv", {"name":"./data/df_oecd_vc.csv","mimeType":"text/csv","path":"./_file/data/df_oecd_vc.d7c073f6.csv","lastModified":1762167008118,"size":124922});
+registerFile("./data/df_gem_tea_2018_2024.csv", {"name":"./data/df_gem_tea_2018_2024.csv","mimeType":"text/csv","path":"./_file/data/df_gem_tea_2018_2024.7116c2ad.csv","lastModified":1763040069131,"size":37176});
+registerFile("./data/df_oecd_msti.csv", {"name":"./data/df_oecd_msti.csv","mimeType":"text/csv","path":"./_file/data/df_oecd_msti.7d173673.csv","lastModified":1762789372554,"size":5115769});
+registerFile("./data/df_oecd_vc.csv", {"name":"./data/df_oecd_vc.csv","mimeType":"text/csv","path":"./_file/data/df_oecd_vc.7594d6db.csv","lastModified":1763038876140,"size":143335});
 registerFile("./data/df_startupticker_vc.csv", {"name":"./data/df_startupticker_vc.csv","mimeType":"text/csv","path":"./_file/data/df_startupticker_vc.4b010288.csv","lastModified":1749565420881,"size":90042});
 registerFile("./data/df_unicorns_ch.csv", {"name":"./data/df_unicorns_ch.csv","mimeType":"text/csv","path":"./_file/data/df_unicorns_ch.179401b3.csv","lastModified":1749117648077,"size":1440});
 registerFile("./data/df_unicorns_country.csv", {"name":"./data/df_unicorns_country.csv","mimeType":"text/csv","path":"./_file/data/df_unicorns_country.74964139.csv","lastModified":1749115345173,"size":929});
-registerFile("./data/gem_tea_2018-2024.csv", {"name":"./data/gem_tea_2018-2024.csv","mimeType":"text/csv","path":"./_file/data/gem_tea_2018-2024.f228f98a.csv","lastModified":1762175360029,"size":6398});
-registerFile("./data/iso3_country_csv.csv", {"name":"./data/iso3_country_csv.csv","mimeType":"text/csv","path":"./_file/data/iso3_country_csv.c215df9d.csv","lastModified":1758553457374,"size":1848});
+registerFile("./data/iso3_country_csv.csv", {"name":"./data/iso3_country_csv.csv","mimeType":"text/csv","path":"./_file/data/iso3_country_csv.9c2db0de.csv","lastModified":1762789024697,"size":1854});
 
-define({id: "edc3d8e9", inputs: ["FileAttachment","isr"], outputs: ["color_scale","color_range","colorLegend","countries","line_oecd","bar_x","bar_x_unicorn","bar_vc_ch","arrow_unicorns","aq","df_oecd_vc","df_vc_gdp","df_gem_tea","df_vc_ch","countries_filtered","df_vc","df_tea","df_vc_ch_rounds","df_vc_ch_fin","df_epo","df_oecd_msti","df_unicorns_country","df_unicorns_ch","gdp","df_ug"], body: async (FileAttachment,isr) => {
-const [{color_scale, color_range, colorLegend, countries}, {line_oecd}, {bar_x, bar_x_unicorn}, {bar_vc_ch}, {arrow_unicorns}, aq] = await Promise.all([import("./_import/components/utils/colors.8262fe81.js"), import("./_import/components/plots/line_plots.c261ed98.js"), import("./_import/components/plots/bar_x.69db306a.js"), import("./_import/components/plots/bar_y.d688bc57.js"), import("./_import/components/plots/arrow_y.24d21757.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
+define({id: "8f8f837f", inputs: ["FileAttachment","isr"], outputs: ["color_scale","color_range","colorLegend","countries","line_oecd","bar_x","bar_x_unicorn","bar_vc_ch","arrow_unicorns","aq","df_oecd_vc","df_vc_gdp","df_gem_tea","df_vc_ch","countries_filtered","df_vc","df_tea","df_vc_ch_rounds","df_vc_ch_fin","df_epo","df_oecd_msti","df_unicorns_country","df_unicorns_ch","gdp","df_ug"], body: async (FileAttachment,isr) => {
+const [{color_scale, color_range, colorLegend, countries}, {line_oecd}, {bar_x, bar_x_unicorn}, {bar_vc_ch}, {arrow_unicorns}, aq] = await Promise.all([import("./_import/components/utils/colors.069c64c0.js"), import("./_import/components/plots/line_plots.92fb4b0b.js"), import("./_import/components/plots/bar_x.19de214f.js"), import("./_import/components/plots/bar_y.2ba3f9a0.js"), import("./_import/components/plots/arrow_y.aef9be44.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
 
 const df_oecd_vc = await FileAttachment("./data/df_oecd_vc.csv").csv({
   typed: true,
@@ -132,7 +132,7 @@ const df_oecd_vc = await FileAttachment("./data/df_oecd_vc.csv").csv({
 const df_vc_gdp = await FileAttachment("./data/20241024_vc.txt").tsv({
   typed: true,
 });
-const df_gem_tea = await FileAttachment("./data/gem_tea_2018-2024.csv").csv({
+const df_gem_tea = await FileAttachment("./data/df_gem_tea_2018_2024.csv").csv({
   typed: true,
 });
 const df_vc_ch = await FileAttachment("./data/df_startupticker_vc.csv").csv({
@@ -341,7 +341,7 @@ display(arrow_unicorns(df_unicorns_ch))
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:edc3d8e9:--></div>
+<div class="observablehq observablehq--block"><!--:8f8f837f:--></div>
 <h1 id="entrepreneurship-and-start-ups" tabindex="-1"><a class="observablehq-header-anchor" href="#entrepreneurship-and-start-ups">Entrepreneurship and Start-ups</a></h1>
 <h2 id="venture-capital-market-in-switzerland" tabindex="-1"><a class="observablehq-header-anchor" href="#venture-capital-market-in-switzerland">Venture capital market in Switzerland</a></h2>
 <p>Venture capital availability in <observablehq-loading></observablehq-loading><!--:4e058e15:--> has been increasing steadily until 2022, but has declined since. The financing rounds have become only slightly fewer, but smaller. The in- and then decreasing VC funding with a peak in 2021/2022 is mirrored in other countries (see below).</p>
@@ -353,12 +353,12 @@ display(arrow_unicorns(df_unicorns_ch))
 <p>According to the report «Fast-growing start-ups in Switzerland» (<a href="https://www.seco.admin.ch/dam/seco/en/dokumente/Standortfoerderung/KMU-Politik/Finanzierung%20der%20KMU/Bericht%20Postulat%20Derder%20-%20Rasch%20wachsende%20Jungunternehmen%20in%20der%20Schweiz.pdf.download.pdf/EN_Bericht_PO_Derder_Fast_growing_start_ups_in_Switzerland.pdf" target="_blank" rel="noopener noreferrer">SECO, 2017</a>) the venture capital market in <observablehq-loading></observablehq-loading><!--:4e058e15-1:--> was not as mature as the markets in more advanced countries (such as <observablehq-loading></observablehq-loading><!--:a05991af:-->, the <observablehq-loading></observablehq-loading><!--:c55312a5:-->). The VC market has since expanded, but there is still room for improvement.</p>
 <div class="observablehq observablehq--block"><!--:29caf954:--></div>
 <div class="observablehq observablehq--block"><!--:8402503b:--></div>
-<p><a href="./_file/images/venture-capital-gdp-live.42f4d4d5.png" download="venture-capital-gdp.png">⤓ Download image</a></p>
+<p><a href="./_file/images/venture-capital-gdp-live.b7fb6a48.png" download="venture-capital-gdp.png">⤓ Download image</a></p>
 <div class="warning" label="Note">The OECD data should be taken with a grain of salt. There is no standard for data collection for VC investment data and there is no single source. The <a href="https://www.investeurope.eu/media/aywhjtsp/20250508_invest-europe_pe-activity-data-2024-report.pdf" target="_blank" rel="noopener noreferrer">Invest Europe data</a> (p.56), which is most likely the source for the OECD data for Switzerland, does not show an upward trend for Switzerland in 2024, but confirms the downward trend in the startupticker.ch data.</div>
 <h2 id="total-early-stage-entrepreneurial-activity-tea" tabindex="-1"><a class="observablehq-header-anchor" href="#total-early-stage-entrepreneurial-activity-tea">Total early-stage entrepreneurial activity (TEA)</a></h2>
 <p>The share of 18-64 population who are either a nascent entrepreneur or owner-manager of a new business in <observablehq-loading></observablehq-loading><!--:4e058e15-2:--> has been hovering between 8 and 10 percent. This is a low- to mid-table position among innovation peers.</p>
 <div class="observablehq observablehq--block"><!--:7a2168c6:--></div>
-<p><a href="./_file/images/entrepreneurial-activity-tea-live.41778d90.png" download="entrepreneurial-activity-tea.png">⤓ Download image</a></p>
+<p><a href="./_file/images/entrepreneurial-activity-tea-live.2c81b3ff.png" download="entrepreneurial-activity-tea.png">⤓ Download image</a></p>
 <h2 id="technology-intensity-of-investment-portfolios" tabindex="-1"><a class="observablehq-header-anchor" href="#technology-intensity-of-investment-portfolios">Technology Intensity of Investment Portfolios</a></h2>
 <p>The European Patent Office (EPO) links its own patent data to <a href="https://dealroom.co" target="_blank" rel="noopener noreferrer">dealroom.co</a>'s data on investors and their investments and creates a comparative analysis of the technology intensity of the investment portfolios in Europe and the US.</p>
 <p>The EPO introduces the metric <strong>Technology Investor Score (TIS)</strong> designed to identify investors specialized in supporting high-tech companies. The TIS measures the percentage of companies with at least one patent within an investor’s portfolio. A high TIS indicates an investor’s engagement with innovation-driven companies.</p>
@@ -377,7 +377,7 @@ display(arrow_unicorns(df_unicorns_ch))
 <h3 id="number-of-unicorn-companies-relative-to-gdp" tabindex="-1"><a class="observablehq-header-anchor" href="#number-of-unicorn-companies-relative-to-gdp">Number of unicorn companies relative to GDP</a></h3>
 <p>The graph below compares countries' efficiency in creating unicorn companies relative to their economic size, measured as the number of unicorns per $133 billion of GDP. Switzerland produces one unicorn per $133 billion GDP, similar to the Netherlands and Sweden. In contrast, the United States and Israel significantly outperform this benchmark, generating 3-6 times more unicorns relative to their GDP. CB Insights defines a unicorn company, or unicorn startup, as a private company with a valuation over $1 billion.</p>
 <div><observablehq-loading></observablehq-loading><!--:592fcfc2:--></div>
-<a href="./_file/images/unicorn-density-live.dbb82231.png" download="unicorn-density.png">⤓ Download image</a>
+<a href="./_file/images/unicorn-density-live.3bbddcb5.png" download="unicorn-density.png">⤓ Download image</a>
 <h3 id="swiss-unicorn-companies" tabindex="-1"><a class="observablehq-header-anchor" href="#swiss-unicorn-companies">Swiss unicorn companies</a></h3>
 <p>We've also created our own list of Swiss unicorns, including both current unicorns and former ones that have gone public or been acquired, thus some might not meet the strictest unicorn definition. Accordingly, the number is significantly higher than the number in the CB Insights data (28 vs 6). The list is based on the list of the Swiss ICT Investor Club (SICTIC) and has been updated with our own research.</p>
 <div><observablehq-loading></observablehq-loading><!--:2134d829:--></div>

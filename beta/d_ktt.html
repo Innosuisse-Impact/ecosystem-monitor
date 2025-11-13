@@ -13,11 +13,11 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.82f41530.js">
-<link rel="modulepreload" href="./_import/components/utils/colors.8262fe81.js">
-<link rel="modulepreload" href="./_import/components/plots/line_plots.c261ed98.js">
+<link rel="modulepreload" href="./_import/components/plots/bar_stacked_y.df186ad5.js">
+<link rel="modulepreload" href="./_import/components/utils/colors.069c64c0.js">
+<link rel="modulepreload" href="./_import/components/plots/line_plots.92fb4b0b.js">
 <link rel="modulepreload" href="./_import/components/utils/subtractYears.6c06f425.js">
-<link rel="modulepreload" href="./_import/components/utils/countries.8b3404cd.js">
+<link rel="modulepreload" href="./_import/components/utils/countries.da511c71.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/d761ef9b.js">
@@ -106,12 +106,12 @@ import {define} from "./_observablehq/client.19f413ec.js";
 import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 
 registerFile("./data/df.csv", {"name":"./data/df.csv","mimeType":"text/csv","path":"./_file/data/df.b09f8d54.csv","lastModified":1750325926377,"size":3644208});
-registerFile("./data/eis_raw_data_2025.csv", {"name":"./data/eis_raw_data_2025.csv","mimeType":"text/csv","path":"./_file/data/eis_raw_data_2025.5faa86b5.csv","lastModified":1758543254485,"size":2009454});
-registerFile("./data/iso3_country_csv.csv", {"name":"./data/iso3_country_csv.csv","mimeType":"text/csv","path":"./_file/data/iso3_country_csv.c215df9d.csv","lastModified":1758553457374,"size":1848});
+registerFile("./data/eis_raw_data_2025.csv", {"name":"./data/eis_raw_data_2025.csv","mimeType":"text/csv","path":"./_file/data/eis_raw_data_2025.74b6999e.csv","lastModified":1762788763969,"size":2019054});
+registerFile("./data/iso3_country_csv.csv", {"name":"./data/iso3_country_csv.csv","mimeType":"text/csv","path":"./_file/data/iso3_country_csv.9c2db0de.csv","lastModified":1762789024697,"size":1854});
 registerFile("./data/switt_startup_2024.csv", {"name":"./data/switt_startup_2024.csv","mimeType":"text/csv","path":"./_file/data/switt_startup_2024.69dc4a42.csv","lastModified":1749203568598,"size":1175});
 
 define({id: "4d0b588b", inputs: ["FileAttachment"], outputs: ["bar_stacked_y","color_range","color_scale","colorLegend","countries","line_oecd","subtractYears","df","df_eis","df_switt","df_patents","df_ppcp"], body: async (FileAttachment) => {
-const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}, {subtractYears}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.82f41530.js"), import("./_import/components/utils/colors.8262fe81.js"), import("./_import/components/plots/line_plots.c261ed98.js"), import("./_import/components/utils/subtractYears.6c06f425.js")]);
+const [{bar_stacked_y}, {color_range, color_scale, colorLegend, countries}, {line_oecd}, {subtractYears}] = await Promise.all([import("./_import/components/plots/bar_stacked_y.df186ad5.js"), import("./_import/components/utils/colors.069c64c0.js"), import("./_import/components/plots/line_plots.92fb4b0b.js"), import("./_import/components/utils/subtractYears.6c06f425.js")]);
 
 // OECD MSTI Daten laden
 const df = await FileAttachment("./data/df.csv").csv({ typed: true });
@@ -215,7 +215,7 @@ define({id: "01fac253", body: () => {
 <p><observablehq-loading></observablehq-loading><!--:4e058e15:--> is still well-positioned and but not longer among the top 3 its innovation peers in terms of PCT patent applications per billion GDP. This holds true as well if we look at patents per capita.</p>
 <p>PCT patents are international patents filed through the WIPO-administered Patent Cooperation Treaty. It makes it possible to seek patent protection for an invention simultaneously in a number of countries by filing a single application.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:1d007095:--></div>
-<p><a href="./_file/images/pct-patents-live.fa812829.png" download="pct-patents.png">⤓ Download image</a></p>
+<p><a href="./_file/images/pct-patents-live.8c77414c.png" download="pct-patents.png">⤓ Download image</a></p>
 <h2 id="public-private-co-publications" tabindex="-1"><a class="observablehq-header-anchor" href="#public-private-co-publications">Public-private co-publications</a></h2>
 <p>One of the strengths in the international comparison are <observablehq-loading></observablehq-loading><!--:4e058e15-1:-->'s public-private co-publications. Only <observablehq-loading></observablehq-loading><!--:1a7588f8:--> can keep pace. The Innosuisse monitoring data shows that Innovation projects with implementation partner make their contribution to this knowledge transfer between research and business (54 % report a co-publication as one result of their innovation project).</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:02edd282:--></div>

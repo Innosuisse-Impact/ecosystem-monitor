@@ -13,15 +13,15 @@
 <link rel="modulepreload" href="./_observablehq/client.19f413ec.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.31fc9623.js">
-<link rel="modulepreload" href="./_import/components/plots/rank.d0be4010.js">
-<link rel="modulepreload" href="./_import/components/plots/arrow_y.244706bb.js">
-<link rel="modulepreload" href="./_import/components/utils/colors.8262fe81.js">
+<link rel="modulepreload" href="./_import/components/plots/rank.0bd732f0.js">
+<link rel="modulepreload" href="./_import/components/plots/arrow_y.aef9be44.js">
+<link rel="modulepreload" href="./_import/components/utils/colors.069c64c0.js">
 <link rel="modulepreload" href="./_npm/arquero@8.0.3/175c2cad.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
 <link rel="modulepreload" href="./_node/@observablehq/plot@0.6.17/index.b6341d14.js">
 <link rel="modulepreload" href="./_node/arquero@7.2.0/index.fbd5f71c.js">
 <link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
-<link rel="modulepreload" href="./_import/components/utils/countries.8b3404cd.js">
+<link rel="modulepreload" href="./_import/components/utils/countries.da511c71.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/d761ef9b.js">
 <link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
 <link rel="modulepreload" href="./_npm/acorn@8.15.0/c47b807d.js">
@@ -107,13 +107,13 @@
 import {define} from "./_observablehq/client.19f413ec.js";
 import {registerFile} from "./_observablehq/stdlib.31fc9623.js";
 
-registerFile("./data/eis_raw_data_2025.csv", {"name":"./data/eis_raw_data_2025.csv","mimeType":"text/csv","path":"./_file/data/eis_raw_data_2025.5faa86b5.csv","lastModified":1758543254485,"size":2009454});
+registerFile("./data/eis_raw_data_2025.csv", {"name":"./data/eis_raw_data_2025.csv","mimeType":"text/csv","path":"./_file/data/eis_raw_data_2025.74b6999e.csv","lastModified":1762788763969,"size":2019054});
 registerFile("./data/gii_2021_2025_score.csv", {"name":"./data/gii_2021_2025_score.csv","mimeType":"text/csv","path":"./_file/data/gii_2021_2025_score.f205fb8b.csv","lastModified":1762180160238,"size":14408});
-registerFile("./data/iso3_country_csv.csv", {"name":"./data/iso3_country_csv.csv","mimeType":"text/csv","path":"./_file/data/iso3_country_csv.c215df9d.csv","lastModified":1758553457374,"size":1848});
+registerFile("./data/iso3_country_csv.csv", {"name":"./data/iso3_country_csv.csv","mimeType":"text/csv","path":"./_file/data/iso3_country_csv.9c2db0de.csv","lastModified":1762789024697,"size":1854});
 registerFile("./data/rankings_2025.csv", {"name":"./data/rankings_2025.csv","mimeType":"text/csv","path":"./_file/data/rankings_2025.97d67bf6.csv","lastModified":1762443865300,"size":131705});
 
 define({id: "e7d92949", inputs: ["FileAttachment"], outputs: ["plot_eis","plot_rank_bump","arrow_eis","color_scale","colorLegend","countries","aq","df_rank","df_ranking","df_eis","df_eis_filtered","df_gii","df_gii_filtered"], body: async (FileAttachment) => {
-const [{plot_eis, plot_rank_bump}, {arrow_eis}, {color_scale, colorLegend, countries}, aq] = await Promise.all([import("./_import/components/plots/rank.d0be4010.js"), import("./_import/components/plots/arrow_y.244706bb.js"), import("./_import/components/utils/colors.8262fe81.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
+const [{plot_eis, plot_rank_bump}, {arrow_eis}, {color_scale, colorLegend, countries}, aq] = await Promise.all([import("./_import/components/plots/rank.0bd732f0.js"), import("./_import/components/plots/arrow_y.aef9be44.js"), import("./_import/components/utils/colors.069c64c0.js"), import("./_npm/arquero@8.0.3/175c2cad.js")]);
 
 const df_rank = await FileAttachment("./data/rankings_2025.csv").csv({
   typed: true,
@@ -337,7 +337,7 @@ define({id: "e7147e10", body: () => {
 <h3 id="comparison-of-the-score-evolution-for-gii-and-eis-2021-2025" tabindex="-1"><a class="observablehq-header-anchor" href="#comparison-of-the-score-evolution-for-gii-and-eis-2021-2025">Comparison of the score evolution for GII and EIS 2021–2025</a></h3>
 <p><observablehq-loading></observablehq-loading><!--:4e058e15-1:--> has slipped slightly in the latest European Innovation Scoreboard (EIS). <observablehq-loading></observablehq-loading><!--:e662b923-1:-->, <observablehq-loading></observablehq-loading><!--:9a4da08b-1:--> and <observablehq-loading></observablehq-loading><!--:1a7588f8:--> have gained ground and narrowed the gap. This is partly due to changes in the index's methodology. The EIS now includes, for example, measures of supply-chain vulnerability, which penalises Switzerland: its complex products depend on high-tech imports from outside the EU.</p>
 <div class="observablehq observablehq--block"><!--:e98c580e:--></div>
-<p><a href="./_file/images/eis-progress-arrow-live.e21dd458.png" download="eis-progress-arrow.png">⤓ Download image</a></p>
+<p><a href="./_file/images/eis-progress-arrow-live.df3d7e39.png" download="eis-progress-arrow.png">⤓ Download image</a></p>
 <p>The Global Innovation Index, which uses a broader set of indicators, shows no such convergence and no decline in Swiss innovative power.</p>
 <div class="observablehq observablehq--block"><!--:3b16a506:--></div>
 <p><a href="./_file/images/gii-progress-arrow-live.eda65963.png" download="gii-progress-arrow.png">⤓ Download image</a></p>
