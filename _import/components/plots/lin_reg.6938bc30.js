@@ -7,7 +7,8 @@ export function lin_reg(
     indicator = "Umsatzanteil F&E-Ausgaben",
     percent = false,
     zero = true,
-    domain = undefined
+    domain = undefined,
+    decimal = false
   ) {
 
     const df_ie = data.filter((d) => d.indicator === indicator);
@@ -35,7 +36,7 @@ export function lin_reg(
         Plot.selectLast({
           x: "date_end",
           y: "obs_value",
-          text: (d) => `${d.obs_value.toFixed(0)}%`,
+          text: (d) => `${d.obs_value.toFixed(decimal ? 1 : 0)}%`,
           dx: 15,
           fill: "#53565A",
           opacity: 1
