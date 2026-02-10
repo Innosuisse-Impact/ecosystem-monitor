@@ -154,7 +154,7 @@ lin_reg(ie, "Produkt-/Prozessinnovationen ja/nein", true, false, [0, 100])
 
 define({id: "41a6b08b", mode: "inline", inputs: ["lin_reg","ie","display"], body: async (lin_reg,ie,display) => {
 display(await(
-lin_reg(ie, "Umsatzanteil F&E-Ausgaben", true, false, [0,5], true)
+lin_reg(ie, "Umsatzanteil F&E-Ausgaben", true, false, [0,10], true)
 ))
 }});
 
