@@ -8,7 +8,7 @@ export function lin_reg(
     percent = false,
     zero = true,
     domain = undefined,
-    decimal = true
+    decimal = false
   ) {
 
     const df_ie = data.filter((d) => d.indicator === indicator);
